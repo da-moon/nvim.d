@@ -15,4 +15,4 @@ tasks:
   - mirror-to-github: |
       cd ~/nvim.d
       git remote add github git@github.com:da-moon/nvim.d
-      git push --prune github +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/* master
+      git push --force --prune github +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/* master
