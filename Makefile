@@ -55,3 +55,18 @@ SHELL := /bin/bash
 			cargo install -j$(shell nproc) stylua ; \
 		fi \
 	fi
+--selene:
+	export PATH=$(PATH) ;
+	@if ! $(WHICH) selene > $(DEVNUL) 2>&1; then \
+		if $(WHICH) makepkg > $(DEVNUL) 2>&1; then \
+			$(RMDIR) "/tmp/selene-linter" \
+			&& git clone "https://aur.archlinux.org/selene-linter.git" "/tmp/selene-linter" \
+			&& pushd "/tmp/selene-linter" \
+			&& makepkg -sicr --noconfirm \
+			&& popd \
+			&& $(RMDIR) "/tmp/selene-linter" ; \
+		else \
+			$(MAKE) --no-print-directory -f $(MAKEFILE_LIST) -- --rust ; \
+			cargo install -j$(shell nproc) --branch main --git https://github.com/Kampfkarren/selene selene ; \
+		fi \
+	fi
