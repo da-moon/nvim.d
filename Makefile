@@ -107,3 +107,13 @@ SHELL := /bin/bash
 		sudo apk info --installed "luajit" > $(DEVNUL) 2>&1 || sudo apk add --no-cache  "luajit" ; \
 		fi
 	$(MAKE) --no-print-directory -f $(MAKEFILE_LIST) -- --luarocks-post-install ;
+--luarocks-post-install:
+	export PATH=$(PATH) ;
+	sudo ln -sf \
+		"/usr/bin/luarocks-$(LUA_VERSION)" \
+		"/usr/local/bin/luarocks" ; \
+		if ! $(WHICH) luarocks > $(DEVNUL) 2>&1; then \
+		echo >&2 "*** luarocks not found in path" ; \
+		exit 1; \
+		fi
+	$(MAKE) --no-print-directory -f $(MAKEFILE_LIST) -- --fix-home-ownership ;
