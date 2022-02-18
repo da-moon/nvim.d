@@ -95,3 +95,15 @@ SHELL := /bin/bash
 			cargo install -j$(shell nproc) fd-find ; \
 		fi \
 	fi
+--luarocks:
+	export PATH=$(PATH) ;
+	[ ! -d "$${HOME}/.cache/luarocks" ] && $(MKDIR) "$${HOME}/.cache/luarocks" || true;
+	if $(WHICH) pacman > $(DEVNUL) 2>&1; then \
+		sudo pacman -Syy --noconfirm --needed "luarocks" ; \
+		elif $(WHICH) apk > $(DEVNUL) 2>&1; then \
+		sudo apk info --installed "lua5.2" > $(DEVNUL) 2>&1 || sudo apk add --no-cache "lua5.2" ; \
+		sudo apk info --installed "lua5.2-dev" > $(DEVNUL) 2>&1 || sudo apk add --no-cache "lua5.2-dev" ; \
+		sudo apk info --installed "luarocks" > $(DEVNUL) 2>&1 || sudo apk add --no-cache "luarocks" ; \
+		sudo apk info --installed "luajit" > $(DEVNUL) 2>&1 || sudo apk add --no-cache  "luajit" ; \
+		fi
+	$(MAKE) --no-print-directory -f $(MAKEFILE_LIST) -- --luarocks-post-install ;
