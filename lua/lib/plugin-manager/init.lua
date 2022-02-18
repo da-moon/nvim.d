@@ -60,4 +60,40 @@ function M:init()
    packer_luarocks.install_commands()
    self.packer = packer
 end
+---this function forcefully loads a plugin module.
+--and returns it.
+-- https://github.com/ray-x/go.nvim/blob/d8638ab9c84e4154493ddadea995e3be078a3e16/lua/go/utils.lua#L330
+---@param name string
+---@param modulename string
+---@return table or nil
+function M:load_plugin(name, modulename)
+   assert(name ~= nil, "plugin should not empty")
+   assert(self.packer ~= nil, "plugin should have been initialized")
+   modulename = modulename or name
+   local has, plugin = pcall(require, modulename)
+   if has then
+      return plugin
+   end
+   if packer_plugins ~= nil then
+      -- packer installed
+      local loader = self.packer.loader
+      if not packer_plugins[name] or not packer_plugins[name].loaded then
+         -- [ TODO ] => log name
+         vim.cmd("packadd " .. name) -- load with default
+         if packer_plugins[name] ~= nil then
+            loader(name)
+         end
+      end
+   else
+      -- [ TODO ] => log name
+      vim.cmd("packadd " .. name) -- load with default
+   end
+
+   has, plugin = pcall(require, modulename)
+   if not has then
+      -- [ TODO ] => log name
+      return nil
+   end
+   return plugin
+end
 return M
