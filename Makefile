@@ -19,6 +19,7 @@ export LUA_PATH=/usr/local/share/lua/$(LUA_VERSION)/?.lua;/usr/local/share/lua/$
 export LUA_CPATH=/usr/local/lib/lua/$(LUA_VERSION)/?.so;/usr/local/lib/lua/$(LUA_VERSION)/loadall.so;/usr/lib/lua/$(LUA_VERSION)/?.so;/usr/lib/lua/$(LUA_VERSION)/loadall.so;./?.so
 # ─── MAKE CONFIG ────────────────────────────────────────────────────────────────
 SHELL := /bin/bash
+.DEFAULT_GOAL := default
 .PHONY: $(shell egrep -o '^[a-zA-Z_-]+:' $(MAKEFILE_LIST) | sed 's/://')
 .SILENT: $(shell egrep -o '^[a-zA-Z_-]+:' $(MAKEFILE_LIST) | sed 's/://')
 # ─── HIDDEN TARGETS ─────────────────────────────────────────────────────────────
@@ -140,3 +141,9 @@ SHELL := /bin/bash
 	export PATH=$(PATH) ;
 	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'qall' ;
 	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync';
+# ─── TARGETS ────────────────────────────────────────────────────────────────────
+default: ## default target which uses fzf to show a menu of make target options
+	@make -rpn \
+		| sed -n -e '/^$$/ { n ; /^[^ .#][^ ]*:/ { s/:.*$$// ; p ; } ; }' \
+		| sort -u \
+		| fzf
