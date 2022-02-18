@@ -200,3 +200,5 @@ selene: --selene --fd ## runs selene linter
 	selene $${files[*]}
 # ────────────────────────────────────────────────────────────────────────────────
 lint: luacheck selene ## a 'meta' target that runs all linter targets
+# ────────────────────────────────────────────────────────────────────────────────
+dep: --stylua --luacheck --selene --vale --fd ## a 'meta' target that runs all targets used for bootrapinng development environment
