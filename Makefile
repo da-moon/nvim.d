@@ -40,3 +40,18 @@ SHELL := /bin/bash
 			sudo apk info --installed "sccache" > $(DEVNUL) 2>&1 || sudo apk add --no-cache "sccache" ; \
 		fi \
 	fi
+--stylua:
+	export PATH=$(PATH) ;
+	@if ! $(WHICH) stylua > $(DEVNUL) 2>&1; then \
+		if $(WHICH) makepkg > $(DEVNUL) 2>&1; then \
+			$(RMDIR) "/tmp/stylua-git" \
+			&& git clone "https://aur.archlinux.org/stylua-git.git" "/tmp/stylua-git" \
+			&& pushd "/tmp/stylua-git" \
+			&& makepkg -sicr --noconfirm \
+			&& popd \
+			&& $(RMDIR) "/tmp/stylua-git" ; \
+		else \
+			$(MAKE) --no-print-directory -f $(MAKEFILE_LIST) -- --rust ; \
+			cargo install -j$(shell nproc) stylua ; \
+		fi \
+	fi
