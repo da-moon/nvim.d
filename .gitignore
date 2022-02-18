@@ -1,0 +1,31 @@
+*
+!*/
+#  ────────────────────────────────────────────────────────────────────
+!/lua/**/*.lua
+!/ftplugin/**/*.lua
+#  ────────────────────────────────────────────────────────────────────
+!/.editorconfig
+!/.gitignore
+!/.gitattributes
+!/.dockerignore
+!/.gitpod.yml
+!/.build.yml
+!/.markdownlintignore
+!/.stignore
+!/.versionrc
+!/.pre-commit-config.yaml
+!/.env
+!/LICENSE
+!/README.md
+!/commitlint.config.js
+!/Justfile
+!/Makefile
+!/Vagrantfile
+!/docker-bake.hcl
+!/CONTRIBUTING.md
+!/CHANGELOG.md
+!/.luacheckrc
+!/.stylua.toml
+!/packer_plugins.toml
+!/selene.toml
+!/vim.toml
