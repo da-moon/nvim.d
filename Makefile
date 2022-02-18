@@ -194,3 +194,7 @@ luacheck: --luacheck --remove-shebang  ## runs luacheck linter
 	export PATH=$(PATH) ;
 	luacheck -q --codes --config "$(CURDIR)/.luacheckrc" $(CURDIR)
 	$(MAKE) --no-print-directory -f $(MAKEFILE_LIST) -- --add-shebang ;
+selene: --selene --fd ## runs selene linter
+	export PATH=$(PATH) ;
+	files=($$(fd -a -c never -e 'lua' -E plugin/packer_compiled.lua -E archive/ --full-path $(CURDIR))) ; \
+	selene $${files[*]}
