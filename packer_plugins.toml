@@ -1,0 +1,3 @@
+# https://github.com/tigorlazuardi/nvim-lazy/blob/main/packer_plugins.toml
+[packer_plugins]
+any = true
