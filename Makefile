@@ -202,3 +202,9 @@ selene: --selene --fd ## runs selene linter
 lint: luacheck selene ## a 'meta' target that runs all linter targets
 # ────────────────────────────────────────────────────────────────────────────────
 dep: --stylua --luacheck --selene --vale --fd ## a 'meta' target that runs all targets used for bootrapinng development environment
+# ────────────────────────────────────────────────────────────────────────────────
+install: fmt clean ## configure nvim
+	export PATH=$(PATH) ;
+	ln -sf $(CURDIR) $${HOME}/.config/nvim ;
+	$(MAKE) --no-print-directory -f $(MAKEFILE_LIST) -- --install-packer ;
+	nvim -c "PackerStatus";
