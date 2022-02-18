@@ -136,3 +136,7 @@ SHELL := /bin/bash
 	-x sed -i \
 	-e '1 i\-- vim: filetype=lua syntax=lua softtabstop=3 tabstop=3 shiftwidth=3 fileencoding=utf-8 smartindent autoindent expandtab' \
 	-e '1 i\-- code: language=lua insertSpaces=true tabSize=3'
+--install-packer:
+	export PATH=$(PATH) ;
+	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'qall' ;
+	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync';
