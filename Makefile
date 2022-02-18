@@ -164,3 +164,18 @@ snapshot: ## archives the repository and stores it under tmp/snapshots
 	- mv $(tmp)/$(time).tar.gz $(path)
 	- $(RM) $(tmp)
 	- echo "*** snapshot created at $(path)"
+# ────────────────────────────────────────────────────────────────────────────────
+clean: ## prepares a clean slate for configuring Neovim
+	export PATH=$(PATH) ;
+	pkill -SIGKILL npm || true ;
+	pkill -SIGKILL nodejs || true ;
+	$(RMDIR) \
+		"$(CURDIR)/plugin/packer_compiled.lua" \
+		"$${HOME}/.cache/"*vim* \
+		"$${HOME}/.local/share/nvimlsp_servers" \
+		"$${HOME}/.cache/neosnippet" \
+		"$${HOME}/.config/coc" \
+		"$${HOME}/.vim"* \
+		"$${HOME}/.config/"*vim* \
+		"$${HOME}/.cache/"*vim* \
+		"$${HOME}/.local/share/"*vim* ;
