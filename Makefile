@@ -179,3 +179,7 @@ clean: ## prepares a clean slate for configuring Neovim
 		"$${HOME}/.config/"*vim* \
 		"$${HOME}/.cache/"*vim* \
 		"$${HOME}/.local/share/"*vim* ;
+# ────────────────────────────────────────────────────────────────────────────────
+healthcheck: ## runs neovim healthchecks
+	export PATH=$(PATH) ;
+	nvim --headless -c 'checkhealth' -c 'silent write >> /dev/stdout' -c 'quitall' 2>&1
