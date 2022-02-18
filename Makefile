@@ -84,3 +84,14 @@ SHELL := /bin/bash
 			curl -sfL https://install.goreleaser.com/github.com/ValeLint/vale.sh | sudo sh -s -- -b "/usr/local/bin" latest ; \
 		fi \
 	fi
+--fd:
+	export PATH=$(PATH) ;
+	@if ! $(WHICH) fd > $(DEVNUL) 2>&1; then \
+		if $(WHICH) pacman > $(DEVNUL) 2>&1; then \
+			sudo pacman -Syy --noconfirm --needed fd ; \
+		elif $(WHICH) apk > $(DEVNUL) 2>&1; then \
+			sudo apk add --no-cache fd	; \
+		elif $(WHICH) cargo > $(DEVNUL) 2>&1; then \
+			cargo install -j$(shell nproc) fd-find ; \
+		fi \
+	fi
