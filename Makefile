@@ -189,3 +189,8 @@ fmt: --stylua --fd --remove-shebang ## formats lua files with stylua
 	fd  -e 'lua' -E plugin/packer_compiled.lua -E archive/ --full-path $(CURDIR) \
 	-x stylua --config-path="$(CURDIR)/.stylua.toml"
 	$(MAKE) --no-print-directory -f $(MAKEFILE_LIST) -- --add-shebang ;
+# ────────────────────────────────────────────────────────────────────────────────
+luacheck: --luacheck --remove-shebang  ## runs luacheck linter
+	export PATH=$(PATH) ;
+	luacheck -q --codes --config "$(CURDIR)/.luacheckrc" $(CURDIR)
+	$(MAKE) --no-print-directory -f $(MAKEFILE_LIST) -- --add-shebang ;
