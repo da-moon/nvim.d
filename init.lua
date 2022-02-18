@@ -9,6 +9,7 @@
 -- luacheck: max line length 120
 local modules = {
    "core",
+   "plugins",
 }
 for _, module in ipairs(modules) do
    local status, _ = pcall(require, module)
@@ -16,4 +17,3 @@ for _, module in ipairs(modules) do
       print(module .. " not found!")
    end
 end
-
