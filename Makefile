@@ -30,3 +30,13 @@ SHELL := /bin/bash
 		-print0 | \
 		xargs -0 -r -I {} -P "$(shell nproc)" \
 		sudo chown --no-dereference "$(shell id -u):$(shell id -g)" {} ;
+--rust:
+	export PATH=$(PATH) ;
+	@if ! $(WHICH) cargo > $(DEVNUL) 2>&1; then \
+		if $(WHICH) pacman > $(DEVNUL) 2>&1; then \
+			sudo pacman -Syy --noconfirm --needed rust sccache ; \
+		elif $(WHICH) apk > $(DEVNUL) 2>&1; then \
+			sudo apk info --installed "cargo" > $(DEVNUL) 2>&1 || sudo apk add --no-cache "cargo" ; \
+			sudo apk info --installed "sccache" > $(DEVNUL) 2>&1 || sudo apk add --no-cache "sccache" ; \
+		fi \
+	fi
