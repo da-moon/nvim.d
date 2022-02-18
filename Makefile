@@ -147,3 +147,7 @@ default: ## default target which uses fzf to show a menu of make target options
 		| sed -n -e '/^$$/ { n ; /^[^ .#][^ ]*:/ { s/:.*$$// ; p ; } ; }' \
 		| sort -u \
 		| fzf
+
+#  ────────────────────────────────────────────────────────────────────
+help:                   ## Show this help
+	@printf "$$(fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v 'fgrep' | sed -e 's/\\$$//' | sed -e 's/\s.*##//')\n"
