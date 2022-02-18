@@ -1,4 +1,6 @@
 image: alpine/edge
+environment:
+  REPO_NAME: "nvim.d"
 secrets:
   - 911a32c9-a8b4-4d41-9fe0-18df25523b2f
 sources:
@@ -13,6 +15,9 @@ tasks:
       rm -rf $tmp_dir
       echo -e "Host github.com\n    IdentityFile ~/.ssh/id_rsa\n    IdentitiesOnly yes\n    BatchMode yes\n" >> ~/.ssh/config
   - mirror-to-github: |
-      cd ~/nvim.d
-      git remote add github git@github.com:da-moon/nvim.d
-      git push --force --prune github +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/* master
+      cd "${HOME}/${REPO_NAME}" || exit 1 ;
+      git remote add github "git@github.com:da-moon/${REPO_NAME}" \
+      && git config --local user.name "da-moon" \
+      && git config --local user.email "contact@havi.dev" \
+      && git rebase --root -x "git commit --amend --reset-author -CHEAD" \
+      && git push --force --prune github +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/* master
