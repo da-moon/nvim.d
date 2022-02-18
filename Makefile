@@ -151,3 +151,16 @@ default: ## default target which uses fzf to show a menu of make target options
 #  ────────────────────────────────────────────────────────────────────
 help:                   ## Show this help
 	@printf "$$(fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v 'fgrep' | sed -e 's/\\$$//' | sed -e 's/\s.*##//')\n"
+
+# ────────────────────────────────────────────────────────────────────────────────
+snapshot: ## archives the repository and stores it under tmp/snapshots
+	- $(eval tmp=$(shell mktemp -d))
+	- $(eval time=$(shell date +'%Y-%m-%d-%H-%M'))
+	- $(eval snapshot_dir=$(CURDIR)/tmp/snapshots)
+	- $(eval path=$(snapshot_dir)/$(time).tar.gz)
+	- sync
+	- $(MKDIR) $(snapshot_dir)
+	- tar -C $(CURDIR) -cpzf $(tmp)/$(time).tar.gz .
+	- mv $(tmp)/$(time).tar.gz $(path)
+	- $(RM) $(tmp)
+	- echo "*** snapshot created at $(path)"
