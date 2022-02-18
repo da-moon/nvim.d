@@ -19,3 +19,14 @@ export LUA_PATH=/usr/local/share/lua/$(LUA_VERSION)/?.lua;/usr/local/share/lua/$
 export LUA_CPATH=/usr/local/lib/lua/$(LUA_VERSION)/?.so;/usr/local/lib/lua/$(LUA_VERSION)/loadall.so;/usr/lib/lua/$(LUA_VERSION)/?.so;/usr/lib/lua/$(LUA_VERSION)/loadall.so;./?.so
 # ─── MAKE CONFIG ────────────────────────────────────────────────────────────────
 SHELL := /bin/bash
+.PHONY: $(shell egrep -o '^[a-zA-Z_-]+:' $(MAKEFILE_LIST) | sed 's/://')
+.SILENT: $(shell egrep -o '^[a-zA-Z_-]+:' $(MAKEFILE_LIST) | sed 's/://')
+# ─── HIDDEN TARGETS ─────────────────────────────────────────────────────────────
+--fix-home-ownership:
+	export PATH=$(PATH) ;
+	@find "$${HOME}" \
+		-not -group "$(shell id -g)" \
+		-not -user "$(shell id -u)" \
+		-print0 | \
+		xargs -0 -r -I {} -P "$(shell nproc)" \
+		sudo chown --no-dereference "$(shell id -u):$(shell id -g)" {} ;
