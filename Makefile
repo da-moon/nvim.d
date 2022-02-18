@@ -198,3 +198,5 @@ selene: --selene --fd ## runs selene linter
 	export PATH=$(PATH) ;
 	files=($$(fd -a -c never -e 'lua' -E plugin/packer_compiled.lua -E archive/ --full-path $(CURDIR))) ; \
 	selene $${files[*]}
+# ────────────────────────────────────────────────────────────────────────────────
+lint: luacheck selene ## a 'meta' target that runs all linter targets
