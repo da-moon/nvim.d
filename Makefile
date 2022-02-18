@@ -70,3 +70,17 @@ SHELL := /bin/bash
 			cargo install -j$(shell nproc) --branch main --git https://github.com/Kampfkarren/selene selene ; \
 		fi \
 	fi
+--vale:
+	export PATH=$(PATH) ;
+	@if ! $(WHICH) selene > $(DEVNUL) 2>&1; then \
+		if $(WHICH) makepkg > $(DEVNUL) 2>&1; then \
+			$(RMDIR) "/tmp/vale-bin" \
+			&& git clone "https://aur.archlinux.org/vale-bin.git" "/tmp/vale-bin" \
+			&& pushd "/tmp/vale-bin" \
+			&& makepkg -sicr --noconfirm \
+			&& popd \
+			&& $(RMDIR) "/tmp/vale-bin" ; \
+		else \
+			curl -sfL https://install.goreleaser.com/github.com/ValeLint/vale.sh | sudo sh -s -- -b "/usr/local/bin" latest ; \
+		fi \
+	fi
