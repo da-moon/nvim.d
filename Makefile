@@ -183,3 +183,9 @@ clean: ## prepares a clean slate for configuring Neovim
 healthcheck: ## runs neovim healthchecks
 	export PATH=$(PATH) ;
 	nvim --headless -c 'checkhealth' -c 'silent write >> /dev/stdout' -c 'quitall' 2>&1
+# ────────────────────────────────────────────────────────────────────────────────
+fmt: --stylua --fd --remove-shebang ## formats lua files with stylua
+	export PATH=$(PATH) ;
+	fd  -e 'lua' -E plugin/packer_compiled.lua -E archive/ --full-path $(CURDIR) \
+	-x stylua --config-path="$(CURDIR)/.stylua.toml"
+	$(MAKE) --no-print-directory -f $(MAKEFILE_LIST) -- --add-shebang ;
