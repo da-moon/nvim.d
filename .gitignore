@@ -29,3 +29,4 @@
 !/packer_plugins.toml
 !/selene.toml
 !/vim.toml
+!/init.lua
