@@ -130,3 +130,9 @@ SHELL := /bin/bash
 	-x sed -i \
 	-e '/-- vim:/d' \
 	-e '/-- code/d'
+--add-shebang: --fd
+	export PATH=$(PATH) ;
+	fd -e 'lua' -E plugin/packer_compiled.lua --full-path $(CURDIR) \
+	-x sed -i \
+	-e '1 i\-- vim: filetype=lua syntax=lua softtabstop=3 tabstop=3 shiftwidth=3 fileencoding=utf-8 smartindent autoindent expandtab' \
+	-e '1 i\-- code: language=lua insertSpaces=true tabSize=3'
