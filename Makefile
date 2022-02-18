@@ -117,3 +117,10 @@ SHELL := /bin/bash
 		exit 1; \
 		fi
 	$(MAKE) --no-print-directory -f $(MAKEFILE_LIST) -- --fix-home-ownership ;
+--luacheck: --luarocks --fix-home-ownership
+	export PATH=$(PATH) ;
+	@if ! $(WHICH) luacheck > $(DEVNUL) 2>&1; then \
+		if ! luarocks show "luacheck" > $(DEVNUL) 2>&1; then \
+		sudo luarocks install "luacheck" ; \
+		fi \
+	fi
