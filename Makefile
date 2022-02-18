@@ -124,3 +124,9 @@ SHELL := /bin/bash
 		sudo luarocks install "luacheck" ; \
 		fi \
 	fi
+--remove-shebang: --fd
+	export PATH=$(PATH) ;
+	fd  -e 'lua' -E plugin/packer_compiled.lua --full-path $(CURDIR) \
+	-x sed -i \
+	-e '/-- vim:/d' \
+	-e '/-- code/d'
