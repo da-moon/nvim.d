@@ -20,6 +20,7 @@ end
 local modules = {
    "mappings.core",
    "mappings.packer",
+   "mappings.telescope",
 }
 for _, module in ipairs(modules) do
    local status, map = pcall(require, module)
