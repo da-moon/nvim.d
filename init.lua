@@ -10,10 +10,8 @@
 local modules = {
    "core",
    "plugins",
+   "mappings",
 }
 for _, module in ipairs(modules) do
-   local status, _ = pcall(require, module)
-   if not status then
-      print(module .. " not found!")
-   end
+   pcall(require, module)
 end

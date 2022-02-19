@@ -3,7 +3,10 @@
 -- ────────────────────────────────────────────────────────────
 -- https://github.com/liranuxx/nvea/blob/master/lua/plugins/tools/init.lua
 -- ────────────────────────────────────────────────────────────
-local pluginman = require("lib.plugin-manager")
+local pluginman_status, pluginman = pcall(require, "lib.plugin-manager")
+if not pluginman_status then
+   return print("plugins: failed to load plugin:lib.plugin-manager ")
+end
 -- ────────────────────────────────────────────────────────────
 pluginman:init()
 -- ────────────────────────────────────────────────────────────
