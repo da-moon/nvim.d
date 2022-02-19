@@ -19,6 +19,7 @@ if not wk then
 end
 local modules = {
    "mappings.core",
+   "mappings.packer",
 }
 for _, module in ipairs(modules) do
    local status, map = pcall(require, module)
