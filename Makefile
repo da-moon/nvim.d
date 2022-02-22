@@ -153,6 +153,12 @@ help:                   ## Show this help
 	@printf "$$(fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v 'fgrep' | sed -e 's/\\$$//' | sed -e 's/\s.*##//')\n"
 
 # ────────────────────────────────────────────────────────────────────────────────
+PATCHVERSION ?= $(shell git describe --tags --abbrev=0 | sed s/v// | awk -F. '{print $$1"."$$2"."$$3+1}')
+patch-release: ## bump up tags for a new Patch release.
+	- git checkout '$(shell git rev-parse --abbrev-ref HEAD)'
+	- git pull
+	- git tag -a v$(PATCHVERSION) -m 'release $(PATCHVERSION)'
+	- git push origin --tags
 snapshot: ## archives the repository and stores it under tmp/snapshots
 	- $(eval tmp=$(shell mktemp -d))
 	- $(eval time=$(shell date +'%Y-%m-%d-%H-%M'))
