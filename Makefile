@@ -150,7 +150,14 @@ default: ## default target which uses fzf to show a menu of make target options
 
 #  ────────────────────────────────────────────────────────────────────
 help:                   ## Show this help
-	@printf "$$(fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v 'fgrep' | sed -e 's/\\$$//' | sed -e 's/\s.*##//')\n"
+	@if ! $(WHICH) column > $(DEVNUL) 2>&1; then \
+		printf "$$(fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v 'fgrep' | sed -e 's/\\$$//' | sed -e 's/\s.*##//')\n" ; \
+	else  \
+		printf "$$(fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v 'fgrep' | sed -e 's/\\$$//' | sed -e 's/\s.*##//')\n" \
+		| column -t  \
+		| sed -re 's/: ( +)/\1: /' -e 's/ +/ /2g' ; \
+	fi
+
 
 # ────────────────────────────────────────────────────────────────────────────────
 PATCHVERSION ?= $(shell git describe --tags --abbrev=0 | sed s/v// | awk -F. '{print $$1"."$$2"."$$3+1}')
