@@ -310,7 +310,6 @@ git config --global push.recurseSubmodules "on-demand" \
   && ( \
     echo "Host git.sr.ht" ; \
     echo "  User git" ; \
-    echo "  IdentitiesOnly yes" ; \
     echo "  StrictHostKeyChecking no" ; \
     echo "  MACs hmac-sha2-512" ; \
     echo "  UserKnownHostsFile=/dev/null" ; \
