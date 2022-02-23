@@ -1,6 +1,6 @@
 {
   "name": "neovim.d",
-	"dockerFile": "Dockerfile",
+	"dockerFile": "archlinux.Dockerfile",
   "workspaceFolder": "/workspace",
   "workspaceMount": "type=bind,source=${localWorkspaceFolder},target=/workspace",
   "settings": {
@@ -22,7 +22,8 @@
           "--login"
         ]
       }
-    }
+    },
+    "terminal.integrated.defaultProfile.linux": "bash (login)"
   },
   "extensions": [
     "sumneko.lua",
@@ -41,11 +42,11 @@
   "mounts": [
     "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
   ],
+  "postCreateCommand": "nvim --version",
+  "remoteUser": "vscode",
   "runArgs": [
     "--init",
     "--entrypoint","",
     "--name","neovim.d"
-  ],
-  "remoteUser": "vscode",
-  "postCreateCommand": "nvim --version"
+  ]
 }
