@@ -10,8 +10,8 @@ sources:
   - https://git.sr.ht/~havi/nvim.d
 tasks:
   - install-tools: |
-      apk add --no-cache "py3-pip" \
-      && python3 -m pip install "git-filter-repo"
+      sudo apk add --no-cache "py3-pip" \
+      && sudo python3 -m pip install "git-filter-repo"
   - validate-gh-fingerprint-and-config-ssh: |
       tmp_dir=$(mktemp -d -p $HOME)
       ssh-keyscan -t rsa github.com > $tmp_dir/github_host
