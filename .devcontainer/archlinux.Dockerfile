@@ -326,7 +326,7 @@ RUN \
 # ─── ENSURE WORK DIRECTORY HAS RIGHT OWNERSHIP ──────────────────────────────────
 chown "$(id -u "${USER}"):$(id -g "${USER}")" "${WORKDIR}" -R \
 # ─── CLEAN UP PACMAN BUILD DEPS ─────────────────────────────────────────────────
-pacman -Qdtq | pacman -Rs --noconfirm - || true \
+&& pacman -Qdtq | pacman -Rs --noconfirm - || true \
 # ─── REMOVE TEMPORARY FILES ─────────────────────────────────────────────────────
 && rm -rf \
   /tmp/*
