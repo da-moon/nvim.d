@@ -199,13 +199,17 @@ rustup --version > /dev/null 2>&1 && ( \
 #  ╰──────────────────────────────────────────────────────────╯
 USER "${USER}"
 ENV PATH="${PATH}:${HOME}/.cargo/bin"
+#  ╭──────────────────────────────────────────────────────────╮
+#  │ convco helps with git tagging, commits and               │
+#  │  changelog generation                                    │
+#  ╰──────────────────────────────────────────────────────────╯
 RUN \
 export MAKEFLAGS="-j$(nproc)" ; \
 export CMAKE_BUILD_PARALLEL_LEVEL="$(nproc)" ; \
 # ─── INSTALL BUILD DEPENDENCIES ─────────────────────────────────────────────────
 sudo pacman -S --noconfirm --asdeps "cmake" \
 # ─── BUILD PACKAGES ─────────────────────────────────────────────────────────────
-&& cargo install -j"$(nproc)" --locked "convco" "ttdl" "selene" \
+&& cargo install -j"$(nproc)" --locked "convco"  \
 # ─── REMOVE BUILD DEPENDENCIES ──────────────────────────────────────────────────
 && sudo pacman -Rcns --noconfirm "cmake" \
 # ─── CLEANUP STABLE TOOLCHAIN ───────────────────────────────────────────────────
@@ -215,7 +219,48 @@ sudo pacman -S --noconfirm --asdeps "cmake" \
 [ -d "${HOME}/.cargo/registry" ] \
   && sudo find "${HOME}/.cargo/registry" -mindepth 1 -maxdepth 1 -type d  -exec rm -rf "{}" + ; \
 [ -d "${HOME}/.cache" ] \
-  && sudo find "${HOME}/.cache" -mindepth 1 -maxdepth 1 -type d  -exec rm -rf "{}" + ;
+  && sudo find "${HOME}/.cache" -mindepth 1 -maxdepth 1 -type d  -exec rm -rf "{}" + ; \
+sudo ln -sf "${HOME}/.cargo/bin/convco" "/usr/local/bin/convco" ;
+# selene is a lua linter
+RUN \
+export MAKEFLAGS="-j$(nproc)" ; \
+export CMAKE_BUILD_PARALLEL_LEVEL="$(nproc)" ; \
+cargo install -j"$(nproc)" --locked "selene" \
+# ─── CLEANUP STABLE TOOLCHAIN ───────────────────────────────────────────────────
+&& rustup uninstall stable ; \
+[ -d "${HOME}/.cargo/registry" ] \
+  && sudo find "${HOME}/.cargo/registry" -mindepth 1 -maxdepth 1 -type d  -exec rm -rf "{}" + ; \
+[ -d "${HOME}/.cache" ] \
+  && sudo find "${HOME}/.cache" -mindepth 1 -maxdepth 1 -type d  -exec rm -rf "{}" + ; \
+sudo ln -sf "${HOME}/.cargo/bin/selene" "/usr/local/bin/selene" ;
+#  ╭──────────────────────────────────────────────────────────╮
+#  │ ttdl is used for working with 'todo.txt'                 │
+#  ╰──────────────────────────────────────────────────────────╯
+RUN \
+export MAKEFLAGS="-j$(nproc)" ; \
+export CMAKE_BUILD_PARALLEL_LEVEL="$(nproc)" ; \
+cargo install -j"$(nproc)" --locked "ttdl" \
+# ─── CLEANUP STABLE TOOLCHAIN ───────────────────────────────────────────────────
+&& rustup uninstall stable ; \
+[ -d "${HOME}/.cargo/registry" ] \
+  && sudo find "${HOME}/.cargo/registry" -mindepth 1 -maxdepth 1 -type d  -exec rm -rf "{}" + ; \
+[ -d "${HOME}/.cache" ] \
+  && sudo find "${HOME}/.cache" -mindepth 1 -maxdepth 1 -type d  -exec rm -rf "{}" + ; \
+sudo ln -sf "${HOME}/.cargo/bin/ttdl" "/usr/local/bin/ttdl" ;
+#  ╭──────────────────────────────────────────────────────────╮
+#  │ jujutsu is an experimental , better git client           │
+#  ╰──────────────────────────────────────────────────────────╯
+RUN \
+export MAKEFLAGS="-j$(nproc)" ; \
+export CMAKE_BUILD_PARALLEL_LEVEL="$(nproc)" ; \
+rustup run nightly --install cargo install -j"$(nproc)" --locked "jujutsu" \
+# ─── CLEANUP STABLE TOOLCHAIN ───────────────────────────────────────────────────
+&& rustup uninstall nightly ; \
+[ -d "${HOME}/.cargo/registry" ] \
+  && sudo find "${HOME}/.cargo/registry" -mindepth 1 -maxdepth 1 -type d  -exec rm -rf "{}" + ; \
+[ -d "${HOME}/.cache" ] \
+  && sudo find "${HOME}/.cache" -mindepth 1 -maxdepth 1 -type d  -exec rm -rf "{}" + ; \
+sudo ln -sf "${HOME}/.cargo/bin/jj" "/usr/local/bin/jj" ;
 #  ╭──────────────────────────────────────────────────────────╮
 #  │                          python                          │
 #  ╰──────────────────────────────────────────────────────────╯
@@ -258,7 +303,19 @@ git config --global push.recurseSubmodules "on-demand" \
   && git config --global delta.decorations.hunk-header-line-number-style "#067a00" \
   && git config --global delta.decorations.hunk-header-style "file line-number syntax" \
   && git config --global delta.interactive.keep-plus-minus-markers "false" \
-) || true ;
+) || true ; \
+  # ─── SSH SETUP ──────────────────────────────────────────────────────────────────
+  mkdir -p "${HOME}/.ssh" \
+  && chmod 700 "${HOME}/.ssh" \
+  && ( \
+    echo "Host git.sr.ht" ; \
+    echo "  User git" ; \
+    echo "  IdentitiesOnly yes" ; \
+    echo "  StrictHostKeyChecking no" ; \
+    echo "  MACs hmac-sha2-512" ; \
+    echo "  UserKnownHostsFile=/dev/null" ; \
+  ) | tee "${HOME}/.ssh/config" > /dev/null \
+  && chmod 644 "${HOME}/.ssh/config" ;
 #  ╭──────────────────────────────────────────────────────────╮
 #  │                         finalize                         │
 #  ╰──────────────────────────────────────────────────────────╯
