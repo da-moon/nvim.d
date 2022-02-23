@@ -236,6 +236,7 @@ dep: --stylua --luacheck --selene --vale --fd ## a 'meta' target that runs all t
 # ────────────────────────────────────────────────────────────────────────────────
 install: fmt clean ## configure nvim
 	export PATH=$(PATH) ;
+	$(MKDIR) $${HOME}/.config ;
 	ln -sf $(CURDIR) $${HOME}/.config/nvim ;
 	$(MAKE) --no-print-directory -f $(MAKEFILE_LIST) -- --install-packer ;
 	nvim -c "PackerStatus";
