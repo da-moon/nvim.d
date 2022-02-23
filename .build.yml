@@ -1,23 +1,30 @@
 image: alpine/edge
 environment:
   REPO_NAME: "nvim.d"
+  GITHUB_USERNAME: "da-moon"
+  GITHUB_EMAIL: "contact@havi.dev"
+  SOURCEHUT_EMAIL: "contact@havi.dev"
 secrets:
   - 911a32c9-a8b4-4d41-9fe0-18df25523b2f
 sources:
   - https://git.sr.ht/~havi/nvim.d
 tasks:
+  - install-tools: |
+      apk add --no-cache "py3-pip" \
+      && python3 -m pip install "git-filter-repo"
   - validate-gh-fingerprint-and-config-ssh: |
       tmp_dir=$(mktemp -d -p $HOME)
       ssh-keyscan -t rsa github.com > $tmp_dir/github_host
       ssh-keygen -lf $tmp_dir/github_host > $tmp_dir/github_fingerprint
       grep -R "nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8" $tmp_dir/github_fingerprint
-      cat $tmp_dir/github_host >> ~/.ssh/known_hosts
+      cat $tmp_dir/github_host >> "${HOME}/.ssh/known_hosts"
       rm -rf $tmp_dir
-      echo -e "Host github.com\n    IdentityFile ~/.ssh/id_rsa\n    IdentitiesOnly yes\n    BatchMode yes\n" >> ~/.ssh/config
+      echo -e "Host github.com\n    IdentityFile ~/.ssh/id_rsa\n    IdentitiesOnly yes\n    BatchMode yes\n" >> "${HOME}/.ssh/config"
   - mirror-to-github: |
       cd "${HOME}/${REPO_NAME}" || exit 1 ;
-      git remote add github "git@github.com:da-moon/${REPO_NAME}" \
-      && git config --local user.name "da-moon" \
-      && git config --local user.email "contact@havi.dev" \
-      && git rebase --root -x "git commit --amend --reset-author -CHEAD" \
-      && git push --force --prune github +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/* master
+      echo "${GITHUB_USERNAME} <${GITHUB_EMAIL}> $(git config user.name)" > "${HOME}/mailmap" \
+      && git remote add github "git@github.com:${GITHUB_USERNAME}/${REPO_NAME}" \
+      && git config --local user.name "${GITHUB_USERNAME}" \
+      && git config --local user.email "${GITHUB_EMAIL}" \
+      && git filter-repo --force --mailmap "${HOME}/mailmap" \
+      && git push --force --prune github +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/* "$(git rev-parse --abbrev-ref HEAD)"

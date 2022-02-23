@@ -162,27 +162,27 @@ help:                   ## Show this help
 # ────────────────────────────────────────────────────────────────────────────────
 PATCHVERSION ?= $(shell git describe --tags --abbrev=0 | sed s/v// | awk -F. '{print $$1"."$$2"."$$3+1}')
 patch-release: ## bump up tags for a new Patch release.
-	- git checkout '$(shell git rev-parse --abbrev-ref HEAD)'
-	- git pull
-	- git fetch -p && git branch -vv awk '/: gone]/ {print $1}' xargs -r -I {} git branch -D '{}'
-	- git tag -a v$(PATCHVERSION) -m 'release $(PATCHVERSION)'
-	- git push origin --tags
+	git checkout '$(shell git rev-parse --abbrev-ref HEAD)' \
+	&& git pull \
+	&& git fetch -p && git branch -vv | awk '/: gone]/ {print $$1}' | xargs -r -I {} git branch -D '{}' \
+	&& git tag -a v$(PATCHVERSION) -m 'release $(PATCHVERSION)' \
+	&& git push origin --tags
 
 MINORVERSION ?= $(shell git describe --tags --abbrev=0 | sed s/v// | awk -F. '{print $$1"."$$2+1".0"}')
 minor-release: ## bump up tags for a new Minor release
-	- git checkout '$(shell git rev-parse --abbrev-ref HEAD)'
-	- git pull
-	- git fetch -p && git branch -vv awk '/: gone]/ {print $1}' xargs -r -I {} git branch -D '{}'
-	- git tag -a v$(MINORVERSION) -m 'release $(MINORVERSION)'
-	- git push origin --tags
+	git checkout '$(shell git rev-parse --abbrev-ref HEAD)' \
+	&& git pull \
+	&& git fetch -p && git branch -vv | awk '/: gone]/ {print $$1}' | xargs -r -I {} git branch -D '{}' \
+	&& git tag -a v$(MINORVERSION) -m 'release $(MINORVERSION)' \
+	&& git push origin --tags
 
 MAJORVERSION ?= $(shell git describe --tags --abbrev=0 | sed s/v// |  awk -F. '{print $$1+1".0.0"}')
 major-release: ## bump up tags for a new Major release
-	- git checkout '$(shell git rev-parse --abbrev-ref HEAD)'
-	- git pull
-	- git fetch -p && git branch -vv awk '/: gone]/ {print $1}' xargs -r -I {} git branch -D '{}'
-	- git tag -a v$(MAJORVERSION) -m 'release $(MAJORVERSION)'
-	- git push origin --tags
+	git checkout '$(shell git rev-parse --abbrev-ref HEAD)' \
+	&& git pull \
+	&& git fetch -p && git branch -vv | awk '/: gone]/ {print $$1}' | xargs -r -I {} git branch -D '{}' \
+	&& git tag -a v$(MAJORVERSION) -m 'release $(MAJORVERSION)' \
+	&& git push origin --tags ;
 # ────────────────────────────────────────────────────────────────────────────────
 snapshot: ## archives the repository and stores it under tmp/snapshots
 	- $(eval tmp=$(shell mktemp -d))
