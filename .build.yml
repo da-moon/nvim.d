@@ -22,9 +22,10 @@ tasks:
       echo -e "Host github.com\n    IdentityFile ~/.ssh/id_rsa\n    IdentitiesOnly yes\n    BatchMode yes\n" >> "${HOME}/.ssh/config"
   - mirror-to-github: |
       cd "${HOME}/${REPO_NAME}" || exit 1 ;
+      upstream_branch="$(git rev-parse --abbrev-ref HEAD)" ; \
       echo "${GITHUB_USERNAME} <${GITHUB_EMAIL}> $(git config user.name)" > "${HOME}/mailmap" \
       && git remote add github "git@github.com:${GITHUB_USERNAME}/${REPO_NAME}" \
       && git config --local user.name "${GITHUB_USERNAME}" \
       && git config --local user.email "${GITHUB_EMAIL}" \
       && git filter-repo --force --mailmap "${HOME}/mailmap" \
-      && git push --force --prune github +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/* "$(git rev-parse --abbrev-ref HEAD)"
+      && git push --force --prune github +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/* "${upstream_branch}"
