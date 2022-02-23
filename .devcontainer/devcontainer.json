@@ -1,6 +1,7 @@
 {
   "name": "neovim.d",
-	"dockerFile": "archlinux.Dockerfile",
+	// "dockerFile": "archlinux.Dockerfile",
+  "image": "fjolsvin/nvim:archlinux",
   "workspaceFolder": "/workspace",
   "workspaceMount": "type=bind,source=${localWorkspaceFolder},target=/workspace",
   "settings": {
