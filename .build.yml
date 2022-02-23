@@ -1,6 +1,7 @@
 image: alpine/edge
 environment:
   REPO_NAME: "nvim.d"
+  SOURCEHUT_USERNAME: "havi"
   GITHUB_USERNAME: "da-moon"
   GITHUB_EMAIL: "contact@havi.dev"
   SOURCEHUT_EMAIL: "contact@havi.dev"
@@ -22,7 +23,7 @@ tasks:
       echo -e "Host github.com\n    IdentityFile ~/.ssh/id_rsa\n    IdentitiesOnly yes\n    BatchMode yes\n" >> "${HOME}/.ssh/config"
   - mirror-to-github: |
       cd "${HOME}/${REPO_NAME}" || exit 1 ;
-      echo "${GITHUB_USERNAME} <${GITHUB_EMAIL}> $(git config user.name)" > "${HOME}/mailmap" \
+      echo "${GITHUB_USERNAME} <${GITHUB_EMAIL}> ${SOURCEHUT_USERNAME}" > "${HOME}/mailmap" \
       && git remote add github "git@github.com:${GITHUB_USERNAME}/${REPO_NAME}" \
       && git config --local user.name "${GITHUB_USERNAME}" \
       && git config --local user.email "${GITHUB_EMAIL}" \
