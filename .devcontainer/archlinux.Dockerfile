@@ -128,7 +128,26 @@ pacman -Sy --noconfirm --needed \
 # ─── STARSHIP PROMPT ──────────────────────────────────────────────────────────
 starship --version > /dev/null 2>&1 && echo 'eval "$(starship init bash)" ;' > "/etc/profile.d/starship.sh"  || true; \
 # ─── JUST TASK RUNNER BASH COMPLETIONS ──────────────────────────────────────────
-just --version > /dev/null 2>&1 && echo 'eval "$(just --completions bash)" ;' > "/etc/profile.d/just.sh" || true ;
+just --version > /dev/null 2>&1 && echo 'eval "$(just --completions bash)" ;' > "/etc/profile.d/just.sh" || true  \
+bat --version > /dev/null 2>&1 && echo 'alias cat="bat -pp" ;' > "/etc/profile.d/bat.sh" || true  ; \
+exa --version > /dev/null 2>&1 && ( \
+  echo 'alias la="exa -alhF" ;' ; \
+  echo 'alias ll="exa -lhF" ;' ; \
+  echo 'alias llfu="exa -bghHliS --git" ;' ; \
+  echo 'alias llt="exa -T" ;' ; \
+  echo 'alias ls="exa" ;' ; \
+) | tee "/etc/profile.d/exa.sh" > /dev/null || true ; \
+fzf --version > /dev/null 2>&1 && ( \
+  echo '_fzf_complete_make() {' ; \
+  echo '  FZF_COMPLETION_TRIGGER="" _fzf_complete "-1" "${@}" < <(make -pqr 2>/dev/null \' ; \
+  echo '  | awk -F":" "/^[a-zA-Z0-9][^\$#\/\t=]*:([^=]|\$)/ {split(\$1,A,/ /);for(i in A)print A[i]}" \' ; \
+  echo '  | grep -v Makefile \' ; \
+  echo '  | sort -u)' ; \
+  echo '}' ; \
+  echo '[[ -n ${BASH} ]] && complete -F _fzf_complete_make -o default -o bashdefault make' ; \
+  echo '[ -r "/usr/share/fzf/key-bindings.bash" ] && source "/usr/share/fzf/key-bindings.bash"' ; \
+  echo '[ -r "/usr/share/fzf/completion.bash" ] && source "/usr/share/fzf/completion.bash"' ; \
+) | tee "/etc/profile.d/fzf.sh" > /dev/null || true ; \
 #  ╭──────────────────────────────────────────────────────────╮
 #  │                    install aur-helper                    │
 #  ╰──────────────────────────────────────────────────────────╯
@@ -323,8 +342,9 @@ ENV WORKDIR "${WORKDIR}"
 WORKDIR "${WORKDIR}"
 USER "root"
 RUN \
-# ─── ENSURE WORK DIRECTORY HAS RIGHT OWNERSHIP ──────────────────────────────────
-chown "$(id -u "${USER}"):$(id -g "${USER}")" "${WORKDIR}" -R \
+chown "$(id -u "${USER}"):$(id -g "${USER}")" -R  \
+  "${WORKDIR}" "${HOME}" \
+
 # ─── CLEAN UP PACMAN BUILD DEPS ─────────────────────────────────────────────────
 && pacman -Qdtq | pacman -Rs --noconfirm - || true \
 # ─── REMOVE TEMPORARY FILES ─────────────────────────────────────────────────────
@@ -332,6 +352,8 @@ chown "$(id -u "${USER}"):$(id -g "${USER}")" "${WORKDIR}" -R \
   /tmp/*
 # ────────────────────────────────────────────────────────────────────────────────
 USER "${USER}"
+VOLUME ["${HOME}","${WORKDIR}}"]
+# VOLUME ["${HOME}/.vscode-server/extensions","${HOME}/.vscode-server-insiders/extensions","${HOME}/.bash_history"]
 ENV TERM "xterm"
 ENV COLORTERM "truecolor"
 ENTRYPOINT [ "/usr/local/share/docker-init.sh" ]

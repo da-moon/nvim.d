@@ -1,9 +1,9 @@
 {
-  "name": "neovim.d",
 	// "dockerFile": "archlinux.Dockerfile",
-  "image": "fjolsvin/nvim:archlinux",
-  "workspaceFolder": "/workspace",
-  "workspaceMount": "type=bind,source=${localWorkspaceFolder},target=/workspace",
+  "workspaceFolder": "/workspace/nvim.d",
+  "name": "${containerWorkspaceFolderBasename}",
+  "image": "fjolsvin/nvim.d:archlinux",
+  "workspaceMount": "source=${localWorkspaceFolder},target=${containerWorkspaceFolder},type=bind,consistency=delegated",
   "settings": {
     "files.eol": "\n",
     "files.exclude": {
@@ -41,13 +41,15 @@
     "chrislajoie.vscode-modelines",
   ],
   "mounts": [
+    "source=${localWorkspaceFolderBasename}-home,target=/home/vscode,type=volume,consistency=cached",
     "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
   ],
   "postCreateCommand": "ssh-add -l && nvim --version",
   "remoteUser": "vscode",
+  "updateRemoteUserUID": true,
   "runArgs": [
     "--init",
     "--entrypoint","",
-    "--name","neovim.d"
+    "--name","${containerWorkspaceFolderBasename}"
   ]
 }
