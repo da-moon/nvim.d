@@ -147,7 +147,7 @@ fzf --version > /dev/null 2>&1 && ( \
   echo '[[ -n ${BASH} ]] && complete -F _fzf_complete_make -o default -o bashdefault make' ; \
   echo '[ -r "/usr/share/fzf/key-bindings.bash" ] && source "/usr/share/fzf/key-bindings.bash"' ; \
   echo '[ -r "/usr/share/fzf/completion.bash" ] && source "/usr/share/fzf/completion.bash"' ; \
-) | tee "/etc/profile.d/fzf.sh" > /dev/null || true ; \
+) | tee "/etc/profile.d/fzf.sh" > /dev/null || true ;
 #  ╭──────────────────────────────────────────────────────────╮
 #  │                    install aur-helper                    │
 #  ╰──────────────────────────────────────────────────────────╯
