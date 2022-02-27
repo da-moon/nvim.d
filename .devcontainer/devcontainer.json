@@ -1,6 +1,6 @@
 {
 	// "dockerFile": "archlinux.Dockerfile",
-  "workspaceFolder": "/workspace/nvim.d",
+	"workspaceFolder": "/workspace/nvim.d",
   "name": "${containerWorkspaceFolderBasename}",
   "image": "fjolsvin/nvim.d:archlinux",
   "workspaceMount": "source=${localWorkspaceFolder},target=${containerWorkspaceFolder},type=bind,consistency=delegated",
@@ -17,14 +17,14 @@
       "editor.formatOnSave": false
     },
     "terminal.integrated.profiles.linux": {
-      "bash (login)": {
+      "bash": {
         "path": "/bin/bash",
         "args": [
           "--login"
         ]
       }
     },
-    "terminal.integrated.defaultProfile.linux": "bash (login)"
+    "terminal.integrated.defaultProfile.linux": "bash"
   },
   "extensions": [
     "sumneko.lua",
@@ -38,10 +38,11 @@
     "karyfoundation.comment",
     "wmaurer.change-case",
     "skellock.just",
-    "chrislajoie.vscode-modelines",
+    "chrislajoie.vscode-modelines"
   ],
   "mounts": [
     "source=${localWorkspaceFolderBasename}-home,target=/home/vscode,type=volume,consistency=cached",
+    "source=${localEnv:HOME}/.docker,target=/home/vscode/.docker,type=bind",
     "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
   ],
   "postCreateCommand": "ssh-add -l && nvim --version",
@@ -49,7 +50,6 @@
   "updateRemoteUserUID": true,
   "runArgs": [
     "--init",
-    "--entrypoint","",
-    "--name","${containerWorkspaceFolderBasename}"
+		"--name","${containerWorkspaceFolderBasename}"
   ]
 }
