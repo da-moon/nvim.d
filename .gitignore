@@ -1,12 +1,21 @@
 *
-!*/
+*/**
 #  ────────────────────────────────────────────────────────────────────
 !/lua/**/*.lua
 !/ftplugin/**/*.lua
 #  ────────────────────────────────────────────────────────────────────
-!/.devcontainer/**
+!.devcontainer/alpine.Dockerfile
+!.devcontainer/archlinux.Dockerfile
+!.devcontainer/devcontainer.json
+!/.vscode/*
 #  ────────────────────────────────────────────────────────────────────
 !/todo.txt
+# linter ignore files
+!/.markdownlintignore
+!/.remarkrc.yaml
+!/.luacheckrc
+!/selene.toml
+
 !/.editorconfig
 !/.vscode
 !/.gitignore
@@ -14,7 +23,6 @@
 !/.dockerignore
 !/.gitpod.yml
 !/.build.yml
-!/.markdownlintignore
 !/.stignore
 !/.versionrc
 !/.pre-commit-config.yaml
@@ -28,9 +36,7 @@
 !/docker-bake.hcl
 !/CONTRIBUTING.md
 !/CHANGELOG.md
-!/.luacheckrc
-!/.stylua.toml
 !/packer_plugins.toml
-!/selene.toml
+!/.stylua.toml
 !/vim.toml
 !/init.lua
