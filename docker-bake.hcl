@@ -183,3 +183,4 @@ target "alpine" {
     cache-to   = [equal(LOCAL,true) ? "" : equal("",TAG) ? "type=registry,mode=max,ref=${CACHE_REGISTRY_HOSTNAME}/${CACHE_REGISTRY_USERNAME}/${IMAGE_NAME}-cache/alpine": "type=registry,mode=max,ref=${CACHE_REGISTRY_HOSTNAME}/${CACHE_REGISTRY_USERNAME}/${IMAGE_NAME}-cache:alpine-${TAG}"]
     output     = [equal(LOCAL,true) ? "type=docker" : "type=registry"]
 }
+# dive build --tag "fjolsvin/$(basename $(git remote get-url origin))" --cache-from "fjolsvin/$(basename $(git remote get-url origin))-cache" --file archlinux.Dockerfile .
