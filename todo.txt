@@ -1,3 +1,0 @@
-add ssh-agent and ssh config to alpine docker file @devcontainer
-setup docker-from-docker in alpine docker file @devcontainer
-create a debian-based docker file @devcontainer
