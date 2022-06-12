@@ -1,0 +1,17 @@
+{
+  "recommendations": [
+    "sumneko.lua",
+    "koihik.vscode-lua-format",
+    "editorconfig.editorconfig",
+    "bungcip.better-toml",
+    "mutantdino.resourcemonitor",
+    "EditorConfig.EditorConfig",
+    "kevinkyang.auto-comment-blocks",
+    "ms-azuretools.vscode-docker",
+    "karyfoundation.comment",
+    "wmaurer.change-case",
+    "skellock.just",
+    "chrislajoie.vscode-modelines"
+  ]
+}
+
