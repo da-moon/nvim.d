@@ -1,9 +1,10 @@
+// vim: filetype=jsonc syntax=jsonc softtabstop=2 tabstop=2 shiftwidth=2 fileencoding=utf-8 smartindent autoindent expandtab
 {
 	// "dockerFile": "archlinux.Dockerfile",
+  "image": "fjolsvin/nvim.d:archlinux",
 	"workspaceFolder": "/workspace/nvim.d",
   "name": "${containerWorkspaceFolderBasename}",
-  "image": "fjolsvin/nvim.d:archlinux",
-  "workspaceMount": "source=${localWorkspaceFolder},target=${containerWorkspaceFolder},type=bind,consistency=delegated",
+  "workspaceMount": "source=${localWorkspaceFolder},target=${containerWorkspaceFolder},type=bind,consistency=cached",
   "settings": {
     "files.eol": "\n",
     "files.exclude": {
