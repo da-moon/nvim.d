@@ -1,0 +1,27 @@
+{
+  "files.eol": "\n",
+  "files.exclude": {
+    "**/.vagrant": true,
+    "**/.git": true
+  },
+  "[settings.json]": {
+    "editor.formatOnSave": false
+  },
+  "[devcontainer.json]": {
+    "editor.formatOnSave": false
+  },
+  "terminal.integrated.profiles.linux": {
+    "bash (login)": {
+      "path": "/bin/bash",
+      "args": [
+        "--login"
+      ]
+    }
+  },
+  "terminal.integrated.defaultProfile.linux": "bash (login)",
+  "Lua.diagnostics.globals": [
+    "packer_plugins",
+    "vim"
+  ],
+  "search.useIgnoreFiles": false
+}
