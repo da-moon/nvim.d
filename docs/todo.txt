@@ -1,0 +1,9 @@
+fix gitignore
+lib/log
+add ssh-agent and ssh config to alpine docker file @devcontainer
+setup docker-from-docker in alpine docker file @devcontainer
+create a debian-based docker file @devcontainer
+great lsp workflow https://github.com/prashantjoge/.dotfiles/blob/main/nvim/.config/nvim/lua/user/lsp/
+move all user config to user
+clipboard over ssh
+terraform-ls does not attach
