@@ -3,9 +3,12 @@
 -- ──────────────────────────────────────────────────────────────────────
 -- selene: allow(unused_variable)
 -- luacheck: no unused args
-return function(register, plugin_loader)
+return function(register)
    -- selene: allow(unused_variable)
    -- luacheck: unused args
+   if not register then
+      return
+   end
    -- ╭──────────────────────────────────────────────────────────╮
    -- │                         cleanup                          │
    -- ╰──────────────────────────────────────────────────────────╯
