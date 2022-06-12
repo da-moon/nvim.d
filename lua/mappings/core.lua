@@ -1,12 +1,21 @@
 -- vim: filetype=lua syntax=lua softtabstop=3 tabstop=3 shiftwidth=3 fileencoding=utf-8 smartindent autoindent expandtab
 -- code: language=lua insertSpaces=true tabSize=3
-return function(register, plugin_loader)
+local pluginman = require("lib.plugin-manager")
+return function(register)
+   if not register then
+      return
+   end
    -- ─── NORMAL ─────────────────────────────────────────────────────────────────────
+   -- TODO see if this can be mapped in packer directly
    register({
       ["<CR>"] = {
          function()
-            plugin_loader("fine-cmdline.nvim")
-            require("fine-cmdline").open()
+            local module_name = "fine-cmdline"
+            local plugin_name = "fine-cmdline.nvim"
+            local plug = pluginman:load_plugin(plugin_name, module_name)
+            if plug then
+               plug.open()
+            end
          end,
          "Open Command",
       },
