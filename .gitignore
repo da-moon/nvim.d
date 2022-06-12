@@ -2,6 +2,10 @@
 */**
 #  ────────────────────────────────────────────────────────────────────
 !/init.lua
+!/ftdetect/
+!/ftdetect/*.vim
+!/ftdetect/*.lua
+!/after/
 !/after/ftplugin
 !/after/ftplugin/*.lua
 !/after/plugin
@@ -54,6 +58,10 @@
 !/lua/snippets/*.lua
 !/lua/snippets/lua
 !/lua/snippets/lua/*.lua
+#  ────────────────────────────────────────────────────────────────────
+!/docs
+!/docs/*.txt
+!/docs/*.md
 #  ────────────────────────────────────────────────────────────────────
 !/.devcontainer/
 !/.devcontainer/*.json
