@@ -535,22 +535,40 @@ rustup run --install stable cargo install -j"$(nproc)" --root "/workspace" --loc
 #   :::::: Y A R N   P A C K A G E S   P A R A L L E L   I N S T A L L S : :  :   :    :     :        :          :
 # ────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #
-FROM base AS yarn-packages
-USER "root"
-RUN \
---mount=type=cache,id=yarn-cache,sharing=shared,target=/usr/local/share/.cache/yarn \
-yarn --silent global add \
-  "remark" \
-  "remark-cli" \
-  "remark-frontmatter" \
-  "remark-stringify" \
-  "remark-toc" \
-  "remark-preset-lint-recommended" \
-  "remark-preset-lint-recommended" \
-  "remark-lint-list-item-indent" \
-  "standard-readme-spec" \
-  "yo" \
-  "generator-standard-readme" ;
+# [ FIXME ] => yarn cannot access internet
+# FROM base AS yarn-packages
+# USER "root"
+# RUN \
+# --mount=type=cache,id=yarn-cache,sharing=shared,target=/usr/local/share/.cache/yarn \
+# yarn --silent global add "remark" ;
+# RUN \
+# --mount=type=cache,id=yarn-cache,sharing=shared,target=/usr/local/share/.cache/yarn \
+# yarn --silent global add "remark-cli" ;
+# RUN \
+# --mount=type=cache,id=yarn-cache,sharing=shared,target=/usr/local/share/.cache/yarn \
+# yarn --silent global add "remark-frontmatter" ;
+# RUN \
+# --mount=type=cache,id=yarn-cache,sharing=shared,target=/usr/local/share/.cache/yarn \
+# yarn --silent global add "remark-stringify" ;
+# RUN \
+# --mount=type=cache,id=yarn-cache,sharing=shared,target=/usr/local/share/.cache/yarn \
+# yarn --silent global add "remark-toc" ;
+# RUN \
+# --mount=type=cache,id=yarn-cache,sharing=shared,target=/usr/local/share/.cache/yarn \
+# yarn --silent global add "remark-preset-lint-recommended" ;
+# RUN \
+# --mount=type=cache,id=yarn-cache,sharing=shared,target=/usr/local/share/.cache/yarn \
+# yarn --silent global add "remark-lint-list-item-indent" ;
+# RUN \
+# --mount=type=cache,id=yarn-cache,sharing=shared,target=/usr/local/share/.cache/yarn \
+# yarn --silent global add "standard-readme-spec" ;
+# RUN \
+# --mount=type=cache,id=yarn-cache,sharing=shared,target=/usr/local/share/.cache/yarn \
+# yarn --silent global add "yo" ;
+# RUN \
+# --mount=type=cache,id=yarn-cache,sharing=shared,target=/usr/local/share/.cache/yarn \
+# yarn --silent global add "generator-standard-readme" ;
+
 #
 # ────────────────────────────────────────────────────────────────────────────────── I ──────────
 #   :::::: A U R   P A R A L L E L   I N S T A L L S : :  :   :    :     :        :          :
@@ -760,6 +778,7 @@ RUN \
   --mount=type=cache,id=pacman-db,sharing=private,mode=0777,target=/var/lib/pacman/sync \
 pacman -Syy --noconfirm --needed "fzf" \
 && fzf --version > /dev/null 2>&1 && ( \
+  wget -qO - git.io/forgit ; \
   echo '_fzf_complete_make() {' ; \
   echo '  FZF_COMPLETION_TRIGGER="" _fzf_complete "-1" "${@}" < <(make -pqr 2>/dev/null \' ; \
   echo '  | awk -F":" "/^[a-zA-Z0-9][^\$#\/\t=]*:([^=]|\$)/ {split(\$1,A,/ /);for(i in A)print A[i]}" \' ; \
@@ -916,7 +935,7 @@ COPY --chmod=0755 --from="ttdl-builder" "/workspace/bin" "/usr/local/bin"
 COPY --chmod=0755 --from="jujutsu-builder" "/workspace/bin" "/usr/local/bin"
 COPY --chmod=0755 --from="convco-builder" "/workspace/bin" "/usr/local/bin"
 #  ────────────────────────────────────────────────────────────
-COPY --from="yarn-packages" "/usr/local/share/.config/yarn/global/node_modules" "/usr/local/share/.config/yarn/global/node_modules"
+# COPY --from="yarn-packages" "/usr/local/share/.config/yarn/global/node_modules" "/usr/local/share/.config/yarn/global/node_modules"
 #  ────────────────────────────────────────────────────────────
 RUN \
 chown "$(id -u "${USER}"):$(id -g "${USER}")" -R  \
