@@ -1,0 +1,48 @@
+{
+  "go.testFlags": [
+    "-v",
+    "-timeout",
+    "5m"
+  ],
+  "go.coverMode": "atomic",
+  "go.lintTool": "golangci-lint",
+  "go.lintFlags": [
+    "run",
+    "--config",
+    "${workspaceFolder}/.golangci.yml"
+  ],
+  "go.formatTool": "goimports",
+  "go.useLanguageServer": true,
+  "go.autocompleteUnimportedPackages": true,
+  "go.gotoSymbol.includeImports": true,
+  "go.gotoSymbol.includeGoroot": true,
+  "go.buildOnSave": "package",
+  "go.lintOnSave": "package",
+  "go.vetOnSave": "package",
+  "go.testOnSave": false,
+  "gopls": {
+    "gofumpt" : true,
+    "codelenses" : {
+      "gc_details" : true,
+      "generate" : true,
+      "regenerate_cgo" : true,
+      "tidy" : true,
+      "upgrade_dependency" : true,
+      "vendor" : true
+    },
+    "diagnosticsDelay" : "300ms",
+    "experimentalWatchedFileDelay" : "100ms",
+    "symbolMatcher" : "fuzzy",
+    "completeUnimported" : true,
+    "staticcheck" : true,
+    "matcher" : "Fuzzy",
+    "usePlaceholders" : true,
+    "analyses" : {
+      "fieldalignment" : true,
+      "nilness" : true,
+      "shadow" : true,
+      "unusedparams" : true,
+      "unusedwrite" : true
+    }
+  }
+}
