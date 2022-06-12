@@ -3,11 +3,14 @@
 #  ────────────────────────────────────────────────────────────────────
 !/lua/**/*.lua
 !/ftplugin/**/*.lua
+!/nlsp-settings/gopls.json
 #  ────────────────────────────────────────────────────────────────────
-!.devcontainer/alpine.Dockerfile
-!.devcontainer/archlinux.Dockerfile
-!.devcontainer/devcontainer.json
-!/.vscode/*
+!/.devcontainer/
+!/.devcontainer/*.json
+!/.vscode
+!/.vscode/*.json
+!/nlsp-settings
+!/nlsp-settings/*.json
 #  ────────────────────────────────────────────────────────────────────
 !/todo.txt
 # linter ignore files
@@ -17,7 +20,6 @@
 !/selene.toml
 
 !/.editorconfig
-!/.vscode
 !/.gitignore
 !/.gitattributes
 !/.dockerignore
