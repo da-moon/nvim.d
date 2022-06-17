@@ -44,13 +44,7 @@ function M.config()
    plug.setup({
       renderer = {
          highlight_git = true,
-         special_files = {
-            ["README.md"] = 1,
-            ["Makefile"] = 1,
-            ["MAKEFILE"] = 1,
-            ["readme.md"] = 1,
-            ["CHANGELOG.md"] = 1,
-         },
+         special_files = { "Cargo.toml", "README.md", "Makefile", "MAKEFILE", "readme.md", "CHANGELOG.md" },
          highlight_opened_files = "all",
       },
       disable_netrw = true,
@@ -73,9 +67,14 @@ function M.config()
             error = "",
          },
       },
+        filesystem_watchers = {
+          enable = true,
+          interval = 100,
+        },
+
       git = {
          enable = true,
-         ignore = false,
+         ignore = true,
          timeout = 500,
       },
       update_focused_file = {
@@ -83,7 +82,7 @@ function M.config()
          update_cwd = true,
       },
       filters = {
-         dotfiles = false,
+         dotfiles = true,
          custom = { "node_modules", "target", ".git", ".vagrant", ".cache" },
       },
       trash = {
