@@ -71,6 +71,10 @@ packer.startup(function(use)
    -- │                        completion                        │
    -- ╰──────────────────────────────────────────────────────────╯
    use({
+      "rafamadriz/friendly-snippets",
+      opt = false,
+   })
+   use({
       "L3MON4D3/LuaSnip",
       opt = false,
       requires = { "rafamadriz/friendly-snippets" },
