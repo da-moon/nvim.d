@@ -6,7 +6,6 @@ local pluginman = require("lib.plugin-manager")
 -- ──────────────────────────────────────────────────────────────────────
 local M = {}
 function M.setup()
-   vim.g.nvim_tree_respect_buf_cwd = 1
 end
 function M.config()
    local module_name = "project_nvim"

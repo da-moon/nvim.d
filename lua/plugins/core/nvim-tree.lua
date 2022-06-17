@@ -7,15 +7,6 @@ local msg = ""
 -- ──────────────────────────────────────────────────────────────────────
 local M = {}
 function M.setup()
-   vim.g.nvim_tree_git_hl = 1
-   vim.g.nvim_tree_highlight_opened_files = 3
-   vim.g.nvim_tree_special_files = {
-      ["README.md"] = 1,
-      ["Makefile"] = 1,
-      ["MAKEFILE"] = 1,
-      ["readme.md"] = 1,
-      ["CHANGELOG.md"] = 1,
-   }
    local module_name = "nvim-web-devicons"
    local plugin_name = "nvim-web-devicons"
    local plug = pluginman:load_plugin(plugin_name, module_name)
@@ -51,12 +42,24 @@ function M.config()
    )
    -- luacheck: max line length 160
    plug.setup({
+      renderer = {
+         highlight_git = true,
+         special_files = {
+            ["README.md"] = 1,
+            ["Makefile"] = 1,
+            ["MAKEFILE"] = 1,
+            ["readme.md"] = 1,
+            ["CHANGELOG.md"] = 1,
+         },
+         highlight_opened_files = "all",
+      },
       disable_netrw = true,
       hijack_netrw = true,
       -- [ NOTE ] => use autocmd for sake of consistency
       open_on_setup = false,
       ignore_ft_on_setup = { "dashboard" },
       update_cwd = true,
+      respect_buf_cwd = true,
       -- update_to_buf_dir = {
       --    enable = true,
       --    auto_open = true,
