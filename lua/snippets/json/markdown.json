@@ -1,6 +1,6 @@
 {
-  "Markdown front matter": {
-    "prefix": "front-matter",
+  "Markdown note front matter": {
+    "prefix": "note-front-matter",
     "body": [
       "---",
       "title: $1",
@@ -8,6 +8,6 @@
       "---",
       "$0"
     ],
-    "description": "Front matter for markdown"
+    "description": "Front matter for markdown note"
   }
 }
