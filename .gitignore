@@ -12,6 +12,7 @@
 !/after/plugin/*.lua
 !/lua
 !/lua/*.lua
+!/lua/autocmd/
 !/lua/autocmd/dashboard
 !/lua/autocmd/dashboard/*.lua
 !/lua/autocmd/nvim-tree
