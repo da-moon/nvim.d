@@ -29,6 +29,7 @@
 !/lua/lib/plugins/*.lua
 !/lua/mappings
 !/lua/mappings/*.lua
+!/lua/plugins
 !/lua/plugins/core
 !/lua/plugins/core/*.lua
 !/lua/plugins/core/cmp
