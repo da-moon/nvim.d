@@ -60,6 +60,8 @@
 !/lua/snippets/*.lua
 !/lua/snippets/lua
 !/lua/snippets/lua/*.lua
+!lua/snippets/json
+!lua/snippets/json/*.json
 #  ────────────────────────────────────────────────────────────────────
 !/docs
 !/docs/*.txt
