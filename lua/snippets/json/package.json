@@ -1,0 +1,30 @@
+{
+  "name": "nvim-snippets",
+  "author": "havi",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "lua",
+        "path": "./lua.json"
+      },
+      {
+        "language": [
+          "typescript",
+          "typescriptreact"
+        ],
+        "path": "./typescript.json"
+      },
+      {
+        "language": "markdown",
+        "path": "./markdown.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./react-ts.json"
+      }
+    ]
+  }
+}
