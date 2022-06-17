@@ -31,8 +31,8 @@ for _, lsp_server_name in ipairs(lsp_servers) do
       opts = vim.tbl_deep_extend("force", opts, {
          -- cmd = { vim.fn.stdpath("data") .. "/lsp_servers/terraform/terraform-ls", "serve" },
          cmd = { "terraform-ls", "serve" },
-         filetypes = { "terraform", 'tf' },
-         root_dir = require("lspconfig/util").root_pattern(".terraform", ".git","*.tf"),
+         filetypes = { "terraform", "tf" },
+         root_dir = require("lspconfig/util").root_pattern(".terraform", ".git", "*.tf"),
          -- root_dir = vim.fn.getcwd(),
       })
    end

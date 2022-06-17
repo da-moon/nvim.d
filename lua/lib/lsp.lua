@@ -67,7 +67,7 @@ end
 function M:setup(name, opts)
    assert(name ~= nil, "name should not be nil")
    assert(name ~= "", "name should not be empty")
-   if opts == nil  then
+   if opts == nil then
       opts = {}
    end
    local lsp_installer = self.modules["nvim-lsp-installer"]["nvim-lsp-installer"]

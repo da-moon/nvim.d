@@ -67,10 +67,10 @@ function M.config()
             error = "",
          },
       },
-        filesystem_watchers = {
-          enable = true,
-          interval = 100,
-        },
+      filesystem_watchers = {
+         enable = true,
+         interval = 100,
+      },
 
       git = {
          enable = true,

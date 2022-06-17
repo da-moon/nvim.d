@@ -5,8 +5,7 @@
 local pluginman = require("lib.plugin-manager")
 -- ──────────────────────────────────────────────────────────────────────
 local M = {}
-function M.setup()
-end
+function M.setup() end
 function M.config()
    local module_name = "project_nvim"
    local plugin_name = "project.nvim"
