@@ -1,0 +1,20 @@
+{
+  "React Component": {
+  "prefix": "react-component",
+  "body": [
+      "import React, { useState, useEffect } from \"react\";",
+      "",
+      "const ${1:${2:NameOfComponent}${3:$TM_FILENAME_BASE}}} = () => {",
+      
+      "  return (",
+      "    <>",
+      "       ${4:<div>Hello World</div>}",
+      "    </>",
+      "  );",
+      "};",
+      "",
+      "export default $1;"
+      ],
+  "description": "Task Template"
+}
+}
