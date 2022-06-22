@@ -118,5 +118,36 @@
       "- [ ] ${8}"
     ],
     "description": "Task Template"
+  },
+
+  "Backlog Test Case": {
+    "prefix": "backlog-test-case",
+    "body": [
+      "---",
+      "title     :  $TM_FILENAME_BASE",
+      "state     :  OPEN",
+      "author    :  $1",
+      "labels    :  $2",
+      "comments  :  0",
+      "assignees :  $3",
+      "projects  :  $4",
+      "milestone :  $5",
+      "number    :  $6",
+      "---",
+      "# Test Case",
+      "",
+      "## Summary",
+      "",
+      "$7",
+      "",
+      "## Steps",
+      "",
+      "- [ ] ${8}",
+      "",
+      "## Acceptance Criteria",
+      "",
+      "- ${9:The test case runs without any errors or errors are accepted by all team members}"
+    ],
+    "description": "Test Case Template"
   }
 }
