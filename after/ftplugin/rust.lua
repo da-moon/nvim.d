@@ -12,7 +12,7 @@ local to_require_map = {
       ["rust-tools"] = {},
       ["rust-tools.inlay_hints"] = {},
       ["rust-tools.hover_actions"] = {},
-      ["rust-tools.hover_range"] = {},
+      ["rust-tools.open_cargo_toml"] = {},
    },
 }
 for plugin_name, modules in pairs(to_require_map) do
@@ -61,6 +61,14 @@ if not hover_actions then
    if logger then return logger:warn(msg) end
    -- stylua: ignore end
 end
+local open_cargo_toml = to_require_map["rust-tools.nvim"]["rust-tools.open_cargo_toml"]
+if not open_cargo_toml then
+   msg = string.format("could not load 'rust-tools.open_cargo_toml'")
+   -- stylua: ignore start
+   if logger then return logger:warn(msg) end
+   -- stylua: ignore end
+end
+
 wk.register({
    ["h"] = {
       function()
@@ -79,6 +87,14 @@ wk.register({
     end,
     "Toggle hover actions",
  },
+ ["c"] = {
+  function()
+   if open_cargo_toml then
+    open_cargo_toml.open_cargo_toml()
+   end
+  end,
+  "Open Cargo.Toml",
+},
 }, {
    mode = "n",
    prefix = "<LocalLeader>",
@@ -104,3 +120,4 @@ wk.register({
   buffer = vim.api.nvim_get_current_buf(),
   noremap = true,
 })
+
