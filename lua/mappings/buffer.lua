@@ -29,14 +29,6 @@ return function(register)
       ["u"] = { "<Cmd>MundoToggle<cr>", "undo tree" },
       ["P"] = { [[<cmd>ggdG"+P<cr>]], "Copy clipboard to whole buffer" },
       ["p"] = { [["+gP]], "Paste from system clipboard" },
-      -- [ NOTE ] definately look into this
-      -- https://github.com/vzytoi/nvim.lua/blob/main/lua/plugins/formatter/formats.lua
-      ["f"] = {
-         function()
-            vim.lsp.buf.formatting()
-         end,
-         "Format File",
-      },
    }, {
       mode = "n",
       prefix = "<leader>b",
