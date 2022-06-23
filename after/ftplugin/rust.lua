@@ -13,6 +13,7 @@ local to_require_map = {
       ["rust-tools.inlay_hints"] = {},
       ["rust-tools.hover_actions"] = {},
       ["rust-tools.open_cargo_toml"] = {},
+      ["rust-tools.parent_module"] = {},
    },
 }
 for plugin_name, modules in pairs(to_require_map) do
@@ -68,33 +69,47 @@ if not open_cargo_toml then
    if logger then return logger:warn(msg) end
    -- stylua: ignore end
 end
-
+local parent_module = to_require_map["rust-tools.nvim"]["rust-tools.parent_module"]
+if not parent_module then
+   msg = string.format("could not load 'rust-tools.parent_module'")
+   -- stylua: ignore start
+   if logger then return logger:warn(msg) end
+   -- stylua: ignore end
+end
 wk.register({
    ["h"] = {
       function()
-        if inlay_hints then
-          inlay_hints.toggle_inlay_hints()
-        end
+         if inlay_hints then
+            inlay_hints.toggle_inlay_hints()
+         end
       end,
       "Toggle inlay hints",
    },
    ["<SPACE>"] = {
-    function()
-     if hover_actions then
-       hover_actions.hover_actions()
-       vim.lsp.buf.hover()
-     end
-    end,
-    "Toggle hover actions",
- },
- ["c"] = {
-  function()
-   if open_cargo_toml then
-    open_cargo_toml.open_cargo_toml()
-   end
-  end,
-  "Open Cargo.Toml",
-},
+      function()
+         if hover_actions then
+            hover_actions.hover_actions()
+            vim.lsp.buf.hover()
+         end
+      end,
+      "Toggle hover actions",
+   },
+   ["c"] = {
+      function()
+         if open_cargo_toml then
+            open_cargo_toml.open_cargo_toml()
+         end
+      end,
+      "Open Cargo.Toml",
+   },
+   ["p"] = {
+      function()
+         if parent_module then
+            parent_module.parent_module()
+         end
+      end,
+      "Open Parent Module",
+   },
 }, {
    mode = "n",
    prefix = "<LocalLeader>",
@@ -102,22 +117,45 @@ wk.register({
    noremap = true,
 })
 wk.register({
-  ["<C-SPACE>"] = {
-     function()
-      if hover_actions then
-        -- https://www.reddit.com/r/neovim/comments/uk3xmq/comment/i7n6wr6/?utm_source=share&utm_medium=web2x&context=3
-        -- https://vi.stackexchange.com/questions/31422/how-to-switch-mode-from-visual-visual-line-mode-to-normal-mode-in-lua
-        -- https://vi.stackexchange.com/questions/31422/how-to-switch-mode-from-visual-visual-line-mode-to-normal-mode-in-lua
-        vim.cmd('stopinsert')
-        hover_actions.hover_actions()
-        vim.lsp.buf.hover()
-      end
-     end,
-     "Toggle hover actions",
-  },
+   ["<C-h>"] = {
+      function()
+         if inlay_hints then
+            inlay_hints.toggle_inlay_hints()
+         end
+      end,
+      "Toggle inlay hints",
+   },
+   ["<C-SPACE>"] = {
+      function()
+         if hover_actions then
+            -- https://www.reddit.com/r/neovim/comments/uk3xmq/comment/i7n6wr6/?utm_source=share&utm_medium=web2x&context=3
+            -- https://vi.stackexchange.com/questions/31422/how-to-switch-mode-from-visual-visual-line-mode-to-normal-mode-in-lua
+            -- https://vi.stackexchange.com/questions/31422/how-to-switch-mode-from-visual-visual-line-mode-to-normal-mode-in-lua
+            vim.cmd("stopinsert")
+            hover_actions.hover_actions()
+            vim.lsp.buf.hover()
+         end
+      end,
+      "Toggle hover actions",
+   },
+   ["<C-c>"] = {
+      function()
+         if open_cargo_toml then
+            open_cargo_toml.open_cargo_toml()
+         end
+      end,
+      "Open Cargo.Toml",
+   },
+   ["<C-p>"] = {
+      function()
+         if parent_module then
+            parent_module.parent_module()
+         end
+      end,
+      "Open Parent Module",
+   },
 }, {
-  mode = "i",
-  buffer = vim.api.nvim_get_current_buf(),
-  noremap = true,
+   mode = "i",
+   buffer = vim.api.nvim_get_current_buf(),
+   noremap = true,
 })
-
