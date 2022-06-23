@@ -14,6 +14,7 @@ local to_require_map = {
       ["rust-tools.hover_actions"] = {},
       ["rust-tools.open_cargo_toml"] = {},
       ["rust-tools.parent_module"] = {},
+      ["rust-tools.runnables"] = {},
    },
 }
 for plugin_name, modules in pairs(to_require_map) do
@@ -76,6 +77,13 @@ if not parent_module then
    if logger then return logger:warn(msg) end
    -- stylua: ignore end
 end
+local runnables = to_require_map["rust-tools.nvim"]["rust-tools.runnables"]
+if not runnables then
+   msg = string.format("could not load 'rust-tools.runnables'")
+   -- stylua: ignore start
+   if logger then return logger:warn(msg) end
+   -- stylua: ignore end
+end
 wk.register({
    ["h"] = {
       function()
@@ -109,6 +117,14 @@ wk.register({
          end
       end,
       "Open Parent Module",
+   },
+   ["r"] = {
+      function()
+         if runnables then
+            runnables.runnables()
+         end
+      end,
+      "Runnables",
    },
 }, {
    mode = "n",
@@ -153,6 +169,14 @@ wk.register({
          end
       end,
       "Open Parent Module",
+   },
+   ["<C-r>"] = {
+      function()
+         if runnables then
+            runnables.runnables()
+         end
+      end,
+      "Runnables",
    },
 }, {
    mode = "i",
