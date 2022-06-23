@@ -528,6 +528,12 @@ packer.startup(function(use)
       cond = [[require("plugins.languages.rust-tools-nvim").cond()]],
       config = [[require("plugins.languages.rust-tools-nvim").config()]],
    })
+   use({
+      "Saecki/crates.nvim",
+      event = { "BufRead Cargo.toml" },
+      requires = { "nvim-lua/plenary.nvim" },
+      config = [[require("plugins.languages.crates-nvim").config()]],
+   })
    -- ────────────────────────────────────────────────────────────
    -- lua
    use({

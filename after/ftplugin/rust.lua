@@ -37,6 +37,7 @@ if not rust_tools then
    if logger then return logger:warn(msg) else return end
    -- stylua: ignore end
 end
+vim.cmd('autocmd FileType toml lua require("cmp").setup.buffer { sources = { { name = "crates" } } }')
 -- ────────────────────────────────────────────────────────────
 local lsp_server_name = "rust_analyzer"
 ---@diagnostic disable-next-line: missing-parameter
