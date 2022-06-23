@@ -20,7 +20,13 @@ return function()
    vim.api.nvim_buf_set_keymap(0, "n", "<A-BS>", [[i<A-BS>]], opts)
    vim.api.nvim_buf_set_keymap(0, "n", "<C-a>", [[^]], opts)
    vim.api.nvim_buf_set_keymap(0, "n", "<C-e>", [[$]], opts)
-   vim.api.nvim_buf_set_keymap(0, "n", "q", "<cmd>lua vim.cmd(string.format('bd! %d', vim.api.nvim_get_current_buf()))<cr>", opts)
+   vim.api.nvim_buf_set_keymap(
+      0,
+      "n",
+      "q",
+      "<cmd>lua vim.cmd(string.format('bd! %d', vim.api.nvim_get_current_buf()))<cr>",
+      opts
+   )
    -- [ NOTE ] => respect bash keybindings
    vim.api.nvim_buf_set_keymap(0, "t", "<C-Right>", [[<nop>]], opts)
    vim.api.nvim_buf_del_keymap(0, "t", "<C-Right>")
