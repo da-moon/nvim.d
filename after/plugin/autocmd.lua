@@ -6,6 +6,10 @@
 -- vim.cmd [[ au BufWritePre * %s/\s\+$//e ]]
 vim.cmd([[ au BufWritePre * silent! :%s/\r\n/\r]])
 -- ╭──────────────────────────────────────────────────────────╮
+-- │       autmatically reload file if changed on disk        │
+-- ╰──────────────────────────────────────────────────────────╯
+vim.cmd([[ au CursorHold * checktime]])
+-- ╭──────────────────────────────────────────────────────────╮
 -- │                 open dashboard on start                  │
 -- ╰──────────────────────────────────────────────────────────╯
 vim.cmd('autocmd FileType dashboard lua require("autocmd.dashboard.on_enter")()')
