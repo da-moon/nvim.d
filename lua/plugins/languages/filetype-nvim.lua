@@ -25,9 +25,7 @@ function M.config()
             [".gitignore"] = "conf",
             ["tsconfig.json"] = "jsonc",
             ["devcontainer.json"] = "jsonc",
-         },
-         complex = {
-            [".clang*"] = "yaml",
+            ["Makefile.toml"] = "cargo-make",
          },
          extensions = {
             tf = "terraform",

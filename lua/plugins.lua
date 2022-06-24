@@ -534,6 +534,16 @@ packer.startup(function(use)
       requires = { "nvim-lua/plenary.nvim" },
       config = [[require("plugins.languages.crates-nvim").config()]],
    })
+   use {
+      "nastevens/vim-cargo-make",
+      requires = {"cespare/vim-toml"},
+      after = {"filetype.nvim"},
+      ft = "cargo-make",
+   }
+   use {
+      "nastevens/vim-duckscript",
+      ft = {"cargo-make","duckscript"},
+   }
    -- ────────────────────────────────────────────────────────────
    -- lua
    use({
