@@ -13,8 +13,8 @@ return function(register)
       l = { "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", "List workspace" },
       D = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type definition" },
       r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-      e = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "Show line diagnostic" },
-      q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", "Set loclist" },
+      e = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Show line diagnostic" },
+      q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Set loclist" },
       -- [ NOTE ] definately look into this
       -- https://github.com/vzytoi/nvim.lua/blob/main/lua/plugins/formatter/formats.lua
       f = { "<cmd>lua vim.lsp.buf.format({async = true})<CR>", "Format" },
