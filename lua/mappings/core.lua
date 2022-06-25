@@ -8,7 +8,7 @@ return function(register)
    -- ─── NORMAL ─────────────────────────────────────────────────────────────────────
    -- TODO see if this can be mapped in packer directly
    register({
-      ["<CR>"] = {
+      ["<A-CR>"] = {
          function()
             local module_name = "fine-cmdline"
             local plugin_name = "fine-cmdline.nvim"
