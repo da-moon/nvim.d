@@ -7,6 +7,10 @@
   "contributes": {
     "snippets": [
       {
+        "language": "sh",
+        "path": "./sh.json"
+      },
+      {
         "language": "lua",
         "path": "./lua.json"
       },

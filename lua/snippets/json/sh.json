@@ -1,0 +1,12 @@
+{
+  "modelines": {
+    "prefix": "modelines",
+    "body": [
+      "# vim: filetype=sh syntax=sh softtabstop=2 tabstop=2 shiftwidth=2 fileencoding=utf-8 expandtab",
+      "# code: language=shellscript insertSpaces=true tabSize=2",
+      "",
+      "$0"
+    ],
+    "description": "Add modelines for Vim and VScode"
+  }
+}
