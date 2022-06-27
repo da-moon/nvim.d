@@ -72,3 +72,4 @@ wk.register({
    buffer = vim.api.nvim_get_current_buf(),
    noremap = true,
 })
+vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go-nvim.format').goimport() ]], false)

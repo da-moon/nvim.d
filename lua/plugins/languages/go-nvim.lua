@@ -55,6 +55,5 @@ function M.config()
       -- [ FIXME ]
       -- lsp_on_attach = require "lib.lsp.on_attach",
    })
-   vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go-nvim.format').goimport() ]], false)
 end
 return M
