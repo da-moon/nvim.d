@@ -120,6 +120,30 @@ function M:setup(name, opts)
             -- stylua: ignore end
             require("lib.lsp-config").lsp_status(client, bufnr)
             require("lib.lsp-config").lsp_signature(client, bufnr)
+            -- https://github.com/susliko/dotfiles/blob/master/nvim/.config/nvim/lua/susliko/lang/lsp/handlers.lua
+            if client.resolved_capabilities.document_highlight then
+               vim.api.nvim_exec(
+                 [[
+                 augroup lsp_document_highlight
+                   autocmd! * <buffer>
+                   autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+                   autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+                 augroup END
+               ]] ,
+                 false
+               )
+             end
+           
+
+             if client.resolved_capabilities.code_lens then
+               vim.cmd([[
+                 augroup lsp_document_codelens
+                 autocmd! * <buffer>
+                   autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
+                 augroup end
+               ]])
+             end
+           
          end,
       })
       -- https://github.com/alpha2phi/neovim-for-beginner/blob/ae2abb02326034a92f61b47e66c3001d4cf9ba70/lua/config/lsp/installer.lua#L6
