@@ -185,6 +185,8 @@ wk.register({
    noremap = true,
 })
 -- auto format before saving
-vim.api.nvim_exec([[ autocmd BufWritePre *.rs :silent! lua vim.lsp.buf.format({async = true}) ]], false)
+-- vim.api.nvim_exec([[ autocmd BufWritePre *.rs :silent! lua vim.lsp.buf.format({async = true}) ]], false)
+vim.cmd('autocmd BufWritePre *.rs :silent! lua vim.lsp.buf.format({async = false})')
 -- -- show/refresh diagnostics after saving
--- vim.api.nvim_exec([[ autocmd BufWritePost *.rs :silent! lua vim.diagnostic.setloclist() ]], false)
+-- https://github.com/neovim/neovim/issues/13324#issuecomment-847353681
+-- vim.cmd('autocmd BufWritePost *.rs lua vim.diagnostic.setloclist()')
