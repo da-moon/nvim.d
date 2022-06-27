@@ -24,6 +24,14 @@ function M.config()
    vim.fn.sign_define("DiagnosticSignWarn", { texthl = "DiagnosticWarn", text = " " })
    vim.fn.sign_define("DiagnosticSignInfo", { texthl = "DiagnosticInfo", text = " " })
    vim.fn.sign_define("DiagnosticSignHint", { texthl = "DiagnosticHint", text = " " })
+   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      signs = true,
+      underline = false,
+      virtual_text = true,
+      show_diagnostic_autocmds = { "InsertLeave", "TextChanged" }, -- NEW OPTION
+      diagnostic_delay = 500,  -- NEW OPTION
+   })
+
    -- vim.e.config({ virtual_text = false })
    -- -- enable border for hover
    -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
