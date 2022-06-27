@@ -510,11 +510,11 @@ packer.startup(function(use)
    })
    use({
       "anuvyklack/pretty-fold.nvim",
-      requires = {"anuvyklack/nvim-keymap-amend"},
+      requires = { "anuvyklack/nvim-keymap-amend" },
       event = { "BufEnter" },
       config = [[require("plugins.languages.pretty-fold-nvim").config()]],
    })
-   use {'kevinhwang91/nvim-bqf', ft = 'qf'}
+   use({ "kevinhwang91/nvim-bqf", ft = "qf" })
    -- mermaid.js
    use({ "mracos/mermaid.vim", ft = { "mermaid", "mmd" } })
    -- ron
@@ -532,7 +532,7 @@ packer.startup(function(use)
    use({
       "simrat39/rust-tools.nvim",
       ft = { "rust", "rs" },
-      cond = [[require("plugins.languages.rust-tools-nvim").cond()]],
+      -- cond = [[require("plugins.languages.rust-tools-nvim").cond()]],
       config = [[require("plugins.languages.rust-tools-nvim").config()]],
    })
    use({
@@ -541,16 +541,16 @@ packer.startup(function(use)
       requires = { "nvim-lua/plenary.nvim" },
       config = [[require("plugins.languages.crates-nvim").config()]],
    })
-   use {
+   use({
       "nastevens/vim-cargo-make",
-      requires = {"cespare/vim-toml"},
-      after = {"filetype.nvim"},
+      requires = { "cespare/vim-toml" },
+      after = { "filetype.nvim" },
       ft = "cargo-make",
-   }
-   use {
+   })
+   use({
       "nastevens/vim-duckscript",
-      ft = {"cargo-make","duckscript"},
-   }
+      ft = { "cargo-make", "duckscript" },
+   })
    -- ────────────────────────────────────────────────────────────
    -- lua
    use({

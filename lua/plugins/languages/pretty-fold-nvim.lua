@@ -9,9 +9,9 @@ local M = {}
 function M.config()
    local to_require_map = {
       ["nvim-keymap-amend"] = { ["keymap-amend"] = {} },
-      ["pretty-fold.nvim"] = { 
-         ["pretty-fold"] = {}, 
-         ["pretty-fold.preview"] = {} ,
+      ["pretty-fold.nvim"] = {
+         ["pretty-fold"] = {},
+         ["pretty-fold.preview"] = {},
       },
    }
    for plugin_name, modules in pairs(to_require_map) do
