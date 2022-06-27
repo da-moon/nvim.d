@@ -109,8 +109,10 @@ vim.o.completeopt = "menuone,noselect"  --- Better autocompletion
 vim.o.matchpairs = vim.o.matchpairs .. ",<:>"
 vim.o.showmatch = true                  --- Show matching brackets
 
-vim.o.foldlevel = 5                     --- Only fold sections deeper than this level automatically
-vim.o.foldlevelstart = 5                --- Only fold sections deeper than this level automatically
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 200 
+
 
 -- https://github.com/ress997/dotfiles-neovim/blob/main/lua/option.lua
 if vim.fn.executable "rg" == 1 then

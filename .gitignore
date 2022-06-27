@@ -19,6 +19,7 @@
 !/lua/autocmd/nvim-tree/*.lua
 !/lua/autocmd/terminal
 !/lua/autocmd/terminal/*.lua
+!/lua/core
 !/lua/core/colors
 !/lua/core/colors/*.lua
 !/lua/core/vim
