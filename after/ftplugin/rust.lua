@@ -184,9 +184,41 @@ wk.register({
    buffer = vim.api.nvim_get_current_buf(),
    noremap = true,
 })
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+   signs = true,
+   underline = true,
+   virtual_text = true,
+   -- show_diagnostic_autocmds = { "InsertLeave", "TextChanged" },
+   diagnostic_delay = 500,
+})
+-- https://github.com/PaterJason/dotfiles/blob/master/stowed/.config/nvim/lua/diagnostic.lua
+-- https://neovim.io/doc/user/api.html#nvim_create_autocmd()
+-- show/refresh diagnostics after saving
+local augroup = vim.api.nvim_create_augroup('Rust', {})
+vim.api.nvim_create_autocmd('DiagnosticChanged', {
+   buffer = vim.api.nvim_get_current_buf(),
+   callback = function()
+    if vim.fn.getqflist({ title = 0 }).title == 'Diagnostics' then
+      vim.diagnostic.setqflist { open = false }
+    end
+    if vim.fn.getloclist(0, { title = 0 }).title == 'Diagnostics' then
+      vim.diagnostic.setloclist { open = false }
+    end
+  end,
+  group = augroup,
+})
 -- auto format before saving
--- vim.api.nvim_exec([[ autocmd BufWritePre *.rs :silent! lua vim.lsp.buf.format({async = true}) ]], false)
-vim.cmd('autocmd BufWritePre *.rs :silent! lua vim.lsp.buf.format({async = false})')
--- -- show/refresh diagnostics after saving
--- https://github.com/neovim/neovim/issues/13324#issuecomment-847353681
--- vim.cmd('autocmd BufWritePost *.rs lua vim.diagnostic.setloclist()')
+vim.api.nvim_create_autocmd('BufWritePre', {
+   buffer = vim.api.nvim_get_current_buf(),
+   callback = function()
+      vim.lsp.buf.format({async = false})
+   end,
+   group = augroup,
+ })
+-- vim.api.nvim_exec([[ 
+--       augroup Rust
+--          autocmd! * <buffer>
+--          autocmd BufWritePre <buffer> lua vim.lsp.buf.format({async = false})
+--       augroup END
+-- ]], false)
