@@ -508,6 +508,12 @@ packer.startup(function(use)
       event = { "BufEnter" },
       config = [[require("plugins.languages.filetype-nvim").config()]],
    })
+   use({
+      "anuvyklack/pretty-fold.nvim",
+      requires = {"anuvyklack/nvim-keymap-amend"},
+      event = { "BufEnter" },
+      config = [[require("plugins.languages.pretty-fold-nvim").config()]],
+   })
    -- mermaid.js
    use({ "mracos/mermaid.vim", ft = { "mermaid", "mmd" } })
    -- ron
