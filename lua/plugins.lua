@@ -514,6 +514,7 @@ packer.startup(function(use)
       event = { "BufEnter" },
       config = [[require("plugins.languages.pretty-fold-nvim").config()]],
    })
+   use {'kevinhwang91/nvim-bqf', ft = 'qf'}
    -- mermaid.js
    use({ "mracos/mermaid.vim", ft = { "mermaid", "mmd" } })
    -- ron
