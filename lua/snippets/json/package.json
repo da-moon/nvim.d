@@ -20,6 +20,13 @@
       },
       {
         "language": [
+          "terraform",
+          "hcl"
+        ],
+        "path": "./hcl.json"
+      },
+      {
+        "language": [
           "typescript",
           "typescriptreact"
         ],
