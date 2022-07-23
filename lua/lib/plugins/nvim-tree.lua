@@ -108,33 +108,35 @@ function M.mv()
       local relative_dir = dir:gsub(cwd, "")
       table.insert(relative_dirs, relative_dir)
    end
-   pickers.new(opts, {
-      prompt_title = "Target directory",
-      finder = finders.new_table({ results = relative_dirs }),
-      sorter = conf.generic_sorter(opts),
-      attach_mappings = function(prompt_bufnr)
-         actions.select_default:replace(function()
-            actions.close(prompt_bufnr)
-            local selection = action_state.get_selected_entry()
-            local source_file = node.absolute_path
-            local target_dir = cwd .. selection[1]
-            -- local target_dir = cwd
-            -- if not selection[1] == "./" then
-            --    local target_dir = cwd .. selection[1]
-            -- end
+   pickers
+      .new(opts, {
+         prompt_title = "Target directory",
+         finder = finders.new_table({ results = relative_dirs }),
+         sorter = conf.generic_sorter(opts),
+         attach_mappings = function(prompt_bufnr)
+            actions.select_default:replace(function()
+               actions.close(prompt_bufnr)
+               local selection = action_state.get_selected_entry()
+               local source_file = node.absolute_path
+               local target_dir = cwd .. selection[1]
+               -- local target_dir = cwd
+               -- if not selection[1] == "./" then
+               --    local target_dir = cwd .. selection[1]
+               -- end
 
-            if not require("lib.utils").is_dir(target_dir) then
-               vim.notify("Target is not a directory")
-               return
-            end
-            os.execute(string.format("mv %s %s", vim.fn.shellescape(source_file), vim.fn.shellescape(target_dir)))
-            lib.refresh_tree()
-            -- lib.change_dir(vim.fn.fnamemodify(target_dir, ':p:h'))
-            -- lib.set_index_and_redraw(target_dir)
-         end)
-         return true
-      end,
-   }):find()
+               if not require("lib.utils").is_dir(target_dir) then
+                  vim.notify("Target is not a directory")
+                  return
+               end
+               os.execute(string.format("mv %s %s", vim.fn.shellescape(source_file), vim.fn.shellescape(target_dir)))
+               lib.refresh_tree()
+               -- lib.change_dir(vim.fn.fnamemodify(target_dir, ':p:h'))
+               -- lib.set_index_and_redraw(target_dir)
+            end)
+            return true
+         end,
+      })
+      :find()
 end
 -- ╭────────────────────────────────────────────────────────────────────╮
 -- │                      function definition end                       │

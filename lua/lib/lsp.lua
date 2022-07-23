@@ -83,10 +83,8 @@ function M:setup(name, opts)
    end
    local server_is_found, server = lsp_installer.get_server(name)
    if not server_is_found then
-      msg = string.format(
-         "lsp installer was not able to find configuration/install instruction for '%s' LSP server",
-         name
-      )
+      msg =
+         string.format("lsp installer was not able to find configuration/install instruction for '%s' LSP server", name)
       -- stylua: ignore start
       if logger then return logger:warn(msg) else return end
       -- stylua: ignore end
@@ -123,27 +121,25 @@ function M:setup(name, opts)
             -- https://github.com/susliko/dotfiles/blob/master/nvim/.config/nvim/lua/susliko/lang/lsp/handlers.lua
             if client.resolved_capabilities.document_highlight then
                vim.api.nvim_exec(
-                 [[
+                  [[
                  augroup lsp_document_highlight
                    autocmd! * <buffer>
                    autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
                    autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
                  augroup END
-               ]] ,
-                 false
+               ]],
+                  false
                )
-             end
-           
+            end
 
-             if client.resolved_capabilities.code_lens then
+            if client.resolved_capabilities.code_lens then
                vim.cmd([[
                  augroup lsp_document_codelens
                  autocmd! * <buffer>
                    autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
                  augroup end
                ]])
-             end
-           
+            end
          end,
       })
       -- https://github.com/alpha2phi/neovim-for-beginner/blob/ae2abb02326034a92f61b47e66c3001d4cf9ba70/lua/config/lsp/installer.lua#L6

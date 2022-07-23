@@ -40,29 +40,31 @@ function M:terraform_state()
    local sorters = to_require_map["telescope.nvim"]["telescope.sorters"]
    local finders = to_require_map["telescope.nvim"]["telescope.finders"]
 
-   pickers.new({
-      results_title = "Resources",
-      -- Run an external command and show the results in the finder window
-      finder = finders.new_oneshot_job({ "terraform", "show" }),
-      sorter = sorters.get_fuzzy_file(),
-      previewer = previewers.new_buffer_previewer({
-         -- luacheck: no unused args
-         -- luacheck: ignore 432
-         -- selene: allow(unused_variable,shadowing)
-         define_preview = function(self, entry, status)
-            -- selene: deny(unused_variable,shadowing)
-            -- luacheck: enable 432
-            -- luacheck: unused args
-            -- Execute another command using the highlighted entry
-            return previewers_utils.job_maker({ "terraform", "state", "list", entry.value }, self.state.bufnr, {
-               callback = function(bufnr, content)
-                  if content ~= nil then
-                     previewers_utils.regex_highlighter(bufnr, "terraform")
-                  end
-               end,
-            })
-         end,
-      }),
-   }):find()
+   pickers
+      .new({
+         results_title = "Resources",
+         -- Run an external command and show the results in the finder window
+         finder = finders.new_oneshot_job({ "terraform", "show" }),
+         sorter = sorters.get_fuzzy_file(),
+         previewer = previewers.new_buffer_previewer({
+            -- luacheck: no unused args
+            -- luacheck: ignore 432
+            -- selene: allow(unused_variable,shadowing)
+            define_preview = function(self, entry, status)
+               -- selene: deny(unused_variable,shadowing)
+               -- luacheck: enable 432
+               -- luacheck: unused args
+               -- Execute another command using the highlighted entry
+               return previewers_utils.job_maker({ "terraform", "state", "list", entry.value }, self.state.bufnr, {
+                  callback = function(bufnr, content)
+                     if content ~= nil then
+                        previewers_utils.regex_highlighter(bufnr, "terraform")
+                     end
+                  end,
+               })
+            end,
+         }),
+      })
+      :find()
 end
 return M
