@@ -2,13 +2,13 @@
   "Rust Binary Path": {
     "prefix": "rs-bin",
     "body": [
-        "[[bin]]",
-        "name = \"$1\"",
-        "path = \"src/$2\"",
-        "test = ${3:false}",
-        "doctest = ${4:false}",
-        "$0"
-        ],
+      "[[bin]]",
+      "name = \"$1\"",
+      "path = \"src/$2\"",
+      "test = ${3:false}",
+      "doctest = ${4:false}",
+      "$0"
+    ],
     "description": "Rust Binary target settings"
-    }  
+  }
 }

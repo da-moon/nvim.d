@@ -185,7 +185,7 @@
   },
   "select": {
     "body": "select(${1:index}, ${2:...})",
-    "description": "5.1,5.2,5.3\n\nselect (index, \u00b7\u00b7\u00b7)",
+    "description": "5.1,5.2,5.3\n\nselect (index, ···)",
     "prefix": "select",
     "scope": "source.lua"
   },

@@ -41,7 +41,10 @@
         "path": "./react-ts.json"
       },
       {
-        "language": ["react","javascript"],
+        "language": [
+          "react",
+          "javascript"
+        ],
         "path": "./react.json"
       },
       {

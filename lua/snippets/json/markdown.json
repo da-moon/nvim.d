@@ -47,7 +47,6 @@
     ],
     "description": "Feature Request Template"
   },
-
   "Backlog Bug Report": {
     "prefix": "backlog-bug-report",
     "body": [
@@ -119,7 +118,6 @@
     ],
     "description": "Task Template"
   },
-
   "Backlog Test Case": {
     "prefix": "backlog-test-case",
     "body": [
