@@ -400,6 +400,23 @@ packer.startup(function(use)
       event = { "BufWinEnter" },
       config = [[require("plugins.editing-support.substitute-nvim").config()]],
    })
+   use({
+      "johmsalas/text-case.nvim",
+      requires = {
+         "nvim-telescope/telescope.nvim",
+         "nvim-lua/plenary.nvim",
+         "nvim-treesitter/nvim-treesitter",
+         "folke/which-key.nvim",
+      },
+      after = {
+         "telescope.nvim",
+         "plenary.nvim",
+         "nvim-treesitter",
+         "which-key.nvim",
+      },
+      event = { "InsertEnter" },
+      config = [[require("plugins.editing-support.text-case-nvim").config()]],
+   })
    -- ╭────────────────────────────────────────────────────────────────────╮
    -- │                              register                              │
    -- ╰────────────────────────────────────────────────────────────────────╯
