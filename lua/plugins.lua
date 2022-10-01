@@ -301,6 +301,7 @@ packer.startup(function(use)
       after = { "nvim-web-devicons" },
       setup = [[require("plugins.core.bufferline-nvim").setup()]],
       config = [[require("plugins.core.bufferline-nvim").config()]],
+      tag = "v2.11.*",
    })
    -- ╭──────────────────────────────────────────────────────────╮
    -- │                       File Browser                       │
