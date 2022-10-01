@@ -11,6 +11,7 @@ ERRIGNORE = 2>/dev/null
 SEP=/
 DEVNUL = /dev/null
 WHICH = which
+SHELL=/bin/bash
 # ────────────────────────────────────────────────────────────────────────────────
 default:
 	@if ! $(WHICH) fzf > $(DEVNUL) 2>&1; then \
