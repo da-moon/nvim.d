@@ -69,7 +69,7 @@ function M.config()
       },
       filesystem_watchers = {
          enable = true,
-         interval = 100,
+         debounce_delay = 50,
       },
 
       git = {
@@ -113,7 +113,6 @@ function M.config()
       },
       view = {
          width = 30,
-         height = 30,
          hide_root_folder = false,
          side = "left",
          -- auto_resize = true,

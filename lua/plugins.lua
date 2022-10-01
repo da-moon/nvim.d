@@ -309,11 +309,11 @@ packer.startup(function(use)
    use({
       "kyazdani42/nvim-tree.lua",
       opt = false,
-      -- commit = "230a61db91df870da6dbe8409e3d44c6aa9774c2",
       cmd = { "NvimTreeOpen", "NvimTreeToggle" },
       requires = { "kyazdani42/nvim-web-devicons", "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
       setup = [[require("plugins.core.nvim-tree").setup()]],
       config = [[require("plugins.core.nvim-tree").config()]],
+      commit = "7282f7de8aedf861fe0162a559fc2b214383c51c",
    })
    -- ╭──────────────────────────────────────────────────────────╮
    -- │                  Terminal integrations                   │
