@@ -726,6 +726,8 @@ packer.startup(function(use)
       before = { "lualine.nvim" },
       after = { "nvim-web-devicons", "bufferline.nvim" },
       config = [[require("plugins.ui.themes.kanagawa-nvim").config()]],
+      -- 10/1/2022
+      commit = "dda1b8c13e0e7588c014064e5e8baf7f2953dd29",
    })
    use({
       "rose-pine/neovim",

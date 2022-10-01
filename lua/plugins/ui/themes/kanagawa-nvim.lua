@@ -24,12 +24,12 @@ function M.config()
    if _time.hour >= 17 and _time.hour < 21 then
       plug.setup({
          undercurl = true, -- enable undercurls
-         commentStyle = "italic",
-         functionStyle = "NONE",
-         keywordStyle = "italic",
-         statementStyle = "bold",
-         typeStyle = "NONE",
-         variablebuiltinStyle = "italic",
+         commentStyle = {italic = true },
+         functionStyle = {},
+         keywordStyle = {italic = true},
+         statementStyle = {bold = true},
+         typeStyle = {},
+         variablebuiltinStyle = {italic = true},
          specialReturn = true, -- special highlight for the return keyword
          specialException = true, -- special highlight for exception handling keywords
          transparent = false,
