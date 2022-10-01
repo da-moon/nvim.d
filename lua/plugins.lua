@@ -30,6 +30,11 @@ packer.startup(function(use)
    use({ "nvim-lua/popup.nvim"          , opt =  false                                                                })
    use({ "MunifTanjim/nui.nvim"         , opt =  false                                                                })
    use({ "rcarriga/nvim-notify"         , opt =  false                                                                })
+   -- ~/.local/share/nvim/databases must exist before loading this plugin
+   -- or else nvim would show segfault
+   -- Lazyloading on events such as BufEnter lead to segfault.
+   -- So far, only VimEnter has worked without giving a segfault.
+   use({ "kkharji/sqlite.lua"           , opt =  false                                                                })
    -- use({ "kyazdani40/nvim-web-devicons" , opt =  true                                                                })
    -- stylua: ignore end
    use({
@@ -433,14 +438,9 @@ packer.startup(function(use)
       config = [[require("plugins.editing-support.registers.registers-nvim").config()]],
    })
    -- ────────────────────────────────────────────────────────────
-   -- ~/.local/share/nvim/databases must exist before loading this plugin
-   -- or else nvim would show segfault
-   -- Lazyloading on events such as BufEnter lead to segfault.
-   -- So far, only VimEnter has worked without giving a segfault.
-   use({ "tami5/sqlite.lua", module = "sqlite" })
    use({
       "AckslD/nvim-neoclip.lua",
-      requires = { "nvim-telescope/telescope.nvim", { "tami5/sqlite.lua", module = "sqlite" } },
+      requires = { "nvim-telescope/telescope.nvim", { 'kkharji/sqlite.lua', module = 'sqlite' } },
       after = { "telescope.nvim", "sqlite.lua" },
       event = { "VimEnter" },
       run = [[require("plugins.editing-support.registers.nvim-neoclip").run()]],
@@ -780,14 +780,16 @@ packer.startup(function(use)
    use({
       "nvim-telescope/telescope-frecency.nvim",
       event = "VimEnter",
-      requires = { "nvim-telescope/telescope.nvim", { "tami5/sqlite.lua", module = "sqlite" } },
+      requires = { "nvim-telescope/telescope.nvim", "kkharji/sqlite.lua" },
       after = { "telescope.nvim" },
       config = [[require("plugins.core.telescope-extensions")["nvim-telescope/telescope-frecency.nvim"]() ]],
    })
    use({
       "nvim-telescope/telescope-smart-history.nvim",
       event = "VimEnter",
-      requires = { "nvim-telescope/telescope.nvim", { "tami5/sqlite.lua", module = "sqlite" } },
+      requires = { "nvim-telescope/telescope.nvim",
+      -- { "tami5/sqlite.lua", module = "sqlite" }
+       },
       after = { "telescope.nvim" },
       config = [[require("plugins.core.telescope-extensions")["nvim-telescope/telescope-smart-history.nvim"]() ]],
    })

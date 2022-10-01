@@ -71,7 +71,7 @@ local M = {
          msg = string.format("< %s > Telescope extension not found!", extension_name)
       -- stylua: ignore start
       if logger then return logger:warn(msg) else return end
-         -- stylua: ignore end
+      -- stylua: ignore end
       end
    end,
    ["nvim-telescope/telescope-smart-history.nvim"] = function()
