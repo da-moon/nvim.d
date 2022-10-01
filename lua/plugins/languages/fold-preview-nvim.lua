@@ -9,9 +9,7 @@ local M = {}
 function M.config()
    local to_require_map = {
       ["nvim-keymap-amend"] = { ["keymap-amend"] = {} },
-      ["pretty-fold.nvim"] = {
-         ["pretty-fold"] = {},
-      },
+      ["fold-preview.nvim"] = { ["fold-preview"] = {} },
    }
    for plugin_name, modules in pairs(to_require_map) do
       for module_name, _ in pairs(modules) do
@@ -27,16 +25,16 @@ function M.config()
       end
    end
 
-   local pretty_fold = to_require_map["pretty-fold.nvim"]["pretty-fold"]
+   local fold_preview = to_require_map["fold-preview.nvim"]["fold-preview"]
    assert(
-      pretty_fold ~= nil,
+      fold_preview ~= nil,
       string.format(
          "module < %s > from plugin <%s> could not get loaded  [ %s ]",
-         "pretty-fold",
-         "pretty-fold.nvim",
+         "fold-preview",
+         "fold-preview.nvim",
          debug.getinfo(1, "S").source:sub(2)
       )
    )
-   pretty_fold.setup()
+   fold_preview.setup()
 end
 return M

@@ -56,7 +56,7 @@ function M.config()
          -- as an escape hatch for people who cannot bear it for whatever reason
          indicator = {
             icon = "▎",
-            style = 'icon',
+            style = "icon",
          },
          buffer_close_icon = "",
          modified_icon = "●",

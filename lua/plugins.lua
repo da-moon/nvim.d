@@ -446,7 +446,7 @@ packer.startup(function(use)
    -- ────────────────────────────────────────────────────────────
    use({
       "AckslD/nvim-neoclip.lua",
-      requires = { "nvim-telescope/telescope.nvim", { 'kkharji/sqlite.lua', module = 'sqlite' } },
+      requires = { "nvim-telescope/telescope.nvim", { "kkharji/sqlite.lua", module = "sqlite" } },
       after = { "telescope.nvim", "sqlite.lua" },
       event = { "VimEnter" },
       run = [[require("plugins.editing-support.registers.nvim-neoclip").run()]],
@@ -542,6 +542,13 @@ packer.startup(function(use)
       requires = { "anuvyklack/nvim-keymap-amend" },
       event = { "BufEnter" },
       config = [[require("plugins.languages.pretty-fold-nvim").config()]],
+      tag = "v3.0",
+   })
+   use({
+      "anuvyklack/fold-preview.nvim",
+      requires = { "anuvyklack/nvim-keymap-amend" },
+      event = { "BufEnter" },
+      config = [[require("plugins.languages.fold-preview-nvim").config()]],
    })
    use({ "kevinhwang91/nvim-bqf", ft = "qf" })
    -- mermaid.js
@@ -799,9 +806,10 @@ packer.startup(function(use)
       cond = function()
          return require("jit").os == "Linux" and vim.fn.executable("sqlite3") ~= 0
       end,
-      requires = { "nvim-telescope/telescope.nvim",
-      -- { "tami5/sqlite.lua", module = "sqlite" }
-       },
+      requires = {
+         "nvim-telescope/telescope.nvim",
+         -- { "tami5/sqlite.lua", module = "sqlite" }
+      },
       after = { "telescope.nvim" },
       config = [[require("plugins.core.telescope-extensions")["nvim-telescope/telescope-smart-history.nvim"]() ]],
    })
