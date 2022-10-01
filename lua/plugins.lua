@@ -117,10 +117,15 @@ packer.startup(function(use)
       })
    end
    use({
+      -- lua print(vim.loop.os_uname().sysname)
       "tzachar/cmp-tabnine",
       opt = false,
       requires = { "hrsh7th/nvim-cmp" },
       after = { "nvim-cmp" },
+      cond = function()
+         -- https://www.reddit.com/r/neovim/comments/t11k0g/comment/hyes9vb/?utm_source=share&utm_medium=web2x&context=3
+         return not (require("jit").arch == "arm64")
+      end,
       setup = [[require("plugins.core.cmp.nvim-cmp-sources"):setup()]],
       config = [[ require("plugins.core.cmp.nvim-cmp-sources").sources["tzachar/cmp-tabnine"]() ]],
       run = "./install.sh",
