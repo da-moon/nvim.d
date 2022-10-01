@@ -38,10 +38,10 @@ local M = {
       local ext_status, _ = pcall(telescope.load_extension, extension_name)
       if not ext_status then
          msg = string.format("< %s > Telescope extension not found!", extension_name)
-      -- stylua: ignore start
-      if logger then return logger:warn(msg) else return end
-         -- stylua: ignore end
-      end
+         -- stylua: ignore start
+         if logger then return logger:warn(msg) else return end
+            -- stylua: ignore end
+         end
    end,
    ["nvim-telescope/telescope-fzf-native.nvim"] = function()
       local extension_name = "fzf"

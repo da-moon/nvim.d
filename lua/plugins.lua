@@ -32,7 +32,7 @@ packer.startup(function(use)
    use({ "rcarriga/nvim-notify"         , opt =  false                                                                })
    -- ~/.local/share/nvim/databases must exist before loading this plugin
    -- or else nvim would show segfault
-   -- Lazyloading on events such as BufEnter lead to segfault.
+   -- Lazyloading on events such as BufEnter lead to segfault. Update: this is fixed
    -- So far, only VimEnter has worked without giving a segfault.
    use({ "kkharji/sqlite.lua"           , opt =  false                                                                })
    -- use({ "kyazdani40/nvim-web-devicons" , opt =  true                                                                })
@@ -425,7 +425,7 @@ packer.startup(function(use)
          "nvim-treesitter",
          "which-key.nvim",
       },
-      event = { "InsertEnter" },
+      event = { "VimEnter" },
       config = [[require("plugins.editing-support.text-case-nvim").config()]],
    })
    -- ╭────────────────────────────────────────────────────────────────────╮
