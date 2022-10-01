@@ -5,7 +5,7 @@ local pluginman = require("lib.plugin-manager")
 -- ──────────────────────────────────────────────────────────────────────
 local M = {}
 function M.cond()
-   return not vim.g.is_windows
+   return not require("jit").os == "Linux"
 end
 function M.config()
    local module_name = "gitsigns"

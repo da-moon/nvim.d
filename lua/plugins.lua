@@ -34,7 +34,13 @@ packer.startup(function(use)
    -- or else nvim would show segfault
    -- Lazyloading on events such as BufEnter lead to segfault. Update: this is fixed
    -- So far, only VimEnter has worked without giving a segfault.
-   use({ "kkharji/sqlite.lua"           , opt =  false                                                                })
+   use({ "kkharji/sqlite.lua" ,
+   opt =  false,
+   cond = function()
+      -- https://www.reddit.com/r/neovim/comments/t11k0g/comment/hyes9vb/?utm_source=share&utm_medium=web2x&context=3
+      return require("jit").os == "Linux" and vim.fn.executable("sqlite3") ~= 0
+   end,
+   })
    -- use({ "kyazdani40/nvim-web-devicons" , opt =  true                                                                })
    -- stylua: ignore end
    use({
@@ -781,12 +787,18 @@ packer.startup(function(use)
       "nvim-telescope/telescope-frecency.nvim",
       event = "VimEnter",
       requires = { "nvim-telescope/telescope.nvim", "kkharji/sqlite.lua" },
+      cond = function()
+         return require("jit").os == "Linux" and vim.fn.executable("sqlite3") ~= 0
+      end,
       after = { "telescope.nvim" },
       config = [[require("plugins.core.telescope-extensions")["nvim-telescope/telescope-frecency.nvim"]() ]],
    })
    use({
       "nvim-telescope/telescope-smart-history.nvim",
       event = "VimEnter",
+      cond = function()
+         return require("jit").os == "Linux" and vim.fn.executable("sqlite3") ~= 0
+      end,
       requires = { "nvim-telescope/telescope.nvim",
       -- { "tami5/sqlite.lua", module = "sqlite" }
        },

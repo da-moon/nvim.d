@@ -7,7 +7,7 @@ local msg = ""
 -- ────────────────────────────────────────────────────────────
 local M = {}
 function M.cond()
-   return not vim.g.is_windows and vim.fn.executable("sqlite3") ~= 0
+   return not require("jit").os == "Linux" and vim.fn.executable("sqlite3") ~= 0
 end
 function M.run()
    vim.loop.fs_mkdir(vim.fn.stdpath("data") .. "/databases", 0755)
