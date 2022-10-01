@@ -493,6 +493,7 @@ packer.startup(function(use)
       event = { "BufWinEnter" },
       setup = [[require("plugins.editing-support.comments.comment-nvim").setup()]],
       config = [[require("plugins.editing-support.comments.comment-nvim").config()]],
+      commit = "22e71071d9473996563464fde19b108e5504f892",
    })
    -- [ FIXME ] => this was breaking treesitter
    -- cmd = { "TodoQuickFix", "TodoLocList", "TodoTrouble", "TodoTelescope" },

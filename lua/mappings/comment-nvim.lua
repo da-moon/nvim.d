@@ -4,6 +4,9 @@
 -- https://github.com/fedorov7/nvim/blob/master/lua/user/mappings.lua
 -- selene: allow(unused_variable)
 -- luacheck: no unused args
+local function D(name, alt)
+   vim.deprecate("require('Comment.api')." .. name, "require('Comment.api')." .. alt, "0.7", "Comment.nvim", false)
+end
 return function(register)
    -- selene: deny(unused_variable)
    -- luacheck: unused args
@@ -22,6 +25,9 @@ return function(register)
             local line_counter = vim.v.count
             if line_counter == 0 then
                line_counter = 1
+            end
+            if conf == nil then
+               conf = {}
             end
             count(line_counter, conf, ctype_line)
          end,
