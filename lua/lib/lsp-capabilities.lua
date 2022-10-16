@@ -66,8 +66,8 @@ function M:capabilities()
       -- stylua: ignore start
       if logger then logger:debug(msg)  end
       -- stylua: ignore end
-      local update_capabilities_status, _ = pcall(cmp_nvim_lsp.update_capabilities, self._capabilities)
-      if update_capabilities_status then
+      local default_capabilities_status, _ = pcall(cmp_nvim_lsp.default_capabilities, self._capabilities)
+      if default_capabilities_status then
          msg = string.format("cmp_nvim_lsp updated lsp capabilities successfully")
          -- stylua: ignore start
          if logger then logger:debug(msg) end
