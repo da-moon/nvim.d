@@ -320,7 +320,7 @@ packer.startup(function(use)
    use({
       "kyazdani42/nvim-tree.lua",
       opt = false,
-      cmd = { "NvimTreeOpen", "NvimTreeToggle" },
+      -- cmd = { "NvimTreeOpen", "NvimTreeToggle" },
       requires = { "kyazdani42/nvim-web-devicons", "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
       setup = [[require("plugins.core.nvim-tree").setup()]],
       config = [[require("plugins.core.nvim-tree").config()]],
