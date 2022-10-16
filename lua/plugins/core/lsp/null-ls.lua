@@ -211,7 +211,7 @@ function M:config()
    plug.setup({
       sources = sources,
       on_attach = function(client)
-         if client.resolved_capabilities.document_formatting then
+         if client.server_capabilities.document_formatting then
             vim.cmd([[
                augroup LspFormatting
                    autocmd! * <buffer>
@@ -219,7 +219,7 @@ function M:config()
                augroup END
             ]])
          end
-         -- if client.resolved_capabilities.document_formatting then
+         -- if client.server_capabilities.document_formatting then
          --    vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
          -- end
       end,

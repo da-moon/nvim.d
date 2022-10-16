@@ -119,7 +119,7 @@ function M:setup(name, opts)
             require("lib.lsp-config").lsp_status(client, bufnr)
             require("lib.lsp-config").lsp_signature(client, bufnr)
             -- https://github.com/susliko/dotfiles/blob/master/nvim/.config/nvim/lua/susliko/lang/lsp/handlers.lua
-            if client.resolved_capabilities.document_highlight then
+            if client.server_capabilities.document_highlight then
                vim.api.nvim_exec(
                   [[
                  augroup lsp_document_highlight
@@ -132,7 +132,7 @@ function M:setup(name, opts)
                )
             end
 
-            if client.resolved_capabilities.code_lens then
+            if client.server_capabilities.code_lens then
                vim.cmd([[
                  augroup lsp_document_codelens
                  autocmd! * <buffer>

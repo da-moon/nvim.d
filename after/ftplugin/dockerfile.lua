@@ -9,8 +9,8 @@ local lsp_server_name = "dockerls"
 local opts = {
    on_attach = function(client, bufnr)
       -- have null-ls control formatting
-      client.resolved_capabilities.document_formatting = false
-      client.resolved_capabilities.document_range_formatting = false
+      client.server_capabilities.document_formatting = false
+      client.server_capabilities.document_range_formatting = false
       msg = string.format("[ %s ] on_attach function called", lsp_server_name)
          -- stylua: ignore start
          if logger then logger:trace(msg) end
