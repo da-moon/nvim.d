@@ -23,6 +23,7 @@ function M.setup()
          to_require_map[plugin_name][module_name] = plug
       end
    end
+   vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
 end
 function M.config()
    local module_name = "catppuccin"
@@ -42,47 +43,38 @@ function M.config()
    if _time.hour >= 1 and _time.hour < 9 then
       -- [ FIXME ] => plugin integration
       plug.setup({
-         colorscheme = "neon_latte",
-         transparency = false,
+         compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
+         transparent_background = false,
          term_colors = false,
+         dim_inactive = {
+            enabled = false,
+            shade = "dark",
+            percentage = 0.15,
+         },
          styles = {
-            comments = "italic",
-            functions = "italic",
-            keywords = "italic",
-            strings = "NONE",
-            variables = "NONE",
+            comments = { "italic" },
+            conditionals = { "italic" },
+            keywords = { "italic" },
+            loops = {},
+            functions = {},
+            strings = {},
+            variables = {},
+            numbers = {},
+            booleans = {},
+            properties = {},
+            types = {},
+            operators = {},
          },
          integrations = {
+            cmp = true,
+            gitsigns = true,
+            nvimtree = true,
+            telescope = true,
             treesitter = true,
-            native_lsp = {
-               enabled = true,
-               virtual_text = {
-                  errors = "italic",
-                  hints = "italic",
-                  warnings = "italic",
-                  information = "italic",
-               },
-               underlines = {
-                  errors = "underline",
-                  hints = "underline",
-                  warnings = "underline",
-                  information = "underline",
-               },
-            },
             lsp_trouble = true,
             lsp_saga = true,
             gitgutter = false,
-            gitsigns = true,
-            telescope = true,
-            nvimtree = {
-               enabled = true,
-               show_root = false,
-            },
             which_key = true,
-            indent_blankline = {
-               enabled = true,
-               colored_indent_levels = true,
-            },
             dashboard = true,
             neogit = false,
             vim_sneak = false,
@@ -95,7 +87,29 @@ function M.config()
             lightspeed = false,
             ts_rainbow = true,
             hop = true,
+            native_lsp = {
+               enabled = true,
+               virtual_text = {
+                  errors = { "italic" },
+                  hints = { "italic" },
+                  warnings = { "italic" },
+                  information = { "italic" },
+               },
+               underlines = {
+                  errors = { "underline" },
+                  hints = { "underline" },
+                  warnings = { "underline" },
+                  information = { "underline" },
+               },
+            },
+            indent_blankline = {
+               enabled = true,
+               colored_indent_levels = true,
+            },
+
          },
+         color_overrides = {},
+         custom_highlights = {},
       })
       local status_ok, lualine_conf = pcall(require, "lib.plugins.lualine-nvim")
       if status_ok then

@@ -700,6 +700,7 @@ packer.startup(function(use)
       after = { "lightspeed.nvim" },
       setup = [[require("plugins.ui.themes.catppuccin").setup()]],
       config = [[require("plugins.ui.themes.catppuccin").config()]],
+      tag = "v0.2.4",
    })
    -- luacheck: max line length 160
    -- [ TODO ] => look into events
