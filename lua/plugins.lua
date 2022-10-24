@@ -3,6 +3,9 @@
 -- ────────────────────────────────────────────────────────────
 -- https://github.com/liranuxx/nvea/blob/master/lua/plugins/tools/init.lua
 -- ────────────────────────────────────────────────────────────
+-- [ TODO ] => add
+-- https://github.com/williamboman/mason.nvim
+-- https://github.com/williamboman/mason-lspconfig.nvim
 local pluginman_status, pluginman = pcall(require, "lib.plugin-manager")
 if not pluginman_status then
    return print("plugins: failed to load plugin:lib.plugin-manager ")
@@ -785,6 +788,11 @@ packer.startup(function(use)
       after = { "nvim-treesitter", "nvim-web-devicons", "bufferline.nvim" },
       config = [[require("plugins.ui.themes.zephyr-nvim").config()]],
    })
+   -- [ TODO ] => add config
+   use ({ 'projekt0n/github-nvim-theme' , opt= false})
+   -- [ TODO ] => add config
+   use ({ 'Shatur/neovim-ayu' , opt= false})
+
    -- ╭────────────────────────────────────────────────────────────────────╮
    -- │                         telescope plugins                          │
    -- ╰────────────────────────────────────────────────────────────────────╯
