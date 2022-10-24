@@ -106,7 +106,6 @@ function M.config()
                enabled = true,
                colored_indent_levels = true,
             },
-
          },
          color_overrides = {},
          custom_highlights = {},

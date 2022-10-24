@@ -302,6 +302,15 @@ packer.startup(function(use)
       after = "telescope.nvim",
       config = [[require("plugins.core.session-lens").config()]],
    })
+   -- [ TODO ] => add configuration
+   use({
+      "folke/persistence.nvim",
+      event = "BufReadPre", -- this will only start session saving when an actual file was opened
+      module = "persistence",
+      config = function()
+         require("persistence").setup()
+      end,
+   })
    -- ╭──────────────────────────────────────────────────────────╮
    -- │                     Top buffer line                      │
    -- ╰──────────────────────────────────────────────────────────╯
