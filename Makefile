@@ -283,7 +283,10 @@ clean: ## prepares a clean slate for configuring Neovim
 		"$${HOME}/.vim"* \
 		"$${HOME}/.config/"*vim* \
 		"$${HOME}/.cache/"*vim* \
-		"$${HOME}/.local/share/"*vim* ;
+		"$${HOME}/.local/share/"*vim* \
+		"$${HOME}/.local/state/nvim/view/"* \
+		"$${HOME}/.local/state/nvim/lsp.log" \
+		"$${HOME}/.local/state/nvim/log" ;
 	echo '────────────────────────────────────────────────────────────────────────────────' ;
 # ────────────────────────────────────────────────────────────────────────────────
 install: clean ## configure nvim
