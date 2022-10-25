@@ -110,6 +110,11 @@ function M.config()
                },
             },
          },
+         change_dir = {
+            enable = true,
+            global = false,
+            restrict_above_cwd = false,
+          },
       },
       view = {
          width = 30,
@@ -151,7 +156,7 @@ function M.config()
                { key = "q", action = "close" },
                -- ─────────────────────────────────────────────────────────────────
                -- [ FIXME ] CB is deprecated
-               { key = "b", cb = ":lua require'lib.plugins.nvim-tree'.cd()<CR>" },
+               { key = "b", action = "cd" },
                { key = "w", action = "vsplit" },
                { key = "W", action = "split" },
                { key = "t", action = "tabnew" },
