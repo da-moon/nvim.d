@@ -114,7 +114,7 @@ function M.config()
             enable = true,
             global = false,
             restrict_above_cwd = false,
-          },
+         },
       },
       view = {
          width = 30,

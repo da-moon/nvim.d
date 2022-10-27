@@ -338,6 +338,8 @@ packer.startup(function(use)
       config = [[require("plugins.core.nvim-tree").config()]],
       commit = "7282f7de8aedf861fe0162a559fc2b214383c51c",
    })
+   -- TODO Add configuration
+   use({ "edluffy/hologram.nvim", opt = false })
    -- ╭──────────────────────────────────────────────────────────╮
    -- │                  Terminal integrations                   │
    -- ╰──────────────────────────────────────────────────────────╯
@@ -539,7 +541,11 @@ packer.startup(function(use)
       cmd = { "ZenMode" },
       config = [[require("plugins.editing-support.focus.zen-mode-nvim").config()]],
    })
-
+   --  ╭──────────────────────────────────────────────────────────╮
+   --  │                       note-taking                        │
+   --  ╰──────────────────────────────────────────────────────────╯
+   -- TODO add configuration
+   use({ "jbyuki/venn.nvim", opt = false })
    --
    -- ────────────────────────────────────────────────────────── IV ──────────
    --   :::::: L A N G U A G E S : :  :   :    :     :        :          :
@@ -564,11 +570,17 @@ packer.startup(function(use)
       config = [[require("plugins.languages.fold-preview-nvim").config()]],
    })
    use({ "kevinhwang91/nvim-bqf", ft = "qf" })
-   -- mermaid.js
+   --  ╭──────────────────────────────────────────────────────────╮
+   --  │                        mermaid.js                        │
+   --  ╰──────────────────────────────────────────────────────────╯
    use({ "mracos/mermaid.vim", ft = { "mermaid", "mmd" } })
-   -- ron
+   --  ╭──────────────────────────────────────────────────────────╮
+   --  │                           ron                            │
+   --  ╰──────────────────────────────────────────────────────────╯
    use({ "ron-rs/ron.vim", ft = { "ron" } })
-   -- csv
+   --  ╭──────────────────────────────────────────────────────────╮
+   --  │                           csv                            │
+   --  ╰──────────────────────────────────────────────────────────╯
    use({
       "mechatroner/rainbow_csv",
       ft = { "csv", "tsv" },
@@ -577,7 +589,9 @@ packer.startup(function(use)
       "chen244/csv-tools.lua",
       ft = { "csv", "tsv" },
    })
-   -- rust
+   --  ╭──────────────────────────────────────────────────────────╮
+   --  │                           rust                           │
+   --  ╰──────────────────────────────────────────────────────────╯
    use({
       "simrat39/rust-tools.nvim",
       ft = { "rust", "rs" },
@@ -600,19 +614,23 @@ packer.startup(function(use)
       "nastevens/vim-duckscript",
       ft = { "cargo-make", "duckscript" },
    })
-   -- ────────────────────────────────────────────────────────────
-   -- lua
+   --  ╭──────────────────────────────────────────────────────────╮
+   --  │                           lua                            │
+   --  ╰──────────────────────────────────────────────────────────╯
    use({
       "folke/lua-dev.nvim",
       ft = "lua",
    })
-   -- ────────────────────────────────────────────────────────────
-   -- typescript
+   --  ╭──────────────────────────────────────────────────────────╮
+   --  │                        typescript                        │
+   --  ╰──────────────────────────────────────────────────────────╯
    use({
       "jose-elias-alvarez/nvim-lsp-ts-utils",
       ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
    })
-   -- markdown
+   --  ╭──────────────────────────────────────────────────────────╮
+   --  │                         markdown                         │
+   --  ╰──────────────────────────────────────────────────────────╯
    use({
       "ixru/nvim-markdown",
       ft = { "markdown" },
@@ -640,6 +658,9 @@ packer.startup(function(use)
    --    requires = { "Iron-E/nvim-libmodal" },
    --    after = { "nvim-libmodal" },
    -- })
+   --  ╭──────────────────────────────────────────────────────────╮
+   --  │                            go                            │
+   --  ╰──────────────────────────────────────────────────────────╯
    use({
       "ray-x/go.nvim",
       ft = { "go" },
@@ -789,9 +810,9 @@ packer.startup(function(use)
       config = [[require("plugins.ui.themes.zephyr-nvim").config()]],
    })
    -- [ TODO ] => add config
-   use ({ 'projekt0n/github-nvim-theme' , opt= false})
+   use({ "projekt0n/github-nvim-theme", opt = false })
    -- [ TODO ] => add config
-   use ({ 'Shatur/neovim-ayu' , opt= false})
+   use({ "Shatur/neovim-ayu", opt = false })
 
    -- ╭────────────────────────────────────────────────────────────────────╮
    -- │                         telescope plugins                          │
