@@ -149,7 +149,7 @@ local file_icon_colors = {
    White = "#FFFFFF",
    LightBlue = "#5fd7ff",
 }
---  TODO:move to dedicated module
+--  TODO: move to dedicated module
 local function get_file_info()
    return vim.fn.expand("%:t"), vim.fn.expand("%:e")
 end
@@ -358,7 +358,7 @@ M.config = function()
       padding = 0,
    })
 
-   -- FIXME
+   -- FIXME:
 
    -- ins_left {
    --    function()
@@ -420,7 +420,7 @@ M.config = function()
       cond = nil,
    })
 
-   -- FIXME
+   -- FIXME:
    -- ins_left {
    --    function()
    --       local utils = require "lvim.core.lualine.utils"
@@ -515,7 +515,7 @@ M.config = function()
       color = { fg = M.colors.green },
       cond = conditions.hide_in_width,
    })
-   -- FIXME
+   -- FIXME:
    -- ins_right {
    --    function(msg)
    --       msg = msg or kind.icons.ls_inactive .. "LS Inactive"
@@ -630,7 +630,7 @@ M.config = function()
       options = config.options,
       -- sections = config.sections,
       inactive_sections = config.inactive_sections,
-      -- FIXME  ?
+      -- FIXME:  ?
       tabline = {},
       extensions = { "nvim-tree" },
    }

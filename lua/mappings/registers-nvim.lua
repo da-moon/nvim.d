@@ -7,7 +7,7 @@ return function(register)
    end
    register({
       name = "+Editing Support",
-      -- TODO> maybe move to utils
+      -- TODO: maybe move to utils
       ["r"] = { [[<cmd>Registers<CR>]], "List Registers" },
    }, {
       mode = "n",

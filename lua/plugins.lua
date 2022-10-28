@@ -3,7 +3,7 @@
 -- ────────────────────────────────────────────────────────────
 -- https://github.com/liranuxx/nvea/blob/master/lua/plugins/tools/init.lua
 -- ────────────────────────────────────────────────────────────
--- TODO> add
+-- TODO: add
 -- https://github.com/williamboman/mason.nvim
 -- https://github.com/williamboman/mason-lspconfig.nvim
 local pluginman_status, pluginman = pcall(require, "lib.plugin-manager")
@@ -240,7 +240,7 @@ packer.startup(function(use)
       requires = { "nvim-treesitter/nvim-treesitter" },
       after = { "nvim-treesitter" },
    })
-   -- TODO> is this enough ?
+   -- TODO: is this enough ?
    use({
       "nvim-treesitter/playground",
       opt = false,
@@ -262,7 +262,7 @@ packer.startup(function(use)
       after = { "nvim-treesitter" },
       config = [[require("plugins.core.treesitter.nvim-treesitter-context").config()]],
    })
-   -- TODO> enable on specific FTs?
+   -- TODO: enable on specific FTs?
    use({
       "windwp/nvim-ts-autotag",
       opt = false,
@@ -305,7 +305,7 @@ packer.startup(function(use)
       after = "telescope.nvim",
       config = [[require("plugins.core.session-lens").config()]],
    })
-   -- TODO> add configuration
+   -- TODO: add configuration
    use({
       "folke/persistence.nvim",
       event = "BufReadPre", -- this will only start session saving when an actual file was opened
@@ -425,7 +425,7 @@ packer.startup(function(use)
       event = { "BufWinEnter" },
       config = [[require("plugins.editing-support.nvim-spectre").config()]],
    })
-   -- TODO> add yoink and setup integration
+   -- TODO: add yoink and setup integration
    use({
       "gbprod/substitute.nvim",
       event = { "BufWinEnter" },
@@ -736,7 +736,7 @@ packer.startup(function(use)
       tag = "v0.2.4",
    })
    -- luacheck: max line length 160
-   -- TODO> look into events
+   -- TODO: look into events
    use({
       "NTBBloodbath/doom-one.nvim",
       opt = false,
@@ -809,9 +809,9 @@ packer.startup(function(use)
       after = { "nvim-treesitter", "nvim-web-devicons", "bufferline.nvim" },
       config = [[require("plugins.ui.themes.zephyr-nvim").config()]],
    })
-   -- TODO> add config
+   -- TODO: add config
    use({ "projekt0n/github-nvim-theme", opt = false })
-   -- TODO> add config
+   -- TODO: add config
    use({ "Shatur/neovim-ayu", opt = false })
 
    -- ╭────────────────────────────────────────────────────────────────────╮

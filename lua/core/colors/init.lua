@@ -16,7 +16,7 @@ for k, d in pairs(higlight_groups) do
    local fg = d.fg and " guifg=" .. d.fg or ""
    local bg = d.bg and " guibg=" .. d.bg or ""
    local cmd = "hi def Foo" .. k .. gui .. fg .. bg
-   -- FIXME
+   -- FIXME:
    vim.api.nvim_command(cmd)
 end
 local links = get_links()

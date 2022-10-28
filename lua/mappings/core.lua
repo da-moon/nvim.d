@@ -47,7 +47,7 @@ return function(register)
       ["<A-h>"] = { ":vertical resize -2<CR>", "Resize left with 'ctrl + k'" },
       ["<C-s>"] = { "<cmd>w<cr>", "Save current buffer" },
       -- ["<CS-s>"] = { "<cmd>wa<cr>", "Save all open buffers" },
-      -- TODO> move somewhere else
+      -- TODO: move somewhere else
       ["<Leader>q"] = {
          name = "+Quickfix movement",
          ["n"] = { ":cnext<CR>", "Next quickfix list" },
@@ -61,7 +61,7 @@ return function(register)
          ["<Right>"] = { "<Cmd>tabnext<CR>", "Next" },
          ["<Left>"] = { "<Cmd>tabprevious<CR>", "Previous" },
       },
-      -- TODO> add commands to select a block
+      -- TODO: add commands to select a block
       ["v"] = {
          name = "+Visual",
          -- https://stackoverflow.com/questions/7406949/vim-faster-way-to-select-blocks-of-text-in-visual-mode
@@ -80,7 +80,7 @@ return function(register)
    -- luacheck: max line length 190
    register({
       ["<A-Up>"] = { [[<cmd>m '>+1<cr>gv=gv]], "Swap Line Upwards" },
-      -- TODO> make it behave more like spacevim
+      -- TODO: make it behave more like spacevim
       -- --  https://superuser.com/questions/310417/how-to-keep-in-visual-mode-after-identing-by-shift-in-vim
       -- ["<"] = { [[ <cmd>\<gv<cr> ]], "Indent left" }, --- sane indentation that does not exit visual mode after one indent
       -- [">"] = { [[ <cmd>\>gv<cr> ]], "Indent right" }, --- sane indentation that does not exit visual mode after one indent
@@ -113,10 +113,10 @@ return function(register)
    -- vim.api.nvim_set_keymap("n", "q", "<Nop>", { noremap = false })
    vim.api.nvim_set_keymap("n", "q", "<cmd>q<cr>", { noremap = true })
    -- ────────────────────────────────────────────────────────────────────────────────
-   -- -- FIXME
+   -- -- FIXME:
    -- lvim.keys.normal_mode["<S-l>"] = ":BufferNext<CR>"
    -- lvim.keys.normal_mode["<S-h>"] = ":BufferPrevious<CR>"
 
-   -- -- FIXME
+   -- -- FIXME:
    -- lvim.keys.normal_mode["<C-q>"] = ":call QuickFixToggle()<CR>"
 end

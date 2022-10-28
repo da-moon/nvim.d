@@ -5,11 +5,11 @@
 -- selene: allow(unused_variable)
 -- luacheck: no unused args
 local function D(name, alt)
+   -- selene: deny(unused_variable)
+   -- luacheck: unused args
    vim.deprecate("require('Comment.api')." .. name, "require('Comment.api')." .. alt, "0.7", "Comment.nvim", false)
 end
 return function(register)
-   -- selene: deny(unused_variable)
-   -- luacheck: unused args
    if not register then
       return
    end

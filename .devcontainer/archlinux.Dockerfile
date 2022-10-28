@@ -535,7 +535,7 @@ rustup run --install stable cargo install -j"$(nproc)" --root "/workspace" --loc
 #   :::::: Y A R N   P A C K A G E S   P A R A L L E L   I N S T A L L S : :  :   :    :     :        :          :
 # ────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #
-# FIXME yarn cannot access internet
+# FIXME: yarn cannot access internet
 # FROM base AS yarn-packages
 # USER "root"
 # RUN \

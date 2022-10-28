@@ -10,7 +10,7 @@
 -- null-ls builtins
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
 -- ──────────────────────────────────────────────────────────────────────
--- TODO
+-- TODO:
 -- - [ ] add diagnostics
 -- - [ ] move stylua finder to lib and make it a generi repo file finder
 -- - [ ] https://github.com/numToStr/dotfiles/blob/master/neovim/.config/nvim/lua/numToStr/plugins/lsp/null-ls.lua

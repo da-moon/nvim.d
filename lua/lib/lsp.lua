@@ -153,7 +153,7 @@ function M:setup(name, opts)
             -- stylua: ignore start
             if logger then logger:trace(msg)  end
             -- stylua: ignore end
-            -- FIXME
+            -- FIXME:
             plug.setup({
                server = vim.tbl_deep_extend("force", server:get_default_options(), opts),
             })

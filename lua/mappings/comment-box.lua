@@ -2,11 +2,7 @@
 -- code: language=lua insertSpaces=true tabSize=3
 -- ──────────────────────────────────────────────────────────────────────
 -- https://github.com/fedorov7/nvim/blob/master/lua/user/mappings.lua
--- selene: allow(unused_variable)
--- luacheck: no unused args
 return function(register)
-   -- selene: deny(unused_variable)
-   -- luacheck: unused args
    if not register then
       return
    end

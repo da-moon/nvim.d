@@ -22,7 +22,7 @@ function M.config()
       ["LuaSnip"] = { ["luasnip"] = {} },
       ["lspkind-nvim"] = { ["lspkind"] = {} },
    }
-   -- TODO>  move to setup
+   -- TODO:  move to setup
    for plugin_name, modules in pairs(to_require_map) do
       for module_name, _ in pairs(modules) do
          local plug = pluginman:load_plugin(plugin_name, module_name)

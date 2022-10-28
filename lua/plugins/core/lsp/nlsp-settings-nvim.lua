@@ -25,7 +25,7 @@ function M.config()
          to_require_map[plugin_name][module_name] = plug
       end
    end
-   -- -- TODO> refactor other modules to use this pattern
+   -- -- TODO: refactor other modules to use this pattern
    local module_name = "nlspsettings"
    local plugin_name = "nlsp-settings.nvim"
    -- local nlspsettings = to_require_map[plugin_name][module_name]

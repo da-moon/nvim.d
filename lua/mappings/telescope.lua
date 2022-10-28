@@ -1,11 +1,7 @@
 -- vim: filetype=lua syntax=lua softtabstop=3 tabstop=3 shiftwidth=3 fileencoding=utf-8 smartindent autoindent expandtab
 -- code: language=lua insertSpaces=true tabSize=3
 -- ──────────────────────────────────────────────────────────────────────
--- selene: allow(unused_variable)
--- luacheck: no unused args
 return function(register)
-   -- selene: allow(unused_variable)
-   -- luacheck: unused args
    if not register then
       return
    end
@@ -33,7 +29,7 @@ return function(register)
       prefix = "<leader>t",
       buffer = nil,
       silent = true,
-      -- FIXME
+      -- FIXME:
       noremap = true,
       nowait = true,
    })

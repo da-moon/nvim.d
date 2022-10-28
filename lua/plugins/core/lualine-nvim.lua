@@ -27,7 +27,7 @@ function M.setup()
       -- stylua: ignore end
    end
 end
--- FIXME
+-- FIXME:
 function M.config()
    local module_name = "lualine"
    local plugin_name = "lualine.nvim"

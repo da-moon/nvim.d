@@ -112,7 +112,7 @@ if logger then logger:trace(msg)  end
          end
       end
    else
-      -- TODO> log name
+      -- TODO: log name
       msg = string.format("loading < %s > with default", name)
       -- stylua: ignore start
       if logger then logger:trace(msg) end
@@ -121,7 +121,7 @@ if logger then logger:trace(msg)  end
    end
    has, plugin = pcall(require, modulename)
    if not has then
-      -- TODO> log name
+      -- TODO: log name
       msg = string.format("could not load < %s > module", modulename)
       -- stylua: ignore start
       if logger then return logger:warn(msg) else return end
