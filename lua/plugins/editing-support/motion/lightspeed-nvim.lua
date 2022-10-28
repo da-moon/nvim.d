@@ -27,13 +27,13 @@ function M.config()
       jump_to_unique_chars = { safety_timeout = 400 },
       match_only_the_start_of_same_char_seqs = true,
       force_beacons_into_match_width = false,
-      -- [ NOTE ] Display characters in a custom way in the highlighted matches.
+      -- NOTEDisplay characters in a custom way in the highlighted matches.
       substitute_chars = { ["\r"] = "¬" },
-      -- [ NOTE ] Leaving the appropriate list empty effectively disables "smart" mode,
+      -- NOTELeaving the appropriate list empty effectively disables "smart" mode,
       -- and forces auto-jump to be on or off.
       -- safe_labels = { . . . },
       -- labels = { },
-      -- [ NOTE ] These keys are captured directly by the plugin at runtime.
+      -- NOTEThese keys are captured directly by the plugin at runtime.
       special_keys = {
          next_match_group = "<space>",
          prev_match_group = "<tab>",

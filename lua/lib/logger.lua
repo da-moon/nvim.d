@@ -6,7 +6,7 @@ if not packer_status then
    return print(string.format("[ %s ] : packer not found", debug.getinfo(1, "S").source:sub(2)))
 end
 return function()
-   -- [ NOTE ] => packer_plugins is null in a fresh install ,
+   -- NOTE> packer_plugins is null in a fresh install ,
    if not packer_plugins then
       return
    end

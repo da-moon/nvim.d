@@ -49,7 +49,7 @@ function M.config()
       },
       disable_netrw = true,
       hijack_netrw = true,
-      -- [ NOTE ] => use autocmd for sake of consistency
+      -- NOTE> use autocmd for sake of consistency
       open_on_setup = false,
       ignore_ft_on_setup = { "dashboard" },
       update_cwd = true,

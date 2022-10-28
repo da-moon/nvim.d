@@ -148,7 +148,7 @@ packer.startup(function(use)
    -- │                           lsp                            │
    -- ╰──────────────────────────────────────────────────────────╯
    use({ "b0o/schemastore.nvim", opt = false })
-   -- [ NOTE ] nvim-cmp depends on lspkind-nvim
+   -- NOTEnvim-cmp depends on lspkind-nvim
    use({
       "onsails/lspkind-nvim",
       opt = false,
@@ -618,7 +618,7 @@ packer.startup(function(use)
    --  │                           lua                            │
    --  ╰──────────────────────────────────────────────────────────╯
    use({
-      "folke/lua-dev.nvim",
+      "folke/neodev.nvim",
       ft = "lua",
    })
    --  ╭──────────────────────────────────────────────────────────╮

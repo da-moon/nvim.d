@@ -57,7 +57,7 @@ function M.config()
             HACK = { icon = " ", color = "warning", alt = { "[HACK]", "[ HACK ]" } },
             WARN = { icon = " ", color = "warning", alt = { "WARNING", "[WARNING]", "[ WARNING ]", "XXX" } },
             PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE", "[PERF]", "[ PERF ]" } },
-            NOTE = { icon = " ", color = "hint", alt = { "INFO", "[NOTE]", "[ NOTE ]" } },
+            NOTE = { icon = " ", color = "hint", alt = { "INFO", "NOTE", "NOTE" } },
          },
          merge_keywords = true, -- when true, custom keywords will be merged with the defaults
          -- highlighting of the line containing the todo comment
