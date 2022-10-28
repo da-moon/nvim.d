@@ -27,7 +27,7 @@ return function()
       "<cmd>lua vim.cmd(string.format('bd! %d', vim.api.nvim_get_current_buf()))<cr>",
       opts
    )
-   -- NOTE respect bash keybindings
+   -- NOTE: respect bash keybindings
    vim.api.nvim_buf_set_keymap(0, "t", "<C-Right>", [[<nop>]], opts)
    vim.api.nvim_buf_del_keymap(0, "t", "<C-Right>")
    vim.api.nvim_buf_set_keymap(0, "t", "<C-Left>", [[<nop>]], opts)

@@ -97,10 +97,10 @@ function M:config()
    -- ╭────────────────────────────────────────────────────────────────────╮
    -- │                              generic                               │
    -- ╰────────────────────────────────────────────────────────────────────╯
-   -- NOTE install snippet
+   -- NOTE: install snippet
    -- sudo yarn global add --prefix /usr/local prettier
    if vim.fn.executable("prettier") > 0 then
-      -- NOTE https://github.com/oncomouse/dotfiles/blob/master/conf/vim/lua/dotfiles/null-ls/init.lua
+      -- NOTE: https://github.com/oncomouse/dotfiles/blob/master/conf/vim/lua/dotfiles/null-ls/init.lua
       table.insert(
          sources,
          plug.builtins.formatting.prettier.with({
@@ -179,12 +179,12 @@ function M:config()
    -- ╭────────────────────────────────────────────────────────────────────╮
    -- │                              markdown                              │
    -- ╰────────────────────────────────────────────────────────────────────╯
-   -- NOTE install snippet
+   -- NOTE: install snippet
    -- go install github.com/katbyte/terrafmt@latest
    if vim.fn.executable("terrafmt") > 0 then
       table.insert(sources, plug.builtins.formatting.terrafmt)
    end
-   -- NOTE install snippet
+   -- NOTE: install snippet
    -- sudo yarn global add --prefix /usr/local remark-cli remark-toc
    if vim.fn.executable("remark") > 0 then
       table.insert(sources, plug.builtins.formatting.remark)

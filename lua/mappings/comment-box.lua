@@ -44,7 +44,7 @@ return function(register)
    })
    -- ────────────────────────────────────────────────────────────────────────────────
    register({
-      -- NOTE  when the cursor is over a comment , Alt-S in insert mode triggers surround
+      -- NOTE:  when the cursor is over a comment , Alt-S in insert mode triggers surround
       -- ["<M-s>"] = { "<Cmd>lua require('comment-box').line()<CR>", "Draw a separator line" },
       ["<M-l>"] = {
          "<ESC><CMD>setlocal paste<CR>o<ESC><Cmd>lua require('comment-box').line()<CR><CMD>setlocal nopaste<CR>^ji",

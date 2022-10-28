@@ -109,7 +109,7 @@ return function(register)
    })
 
    -- ────────────────────────────────────────────────────────────────────────────────
-   -- NOTE clearing 'q' mapping.
+   -- NOTE: clearing 'q' mapping.
    -- vim.api.nvim_set_keymap("n", "q", "<Nop>", { noremap = false })
    vim.api.nvim_set_keymap("n", "q", "<cmd>q<cr>", { noremap = true })
    -- ────────────────────────────────────────────────────────────────────────────────

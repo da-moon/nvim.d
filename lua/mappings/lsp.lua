@@ -15,7 +15,7 @@ return function(register)
       r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
       e = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Show line diagnostic" },
       q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Set loclist" },
-      -- NOTE definately look into this
+      -- NOTE: definately look into this
       -- https://github.com/vzytoi/nvim.lua/blob/main/lua/plugins/formatter/formats.lua
       f = { "<cmd>lua vim.lsp.buf.format({async = true})<CR>", "Format" },
    }, {
