@@ -338,7 +338,7 @@ packer.startup(function(use)
       config = [[require("plugins.core.nvim-tree").config()]],
       commit = "7282f7de8aedf861fe0162a559fc2b214383c51c",
    })
-   -- TODO Add configuration
+   -- TODO: Add configuration
    use({ "edluffy/hologram.nvim", opt = false })
    -- ╭──────────────────────────────────────────────────────────╮
    -- │                  Terminal integrations                   │
@@ -544,7 +544,7 @@ packer.startup(function(use)
    --  ╭──────────────────────────────────────────────────────────╮
    --  │                       note-taking                        │
    --  ╰──────────────────────────────────────────────────────────╯
-   -- TODO add configuration
+   -- TODO: add configuration
    use({ "jbyuki/venn.nvim", opt = false })
    --
    -- ────────────────────────────────────────────────────────── IV ──────────

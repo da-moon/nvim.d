@@ -160,7 +160,7 @@ function M.config()
       if logger then logger:trace(msg)  end
       -- stylua: ignore end
    end
-   -- TODOupdate lib.plugins.lualine-nvim and set it automatically based on time
+   -- TODO:update lib.plugins.lualine-nvim and set it automatically based on time
    -- Maybe do it in setup function ?
 end
 return M

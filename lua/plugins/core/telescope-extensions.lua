@@ -84,7 +84,7 @@ local M = {
          -- stylua: ignore end
       end
    end,
-   -- TODOconfigure this
+   -- TODO:configure this
    -- https://github.com/nvim-telescope/telescope-media-files.nvim
    ["nvim-telescope/telescope-media-files.nvim"] = function()
       local extension_name = "media_files"

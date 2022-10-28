@@ -51,7 +51,7 @@ function M.config()
          },
       })
       local status_ok, lualine_conf = pcall(require, "lib.plugins.lualine-nvim")
-      -- TODOupdate lib.plugins.lualine-nvim and set it automatically based on time
+      -- TODO:update lib.plugins.lualine-nvim and set it automatically based on time
       -- Maybe do it in setup function ?
       if status_ok then
          lualine_conf.colors = {

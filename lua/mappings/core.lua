@@ -6,7 +6,7 @@ return function(register)
       return
    end
    -- ─── NORMAL ─────────────────────────────────────────────────────────────────────
-   -- TODO see if this can be mapped in packer directly
+   -- TODO: see if this can be mapped in packer directly
    register({
       ["<A-CR>"] = {
          function()
