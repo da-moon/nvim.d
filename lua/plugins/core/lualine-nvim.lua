@@ -7,7 +7,7 @@ local msg = ""
 -- ──────────────────────────────────────────────────────────────────────
 local M = {}
 function M.setup()
-   -- [ FIXME ] => this keeps failing
+   -- FIXME> this keeps failing
    local module_name = "nvim-web-devicons"
    local plugin_name = "nvim-web-devicons"
    local plug = pluginman:load_plugin(plugin_name, module_name)
@@ -27,7 +27,7 @@ function M.setup()
       -- stylua: ignore end
    end
 end
--- [ FIXME ]
+-- FIXME
 function M.config()
    local module_name = "lualine"
    local plugin_name = "lualine.nvim"

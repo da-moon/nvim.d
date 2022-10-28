@@ -52,7 +52,7 @@ function M.config()
       dap_debug_keymap = true, -- set keymaps for debugger
       dap_debug_gui = true, -- set to true to enable dap gui, highly recommended
       dap_debug_vt = true, -- set to true to enable dap virtual text
-      -- [ FIXME ]
+      -- FIXME
       -- lsp_on_attach = require "lib.lsp.on_attach",
    })
 end

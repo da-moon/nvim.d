@@ -4,7 +4,7 @@
 -- TODO>
 -- - [ ] disable nvim.Surround default keybindngs
 -- ──────────────────────────────────────────────────────────────────────
--- [ FIXME ]
+-- FIXME
 return function(register)
    if not register then
       return

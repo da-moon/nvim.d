@@ -49,7 +49,7 @@ function M.config()
                icon = " ", -- icon used for the sign, and in search results
                color = "error", -- can be a hex color, or a named color (see below)
                -- luacheck: max line length 160
-               alt = { "FIXME", "[FIXME]", "[ FIXME ]", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+               alt = { "FIXME", "FIXME", "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
                -- luacheck: max line length 120
                -- signs = false, -- configure signs for some keywords individually
             },

@@ -2,7 +2,7 @@
 -- code: language=lua insertSpaces=true tabSize=3
 -- ──────────────────────────────────────────────────────────────────────
 local M = {}
--- [ FIXME ] ?
+-- FIXME?
 function M.on_attach(bufnr)
    if vim.fn.has("nvim-0.7") == 1 then
       local gs = package.loaded.gitsigns

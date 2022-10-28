@@ -113,10 +113,10 @@ return function(register)
    -- vim.api.nvim_set_keymap("n", "q", "<Nop>", { noremap = false })
    vim.api.nvim_set_keymap("n", "q", "<cmd>q<cr>", { noremap = true })
    -- ────────────────────────────────────────────────────────────────────────────────
-   -- -- [ FIXME ]
+   -- -- FIXME
    -- lvim.keys.normal_mode["<S-l>"] = ":BufferNext<CR>"
    -- lvim.keys.normal_mode["<S-h>"] = ":BufferPrevious<CR>"
 
-   -- -- [ FIXME ]
+   -- -- FIXME
    -- lvim.keys.normal_mode["<C-q>"] = ":call QuickFixToggle()<CR>"
 end
