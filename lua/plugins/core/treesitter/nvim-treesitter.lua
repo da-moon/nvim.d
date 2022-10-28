@@ -135,7 +135,7 @@ function M.config()
          },
       },
    })
-   -- [ TODO ] => run only on buffer type ?
+   -- TODO> run only on buffer type ?
    -- nomad
    ft_to_parser.nomad = "hcl" -- the nomad filetype will use the hcl parser and queries.
    ft_to_parser.tf = "hcl"

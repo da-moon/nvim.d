@@ -5,7 +5,7 @@ return function(register)
    if not register then
       return
    end
-   -- [ TODO ] => figure out better mappings
+   -- TODO> figure out better mappings
    register({
       ga = { "<Plug>(EasyAlign)", "(TextObject) [Selection] EasyAlign" },
    }, {

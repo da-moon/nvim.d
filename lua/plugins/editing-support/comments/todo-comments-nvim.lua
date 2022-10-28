@@ -1,8 +1,7 @@
 -- vim: filetype=lua syntax=lua softtabstop=3 tabstop=3 shiftwidth=3 fileencoding=utf-8 smartindent autoindent expandtab
 -- code: language=lua insertSpaces=true tabSize=3
 -- ──────────────────────────────────────────────────────────────────────
--- [ TODO ]
--- Ensure ripgrep is installed in `run()`
+-- TODO-- Ensure ripgrep is installed in `run()`
 -- ──────────────────────────────────────────────────────────────────────
 local pluginman = require("lib.plugin-manager")
 local logger = require("lib.logger")()
@@ -54,7 +53,7 @@ function M.config()
                -- luacheck: max line length 120
                -- signs = false, -- configure signs for some keywords individually
             },
-            TODO = { icon = " ", color = "info", alt = { "[TODO]", "[ TODO ]" } },
+            TODO = { icon = " ", color = "info", alt = { "TODO", "TODO" } },
             HACK = { icon = " ", color = "warning", alt = { "[HACK]", "[ HACK ]" } },
             WARN = { icon = " ", color = "warning", alt = { "WARNING", "[WARNING]", "[ WARNING ]", "XXX" } },
             PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE", "[PERF]", "[ PERF ]" } },

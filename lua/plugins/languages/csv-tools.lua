@@ -1,8 +1,7 @@
 -- vim: filetype=lua syntax=lua softtabstop=3 tabstop=3 shiftwidth=3 fileencoding=utf-8 smartindent autoindent expandtab
 -- code: language=lua insertSpaces=true tabSize=3
 -- ────────────────────────────────────────────────────────────
--- [ TODO ]
---- [ ] which-key keymapping
+-- TODO--- [ ] which-key keymapping
 -- https://github.com/chen244/csv-tools.lua/blob/055ffc781bcc383fd2139ed661e6b661641e6cb4/lua/csvtools.lua#L165
 -- ────────────────────────────────────────────────────────────
 

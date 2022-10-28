@@ -149,7 +149,7 @@ local file_icon_colors = {
    White = "#FFFFFF",
    LightBlue = "#5fd7ff",
 }
---  [ TODO ] move to dedicated module
+--  TODOmove to dedicated module
 local function get_file_info()
    return vim.fn.expand("%:t"), vim.fn.expand("%:e")
 end

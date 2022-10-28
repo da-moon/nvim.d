@@ -71,7 +71,7 @@ function M.config()
             -- imap("<Down>", fn.down_search_history)
             -- imap('<Down>', fn.down_history)
             imap("<Down>", fn.stop_complete_or_previous_item)
-            -- [ TODO ] => confirm that this does not cause any problems with
+            -- TODO> confirm that this does not cause any problems with
             -- the existing keymaps
             imap("<M-Up>", fn.up_search_history)
             imap("<M-Down>", fn.down_search_history)

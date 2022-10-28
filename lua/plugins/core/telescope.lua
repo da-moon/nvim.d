@@ -59,7 +59,7 @@ function M.config()
             case_mode = "smart_case", -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
          },
-         -- [ TODO ] => check to see if we can move this to where the plugin is getting added
+         -- TODO> check to see if we can move this to where the plugin is getting added
          command_palette = {
             {
                "File",

@@ -101,7 +101,7 @@ function M:cmdline()
       -- Use cmdline & path source for ':' (if you enabled `native_menu`, this
       -- won't work anymore).
       -- ──────────────────────────────────────────────────────────────────────
-      -- [ TODO ] => look into adding the following :
+      -- TODO> look into adding the following :
       -- - https://github.com/tzachar/cmp-fuzzy-path
       -- - https://github.com/dmitmel/cmp-cmdline-history
       -- ──────────────────────────────────────────────────────────────────────

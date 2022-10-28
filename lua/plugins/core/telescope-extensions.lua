@@ -1,7 +1,7 @@
 -- vim: filetype=lua syntax=lua softtabstop=3 tabstop=3 shiftwidth=3 fileencoding=utf-8 smartindent autoindent expandtab
 -- code: language=lua insertSpaces=true tabSize=3
 -- ──────────────────────────────────────────────────────────────────────
--- [ TODO ] => https://github.com/alexzanderr/neovim-lua/blob/master/lua/nvim-telescope-settings.lua
+-- TODO> https://github.com/alexzanderr/neovim-lua/blob/master/lua/nvim-telescope-settings.lua
 -- ──────────────────────────────────────────────────────────────────────
 local pluginman = require("lib.plugin-manager")
 local logger = require("lib.logger")()
@@ -84,7 +84,7 @@ local M = {
          -- stylua: ignore end
       end
    end,
-   -- [ TODO ] configure this
+   -- TODOconfigure this
    -- https://github.com/nvim-telescope/telescope-media-files.nvim
    ["nvim-telescope/telescope-media-files.nvim"] = function()
       local extension_name = "media_files"
@@ -107,8 +107,8 @@ local M = {
          -- stylua: ignore end
       end
    end,
-   -- [ TODO ] => add vim-rooter
-   -- [ TODO ] => add keybindings
+   -- TODO> add vim-rooter
+   -- TODO> add keybindings
    -- https://github.com/cljoly/telescope-repo.nvim
    ["cljoly/telescope-repo.nvim"] = function()
       local extension_name = "repo"
@@ -130,7 +130,7 @@ local M = {
          -- stylua: ignore end
       end
    end,
-   -- [ TODO ] => maybe move keybindings/plug to +Application
+   -- TODO> maybe move keybindings/plug to +Application
    ["LinArcX/telescope-env.nvim"] = function()
       local extension_name = "env"
       local ext_status, _ = pcall(telescope.load_extension, extension_name)
@@ -151,7 +151,7 @@ local M = {
          -- stylua: ignore end
       end
    end,
-   -- [ TODO ] => add keybindings ?
+   -- TODO> add keybindings ?
    ["nvim-telescope/telescope-packer.nvim"] = function()
       local extension_name = "packer"
       local ext_status, _ = pcall(telescope.load_extension, extension_name)
@@ -216,7 +216,7 @@ local M = {
          -- stylua: ignore end
       end
    end,
-   -- [ TODO ] => add keybindings
+   -- TODO> add keybindings
    ["nvim-telescope/telescope-project.nvim"] = function()
       local extension_name = "project"
       local ext_status, _ = pcall(telescope.load_extension, extension_name)

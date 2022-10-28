@@ -138,7 +138,7 @@ function M.config()
          v = { "j", "k" },
       },
       -- stylua: ignore end
-      -- [ TODO ] => load mappings here ?
+      -- TODO> load mappings here ?
    })
 end
 return M
