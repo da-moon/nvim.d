@@ -1,7 +1,8 @@
 -- vim: filetype=lua syntax=lua softtabstop=3 tabstop=3 shiftwidth=3 fileencoding=utf-8 smartindent autoindent expandtab
 -- code: language=lua insertSpaces=true tabSize=3
 -- ──────────────────────────────────────────────────────────────────────
--- TODO-- Ensure ripgrep is installed in `run()`
+-- TODO
+-- - Ensure ripgrep is installed in `run()`
 -- ──────────────────────────────────────────────────────────────────────
 local pluginman = require("lib.plugin-manager")
 local logger = require("lib.logger")()
@@ -39,7 +40,6 @@ function M.config()
          debug.getinfo(1, "S").source:sub(2)
       )
    )
-
    plug.setup({
       {
          signs = true, --  show icons in the signs column
@@ -49,15 +49,15 @@ function M.config()
                icon = " ", -- icon used for the sign, and in search results
                color = "error", -- can be a hex color, or a named color (see below)
                -- luacheck: max line length 160
-               alt = { "FIXME", "FIXME", "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+               alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
                -- luacheck: max line length 120
                -- signs = false, -- configure signs for some keywords individually
             },
             TODO = { icon = " ", color = "info", alt = { "TODO", "TODO" } },
-            HACK = { icon = " ", color = "warning", alt = { "[HACK]", "[ HACK ]" } },
-            WARN = { icon = " ", color = "warning", alt = { "WARNING", "[WARNING]", "[ WARNING ]", "XXX" } },
-            PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE", "[PERF]", "[ PERF ]" } },
-            NOTE = { icon = " ", color = "hint", alt = { "INFO", "NOTE", "NOTE" } },
+            HACK = { icon = " ", color = "warning", alt = { "HACK" } },
+            WARN = { icon = " ", color = "warning", alt = { "WARNING", "HACK", "XXX" } },
+            PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE", "PERF" } },
+            NOTE = { icon = " ", color = "hint", alt = { "INFO", "NOTE" } },
          },
          merge_keywords = true, -- when true, custom keywords will be merged with the defaults
          -- highlighting of the line containing the todo comment
