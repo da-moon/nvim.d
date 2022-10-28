@@ -239,7 +239,7 @@ find . \
 find . -mindepth 1 -maxdepth 1 -type d -exec rm -r "{}" \;
 EOT
 #  ────────────────────────────────────────────────────────────────────
-# [ NOTE ] deleting dependencies on aarch64 leads to the following error
+# NOTE deleting dependencies on aarch64 leads to the following error
 # PROT_EXEC|PROT_WRITE failed.
 RUN \
   chmod a+x /usr/local/bin/* \

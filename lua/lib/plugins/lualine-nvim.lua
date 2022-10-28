@@ -630,7 +630,7 @@ M.config = function()
       options = config.options,
       -- sections = config.sections,
       inactive_sections = config.inactive_sections,
-      -- -- FIXME?
+      -- FIXME  ?
       tabline = {},
       extensions = { "nvim-tree" },
    }

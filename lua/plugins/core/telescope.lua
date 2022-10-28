@@ -155,7 +155,7 @@ function M.config()
             -- true temporarily disables Telescope selection highlighting
             clear_selection_hl = false,
             -- highlight hopped to entry with telescope selection highlight
-            -- note: mutually exclusive with `clear_selection_hl`
+            -- NOTE: mutually exclusive with `clear_selection_hl`
             trace_entry = true,
             -- jump to entry where hoop loop was started from
             reset_selection = true,

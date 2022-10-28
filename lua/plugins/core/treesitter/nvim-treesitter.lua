@@ -58,7 +58,7 @@ function M.config()
       },
       rainbow = { enable = false },
       playground = {
-         -- FIXME> maybe this is making things break
+         -- FIXME maybe this is making things break
          -- enable = true,
          enable = false,
          disable = {},
@@ -124,7 +124,7 @@ function M.config()
          },
       },
       incremental_selection = {
-         -- FIXME> maybe this cases things to break
+         -- FIXME maybe this cases things to break
          -- enable = true,
          enable = false,
          keymaps = {

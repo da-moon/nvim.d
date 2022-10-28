@@ -319,7 +319,7 @@ docker-build: hadolint ## Builds container images with Buildkit
 	docker buildx create --use --name "$(PROJECT_NAME)" --driver docker-container \
 	&& docker buildx bake --builder "$(PROJECT_NAME)"
 	echo '────────────────────────────────────────────────────────────────────────────────' ;
-# NOTE>  these hidden targets will lint individual docker files. this meta target enables parallel linting when make is run with '-j<parallel-job-count>' flag
+# NOTE  these hidden targets will lint individual docker files. this meta target enables parallel linting when make is run with '-j<parallel-job-count>' flag
 HADOLINT_TARGETS = $(DOCKER_FILES:%=--lint-%)
 $(HADOLINT_TARGETS):
 	$(eval docker_file_path=$(@:--lint-%=%))

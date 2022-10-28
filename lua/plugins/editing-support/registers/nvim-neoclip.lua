@@ -51,7 +51,7 @@ function M.config()
       )
    )
 
-   -- NOTE> vim.fn.stdpath("data") == ~/.local/share/nvim
+   -- NOTE vim.fn.stdpath("data") == ~/.local/share/nvim
    vim.loop.fs_mkdir(vim.fn.stdpath("data") .. "/databases", 0755)
    local db_path = vim.fn.stdpath("data") .. "/databases/neoclip.sqlite3"
 

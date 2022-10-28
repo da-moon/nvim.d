@@ -2,7 +2,7 @@
 " vim-go/ftdetect/gofiletype.vim
 "
 
-" Note: should not use augroup in ftdetect (see :help ftdetect)
+" NOTE: should not use augroup in ftdetect (see :help ftdetect)
 au BufRead,BufNewFile *.go setfiletype go
 au BufRead,BufNewFile *.s setfiletype asm
 au BufRead,BufNewFile *.tmpl setfiletype gohtmltmpl

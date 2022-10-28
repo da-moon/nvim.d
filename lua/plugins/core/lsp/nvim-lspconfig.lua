@@ -1,7 +1,7 @@
 -- vim: filetype=lua syntax=lua softtabstop=3 tabstop=3 shiftwidth=3 fileencoding=utf-8 smartindent autoindent expandtab
 -- code: language=lua insertSpaces=true tabSize=3
 -- ──────────────────────────────────────────────────────────────────────
--- NOTEI think this should get loaded after lsp starts up ... ( bufread ?)
+-- NOTE I think this should get loaded after lsp starts up ... ( bufread ?)
 -- ──────────────────────────────────────────────────────────────────────
 local pluginman = require("lib.plugin-manager")
 -- ──────────────────────────────────────────────────────────────────────
@@ -32,7 +32,7 @@ function M.config()
    --    border = "single",
    -- })
 
-   -- -- FIXME: this doesn't work
+   -- -- FIXME this doesn't work
    -- -- disable virtual text
    -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
    --    virtual_text = false,

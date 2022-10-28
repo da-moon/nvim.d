@@ -106,7 +106,7 @@ if logger then logger:trace(msg)  end
             -- stylua: ignore start
             if logger then logger:trace(msg) end
             -- stylua: ignore end
-            -- NOTEsometimes, plugins are under
+            -- NOTE sometimes, plugins are under
             -- ~/.local/share/nvim/site/pack/packer/start
             -- that's why this functon does not return here
          end
