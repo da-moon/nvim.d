@@ -11,6 +11,7 @@ return function(register)
       return
    end
    -- ─── NORMAL ─────────────────────────────────────────────────────────────────────
+   -- [ FIXME ] => I can't find this mapping
    register({
       name = "+Comment",
       ["t"] = { "<cmd>TodoTelescope<cr>", "search-todo" },
