@@ -3,11 +3,7 @@
 -- ──────────────────────────────────────────────────────────────────────
 -- TODO> take in a buffer number from user
 -- ──────────────────────────────────────────────────────────────────────
--- selene: allow(unused_variable)
--- luacheck: no unused args
-return function(register, plugin_loader)
-   -- selene: deny(unused_variable)
-   -- luacheck: unused args
+return function(register)
    if not register then
       return
    end

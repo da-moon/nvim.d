@@ -34,7 +34,9 @@ function M.config()
          debug.getinfo(1, "S").source:sub(2)
       )
    )
-   text_case.setup({})
+   text_case.setup({
+      prefix = "<Leader>et",
+   })
    local telescope = to_require_map["telescope.nvim"]["telescope"]
    assert(
       telescope ~= nil,

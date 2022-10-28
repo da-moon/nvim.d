@@ -39,6 +39,7 @@ local modules = {
    "mappings.lsp",
    "mappings.local-leader",
    "mappings.vim-easy-align",
+   "mappings.text-case-nvim",
 }
 for _, module in ipairs(modules) do
    local status, map = pcall(require, module)
