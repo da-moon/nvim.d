@@ -66,7 +66,7 @@ function M.mv()
    local opts = to_require_map["telescope.nvim"]["telescope.themes"].get_dropdown({})
    -- ──────────────────────────────────────────────────────────────────────
    local node = lib.get_node_at_cursor()
-   -- FIXME broken
+   -- FIXME: broken
    local cwd = lib.Tree.cwd
    local dirs = scan.scan_dir(cwd, { only_dirs = true })
    local relative_dirs = { "./" }

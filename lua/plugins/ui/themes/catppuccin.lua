@@ -41,7 +41,7 @@ function M.config()
 
    local _time = os.date("*t")
    if _time.hour >= 1 and _time.hour < 9 then
-      -- FIXME plugin integration
+      -- FIXME: plugin integration
       plug.setup({
          compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
          transparent_background = false,
@@ -82,7 +82,7 @@ function M.config()
             barbar = false,
             bufferline = true,
             markdown = false,
-            -- FIXME this guy broke on 2022-02-24
+            -- FIXME: this guy broke on 2022-02-24
             -- lightspeed = true,
             lightspeed = false,
             ts_rainbow = true,

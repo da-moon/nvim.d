@@ -155,7 +155,7 @@ function M.config()
                { key = "s", action = "system_open" },
                { key = "q", action = "close" },
                -- ─────────────────────────────────────────────────────────────────
-               -- FIXME CB is deprecated
+               -- FIXME: CB is deprecated
                { key = "b", action = "cd" },
                { key = "w", action = "vsplit" },
                { key = "W", action = "split" },
@@ -165,7 +165,7 @@ function M.config()
                { key = "C", action = "dir_up" },
                { key = "?", action = "toggle_help" },
                -- https://github.com/dinhmai74/dotfiles/blob/9cf3227081cedd8151720c141a1e209be59f07b8/mac/.config/nvim/lua/gon/plugin-settings/nvim-tree.lua#L83
-               -- FIXME CB is deprecated
+               -- FIXME: CB is deprecated
                { key = "m", cb = ":lua require'lib.plugins.nvim-tree'.mv()<CR>" },
             },
          },

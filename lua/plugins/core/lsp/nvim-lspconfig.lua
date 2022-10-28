@@ -32,7 +32,7 @@ function M.config()
    --    border = "single",
    -- })
 
-   -- -- FIXME this doesn't work
+   -- -- FIXME: this doesn't work
    -- -- disable virtual text
    -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
    --    virtual_text = false,

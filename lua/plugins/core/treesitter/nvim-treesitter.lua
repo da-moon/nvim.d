@@ -58,7 +58,7 @@ function M.config()
       },
       rainbow = { enable = false },
       playground = {
-         -- FIXME maybe this is making things break
+         -- FIXME: maybe this is making things break
          -- enable = true,
          enable = false,
          disable = {},
@@ -82,7 +82,7 @@ function M.config()
          use_virtual_text = true,
          lint_events = { "BufWrite", "CursorHold" },
       },
-      -- FIXMEbreaks on docker-bake.hcl file
+      -- FIXME:breaks on docker-bake.hcl file
       textobjects = {
          select = {
             enable = false,
@@ -124,7 +124,7 @@ function M.config()
          },
       },
       incremental_selection = {
-         -- FIXME maybe this cases things to break
+         -- FIXME: maybe this cases things to break
          -- enable = true,
          enable = false,
          keymaps = {

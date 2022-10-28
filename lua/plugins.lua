@@ -105,17 +105,17 @@ packer.startup(function(use)
    local cmp_sources = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
-      -- FIXME unavailable ?
+      -- FIXME: unavailable ?
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-emoji",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-calc",
       "saadparwaiz1/cmp_luasnip",
-      -- FIXME unavailable ?
+      -- FIXME: unavailable ?
       "f3fora/cmp-spell",
-      -- FIXME unused source names
+      -- FIXME: unused source names
       "hrsh7th/cmp-nvim-lsp-document-symbol",
-      -- FIXME unavailable ?
+      -- FIXME: unavailable ?
       "hrsh7th/cmp-cmdline",
       "lukas-reineke/cmp-rg",
       "ray-x/cmp-treesitter",
@@ -184,7 +184,7 @@ packer.startup(function(use)
       setup = [[require("plugins.core.lsp.nvim-lsp-installer").setup()]],
       config = [[require("plugins.core.lsp.nvim-lsp-installer").config()]],
    })
-   -- FIXME beaks dockerfile
+   -- FIXME: beaks dockerfile
    use({
       "jose-elias-alvarez/null-ls.nvim",
       -- opt = false,
@@ -509,7 +509,7 @@ packer.startup(function(use)
       config = [[require("plugins.editing-support.comments.comment-nvim").config()]],
       commit = "22e71071d9473996563464fde19b108e5504f892",
    })
-   -- FIXME this was breaking treesitter
+   -- FIXME: this was breaking treesitter
    -- cmd = { "TodoQuickFix", "TodoLocList", "TodoTrouble", "TodoTelescope" },
    use({
       "folke/todo-comments.nvim",
@@ -722,8 +722,8 @@ packer.startup(function(use)
    use({ "shaunsingh/nord.nvim", opt = false })
    use({ "shaunsingh/solarized.nvim", opt = false })
    use({ "shaunsingh/moonlight.nvim", opt = false })
-   -- FIXME some colorschemes are breaking
-   -- FIXME telescope colorscheme does not work
+   -- FIXME: some colorschemes are breaking
+   -- FIXME: telescope colorscheme does not work
    use({
       "catppuccin/nvim",
       as = "catppuccin",
