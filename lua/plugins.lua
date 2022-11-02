@@ -525,6 +525,20 @@ packer.startup(function(use)
       event = { "BufWinEnter" },
       config = [[require("plugins.editing-support.comments.comment-box-nvim").config()]],
    })
+   -- TODO: configure
+   use({
+      's1n7ax/nvim-comment-frame',
+      event = { "BufWinEnter" },
+      requires = {
+          { 'nvim-treesitter' }
+      },
+      config = function()
+          require('nvim-comment-frame').setup({
+            keymap = '<leader>cc',
+            multiline_keymap = '<leader>C',
+          })
+      end
+  })
    -- luacheck: max line length 120
    -- ╭──────────────────────────────────────────────────────────╮
    -- │                          focus                           │
