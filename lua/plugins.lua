@@ -527,18 +527,33 @@ packer.startup(function(use)
    })
    -- TODO: configure
    use({
-      's1n7ax/nvim-comment-frame',
+      "s1n7ax/nvim-comment-frame",
       event = { "BufWinEnter" },
       requires = {
-          { 'nvim-treesitter' }
+         "nvim-treesitter",
+      },
+      after = {
+         "nvim-treesitter",
       },
       config = function()
-          require('nvim-comment-frame').setup({
-            keymap = '<leader>cc',
-            multiline_keymap = '<leader>C',
-          })
-      end
-  })
+         require("nvim-comment-frame").setup({
+            keymap = "<leader>cc",
+            multiline_keymap = "<leader>C",
+         })
+      end,
+   })
+   -- TODO: configure
+   use({
+      "glepnir/coman.nvim",
+      event = { "BufWinEnter" },
+      requires = {
+         "nvim-treesitter",
+      },
+      after = {
+         "nvim-treesitter",
+      },
+   })
+
    -- luacheck: max line length 120
    -- ╭──────────────────────────────────────────────────────────╮
    -- │                          focus                           │
