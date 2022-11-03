@@ -285,6 +285,7 @@ packer.startup(function(use)
    -- TODO:
    -- - [ ] add keybindgs
    -- - [ ] move config to file
+   -- https://alpha2phi.medium.com/vim-neovim-managing-notes-and-todo-list-8ae8e3db6464
    use({
       "phaazon/mind.nvim",
       opt = false,
