@@ -632,9 +632,25 @@ packer.startup(function(use)
    --  ╭──────────────────────────────────────────────────────────╮
    --  │                           lua                            │
    --  ╰──────────────────────────────────────────────────────────╯
+   -- TODO: move config to dedicated file
    use({
       "folke/neodev.nvim",
+      before = {
+         "nvim-lspconfig",
+      },
       ft = "lua",
+      config = function()
+         require("neodev").setup({
+            library = {
+               enabled = true,
+               runtime = true,
+               types = true,
+               plugins = true,
+            },
+            setup_jsonls = true, -- configures jsonls to provide completion for project specific .luarc.json files
+            lspconfig = true,
+         })
+      end,
    })
    --  ╭──────────────────────────────────────────────────────────╮
    --  │                        typescript                        │
