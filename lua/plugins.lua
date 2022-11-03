@@ -232,7 +232,7 @@ packer.startup(function(use)
    use({
       "nvim-treesitter/nvim-treesitter",
       opt = false,
-      run = "TSUpdate",
+      run = ":TSUpdate",
       config = [[require("plugins.core.treesitter.nvim-treesitter").config()]],
    })
    use({
@@ -282,6 +282,18 @@ packer.startup(function(use)
    -- ╭──────────────────────────────────────────────────────────╮
    -- │                    project management                    │
    -- ╰──────────────────────────────────────────────────────────╯
+   -- TODO:
+   -- - [ ] add keybindgs
+   -- - [ ] move config to file
+   use({
+      "phaazon/mind.nvim",
+      opt = false,
+      requires = { "nvim-lua/plenary.nvim" },
+      config = function()
+         require("mind").setup()
+      end,
+      branch = "v2.2",
+   })
    -- use({
    --    "ahmedkhalf/project.nvim",
    --    opt = false,
@@ -680,6 +692,28 @@ packer.startup(function(use)
       ft = { "markdown" },
       run = [[require("plugins.languages.glow-nvim").run()]],
       setup = [[require("plugins.languages.glow-nvim").setup()]],
+   })
+   -- TODO:
+   -- - [ ] move config to dedicated file
+   -- - [ ] Setup key bindings
+   -- - [ ] Lazy load on commands
+   use({
+      "Ostralyan/scribe.nvim",
+      opt = false,
+      requires = {
+         "nvim-telescope/telescope.nvim",
+      },
+      after = {
+         "telescope.nvim",
+      },
+      config = function()
+         require("scribe").setup({
+            directory = "~/sync/notes",
+            file_ext = "md",
+            default_file = "scribe",
+         })
+      end,
+      tag = "1.0.0",
    })
    -- BufEnter,BufRead,BufWinEnter,FileType,WinEnte
    -- use({
