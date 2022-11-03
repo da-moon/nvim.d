@@ -396,16 +396,16 @@ packer.startup(function(use)
       event = { "InsertEnter" },
       config = [[require("plugins.editing-support.copilot-nvim").config()]],
    })
-   use({
-      "ThePrimeagen/refactoring.nvim",
-      event = { "BufEnter" },
-      requires = {
-         "nvim-lua/plenary.nvim",
-         "nvim-treesitter/nvim-treesitter",
-      },
-      setup = [[require("plugins.editing-support.refactoring-nvim").setup()]],
-      config = [[require("plugins.editing-support.refactoring-nvim").config()]],
-   })
+   -- use({
+   --    "ThePrimeagen/refactoring.nvim",
+   --    event = { "BufEnter" },
+   --    requires = {
+   --       "nvim-lua/plenary.nvim",
+   --       "nvim-treesitter/nvim-treesitter",
+   --    },
+   --    setup = [[require("plugins.editing-support.refactoring-nvim").setup()]],
+   --    config = [[require("plugins.editing-support.refactoring-nvim").config()]],
+   -- })
    use({
       "folke/trouble.nvim",
       requires = { "kyazdani42/nvim-web-devicons" },
