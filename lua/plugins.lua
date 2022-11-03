@@ -843,13 +843,15 @@ packer.startup(function(use)
    -- TODO: add config
    use({ "Shatur/neovim-ayu", opt = false })
    -- TODO: add config
-  use ({ 
-    'olivercederborg/poimandres.nvim',
-    opt = false,
-    config = function()
-      require('poimandres').setup { }
-    end
-  })
+   use({
+      "olivercederborg/poimandres.nvim",
+      opt = false,
+      config = function()
+         require("poimandres").setup({})
+      end,
+   })
+   -- TODO: add config
+   use({ "kvrohit/mellow.nvim", opt = false })
 
    -- ╭────────────────────────────────────────────────────────────────────╮
    -- │                         telescope plugins                          │
