@@ -282,12 +282,12 @@ packer.startup(function(use)
    -- ╭──────────────────────────────────────────────────────────╮
    -- │                    project management                    │
    -- ╰──────────────────────────────────────────────────────────╯
-   use({
-      "ahmedkhalf/project.nvim",
-      opt = false,
-      setup = [[require("plugins.core.project-nvim").setup()]],
-      config = [[require("plugins.core.project-nvim").config()]],
-   })
+   -- use({
+   --    "ahmedkhalf/project.nvim",
+   --    opt = false,
+   --    setup = [[require("plugins.core.project-nvim").setup()]],
+   --    config = [[require("plugins.core.project-nvim").config()]],
+   -- })
    -- ╭──────────────────────────────────────────────────────────╮
    -- │                         session                          │
    -- ╰──────────────────────────────────────────────────────────╯
@@ -383,11 +383,6 @@ packer.startup(function(use)
    -- ────────────────────────────────────────────────────────────────────────────────────
    --
 
-   -- ╭────────────────────────────────────────────────────────────────────╮
-   -- │                            applications                            │
-   -- ╰────────────────────────────────────────────────────────────────────╯
-   use({ "itchyny/calendar.vim", cmd = "Calendar" })
-   use({ "fedorenchik/VimCalc3", cmd = "Calc" })
    --
    -- ────────────────────────────────────────────────────────────────────── III ──────────
    --   :::::: E D I T I N G   S U P P O R T : :  :   :    :     :        :          :

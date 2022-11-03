@@ -23,7 +23,6 @@ local modules = {
    "mappings.telescope",
    "mappings.files",
    "mappings.terminal",
-   "mappings.applications",
    "mappings.lightspeed-nvim",
    "mappings.surround-nvim",
    "mappings.trouble-nvim",
