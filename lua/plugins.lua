@@ -393,11 +393,12 @@ packer.startup(function(use)
    -- ────────────────────────────────────────────────────────────────────────────────
    --
    use({ "gpanders/editorconfig.nvim", event = { "BufRead" } })
-   use({ "junegunn/vim-easy-align", event = { "BufEnter" } })
+   use({ "junegunn/vim-easy-align", event = { "InsertEnter" } })
+   -- TODO: add keybinding to open panel
    use({
-      "github/copilot.vim",
-      event = { "BufEnter" },
-      config = [[require("plugins.editing-support.copilot-vim").config()]],
+      "zbirenbaum/copilot.lua",
+      event = { "InsertEnter" },
+      config = [[require("plugins.editing-support.copilot-nvim").config()]],
    })
    use({
       "ThePrimeagen/refactoring.nvim",
