@@ -422,12 +422,12 @@ packer.startup(function(use)
    --    event = { "BufWinEnter" },
    --    config = [[require("plugins.editing-support.nvim-spectre").config()]],
    -- })
-   -- TODO: add yoink and setup integration
-   use({
-      "gbprod/substitute.nvim",
-      event = { "BufWinEnter" },
-      config = [[require("plugins.editing-support.substitute-nvim").config()]],
-   })
+   -- -- TODO: add yoink and setup integration
+   -- use({
+   --    "gbprod/substitute.nvim",
+   --    event = { "BufWinEnter" },
+   --    config = [[require("plugins.editing-support.substitute-nvim").config()]],
+   -- })
    use({
       "johmsalas/text-case.nvim",
       requires = {
