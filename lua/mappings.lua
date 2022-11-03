@@ -55,5 +55,3 @@ for _, module in ipairs(modules) do
       map(wk.register)
    end
 end
-
-

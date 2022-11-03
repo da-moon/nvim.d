@@ -472,17 +472,17 @@ packer.startup(function(use)
    -- ╭──────────────────────────────────────────────────────────╮
    -- │                       indentation                        │
    -- ╰──────────────────────────────────────────────────────────╯
-   use({
-      "lukas-reineke/indent-blankline.nvim",
-      event = { "BufWinEnter" },
-      setup = [[require("plugins.editing-support.indentation.indent-blankline-nvim").setup()]],
-      config = [[require("plugins.editing-support.indentation.indent-blankline-nvim").config()]],
-   })
-   use({
-      "Darazaki/indent-o-matic",
-      event = { "BufWinEnter" },
-      config = [[require("plugins.editing-support.indentation.indent-o-matic").config()]],
-   })
+   -- use({
+   --    "lukas-reineke/indent-blankline.nvim",
+   --    event = { "BufWinEnter" },
+   --    setup = [[require("plugins.editing-support.indentation.indent-blankline-nvim").setup()]],
+   --    config = [[require("plugins.editing-support.indentation.indent-blankline-nvim").config()]],
+   -- })
+   -- use({
+   --    "Darazaki/indent-o-matic",
+   --    event = { "BufWinEnter" },
+   --    config = [[require("plugins.editing-support.indentation.indent-o-matic").config()]],
+   -- })
    -- ╭──────────────────────────────────────────────────────────╮
    -- │                         comment                          │
    -- ╰──────────────────────────────────────────────────────────╯
