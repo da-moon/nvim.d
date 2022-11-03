@@ -470,7 +470,6 @@ packer.startup(function(use)
    -- ╭────────────────────────────────────────────────────────────────────╮
    -- │                               motion                               │
    -- ╰────────────────────────────────────────────────────────────────────╯
-   use({ "tpope/vim-repeat", opt = false })
    use({
       "ggandor/lightspeed.nvim",
       opt = false,
