@@ -30,7 +30,7 @@ local modules = {
    "mappings.comment-box",
    "mappings.todo-comments-nvim",
    "mappings.zen-mode-nvim",
-   "mappings.nvim-spectre",
+      --"mappings.nvim-spectre",
    "mappings.substitute-nvim",
    "mappings.registers-nvim",
    "mappings.help",

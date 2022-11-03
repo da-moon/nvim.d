@@ -414,13 +414,14 @@ packer.startup(function(use)
       setup = [[require("plugins.editing-support.trouble-nvim").setup()]],
       config = [[require("plugins.editing-support.trouble-nvim").config()]],
    })
-   use({
-      "windwp/nvim-spectre",
-      requires = { "nvim-lua/plenary.nvim" },
-      after = { "plenary.nvim" },
-      event = { "BufWinEnter" },
-      config = [[require("plugins.editing-support.nvim-spectre").config()]],
-   })
+   -- FIXME: search and replace is wonky
+   -- use({
+   --    "windwp/nvim-spectre",
+   --    requires = { "nvim-lua/plenary.nvim" },
+   --    after = { "plenary.nvim" },
+   --    event = { "BufWinEnter" },
+   --    config = [[require("plugins.editing-support.nvim-spectre").config()]],
+   -- })
    -- TODO: add yoink and setup integration
    use({
       "gbprod/substitute.nvim",
