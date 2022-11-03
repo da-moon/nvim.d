@@ -394,7 +394,6 @@ packer.startup(function(use)
    --
    use({ "editorconfig/editorconfig-vim", event = { "BufRead" } })
    use({ "junegunn/vim-easy-align", event = { "BufEnter" } })
-   use({ "simnalamburt/vim-mundo", cmd = "MundoToggle" })
    use({
       "github/copilot.vim",
       event = { "BufEnter" },
