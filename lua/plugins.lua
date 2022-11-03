@@ -457,17 +457,6 @@ packer.startup(function(use)
       config = [[require("plugins.editing-support.registers.registers-nvim").config()]],
       tag = "v2.2.*",
    })
-   -- ────────────────────────────────────────────────────────────
-   -- FIXME: Telescope integration broken
-   --   use({
-   --      "AckslD/nvim-neoclip.lua",
-   --      requires = { "nvim-telescope/telescope.nvim", { "kkharji/sqlite.lua", module = "sqlite" } },
-   --      after = { "telescope.nvim", "sqlite.lua" },
-   --      event = { "VimEnter" },
-   --      run = [[require("plugins.editing-support.registers.nvim-neoclip").run()]],
-   --      cond = [[require("plugins.editing-support.registers.nvim-neoclip").cond()]],
-   --      config = [[require("plugins.editing-support.registers.nvim-neoclip").config()]],
-   --   })
    -- ╭────────────────────────────────────────────────────────────────────╮
    -- │                               motion                               │
    -- ╰────────────────────────────────────────────────────────────────────╯
