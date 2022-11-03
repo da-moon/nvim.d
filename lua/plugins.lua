@@ -392,7 +392,6 @@ packer.startup(function(use)
    --   :::::: E D I T I N G   S U P P O R T : :  :   :    :     :        :          :
    -- ────────────────────────────────────────────────────────────────────────────────
    --
-   use({ "editorconfig/editorconfig-vim", event = { "BufRead" } })
    use({ "junegunn/vim-easy-align", event = { "BufEnter" } })
    use({
       "github/copilot.vim",
