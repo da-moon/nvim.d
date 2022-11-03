@@ -842,6 +842,14 @@ packer.startup(function(use)
    use({ "projekt0n/github-nvim-theme", opt = false })
    -- TODO: add config
    use({ "Shatur/neovim-ayu", opt = false })
+   -- TODO: add config
+  use ({ 
+    'olivercederborg/poimandres.nvim',
+    opt = false,
+    config = function()
+      require('poimandres').setup { }
+    end
+  })
 
    -- ╭────────────────────────────────────────────────────────────────────╮
    -- │                         telescope plugins                          │
