@@ -392,6 +392,7 @@ packer.startup(function(use)
    --   :::::: E D I T I N G   S U P P O R T : :  :   :    :     :        :          :
    -- ────────────────────────────────────────────────────────────────────────────────
    --
+   use({ "gpanders/editorconfig.nvim", event = { "BufRead" } })
    use({ "junegunn/vim-easy-align", event = { "BufEnter" } })
    use({
       "github/copilot.vim",
