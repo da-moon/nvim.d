@@ -130,6 +130,7 @@ packer.startup(function(use)
          config = string.format('require("plugins.core.cmp.nvim-cmp-sources").sources["%s"]()', source),
       })
    end
+   -- FIXME: for some reason this get's loaded twice
    use({
       -- lua print(vim.loop.os_uname().sysname)
       "tzachar/cmp-tabnine",
@@ -290,30 +291,30 @@ packer.startup(function(use)
    -- ╭──────────────────────────────────────────────────────────╮
    -- │                         session                          │
    -- ╰──────────────────────────────────────────────────────────╯
-   use({
-      "rmagatti/auto-session",
-      opt = false,
-      config = [[require("plugins.core.auto-session").config()]],
-   })
-   use({
-      "rmagatti/session-lens",
-      opt = false,
-      requires = {
-         "rmagatti/auto-session",
-         "nvim-telescope/telescope.nvim",
-      },
-      after = "telescope.nvim",
-      config = [[require("plugins.core.session-lens").config()]],
-   })
-   -- TODO: add configuration
-   use({
-      "folke/persistence.nvim",
-      event = "BufReadPre", -- this will only start session saving when an actual file was opened
-      module = "persistence",
-      config = function()
-         require("persistence").setup()
-      end,
-   })
+   -- use({
+   --    "rmagatti/auto-session",
+   --    opt = false,
+   --    config = [[require("plugins.core.auto-session").config()]],
+   -- })
+   -- use({
+   --    "rmagatti/session-lens",
+   --    opt = false,
+   --    requires = {
+   --       "rmagatti/auto-session",
+   --       "nvim-telescope/telescope.nvim",
+   --    },
+   --    after = "telescope.nvim",
+   --    config = [[require("plugins.core.session-lens").config()]],
+   -- })
+   -- -- TODO: add configuration
+   -- use({
+   --    "folke/persistence.nvim",
+   --    event = "BufReadPre", -- this will only start session saving when an actual file was opened
+   --    module = "persistence",
+   --    config = function()
+   --       require("persistence").setup()
+   --    end,
+   -- })
    -- ╭──────────────────────────────────────────────────────────╮
    -- │                     Top buffer line                      │
    -- ╰──────────────────────────────────────────────────────────╯
