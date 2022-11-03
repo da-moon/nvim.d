@@ -54,10 +54,10 @@ function M.config()
       ignore_ft_on_setup = { "dashboard" },
       update_cwd = true,
       respect_buf_cwd = true,
-      -- update_to_buf_dir = {
-      --    enable = true,
-      --    auto_open = true,
-      -- },
+      update_to_buf_dir = {
+         enable = true,
+         auto_open = true,
+      },
       diagnostics = {
          enable = true,
          icons = {
@@ -83,39 +83,39 @@ function M.config()
       },
       filters = {
          dotfiles = true,
-         custom = { "node_modules", "target", ".git", ".vagrant", ".cache" },
+         custom = { "node_modules", "target", "^.git$", ".vagrant", ".cache" },
       },
       trash = {
          cmd = "trash",
          require_confirm = true,
       },
-      actions = {
-         open_file = {
-            window_picker = {
-               exclude = {
-                  filetype = {
-                     "packer",
-                     "qf",
-                     "Trouble",
-                     "TelescopePrompt",
-                     "Outline",
-                     "dapui_scopes",
-                     "dapui_breakpoints",
-                     "dapui_stacks",
-                     "dapui_watches",
-                     "dapui_repl",
-                     "dap_repl",
-                  },
-                  buftype = { "terminal" },
-               },
-            },
-         },
-         change_dir = {
-            enable = true,
-            global = false,
-            restrict_above_cwd = false,
-         },
-      },
+      -- actions = {
+      --    open_file = {
+      --       window_picker = {
+      --          exclude = {
+      --             filetype = {
+      --                "packer",
+      --                "qf",
+      --                "Trouble",
+      --                "TelescopePrompt",
+      --                "Outline",
+      --                "dapui_scopes",
+      --                "dapui_breakpoints",
+      --                "dapui_stacks",
+      --                "dapui_watches",
+      --                "dapui_repl",
+      --                "dap_repl",
+      --             },
+      --             buftype = { "terminal" },
+      --          },
+      --       },
+      --    },
+      --    change_dir = {
+      --       enable = true,
+      --       global = false,
+      --       restrict_above_cwd = false,
+      --    },
+      -- },
       view = {
          width = 30,
          hide_root_folder = false,
