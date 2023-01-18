@@ -355,7 +355,8 @@ packer.startup(function(use)
       requires = { "kyazdani42/nvim-web-devicons", "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
       setup = [[require("plugins.core.nvim-tree").setup()]],
       config = [[require("plugins.core.nvim-tree").config()]],
-      --commit = "7282f7de8aedf861fe0162a559fc2b214383c51c",
+      -- Jan 15, 2023
+      commit = "1b13a49f913b58a5f1792ea81c13947a7988db8e",
    })
    -- TODO: Add configuration
    use({ "edluffy/hologram.nvim", opt = false })

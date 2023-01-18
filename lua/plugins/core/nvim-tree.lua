@@ -54,7 +54,7 @@ function M.config()
       ignore_ft_on_setup = { "dashboard" },
       update_cwd = true,
       respect_buf_cwd = true,
-      update_to_buf_dir = {
+      hijack_directories = {
          enable = true,
          auto_open = true,
       },
