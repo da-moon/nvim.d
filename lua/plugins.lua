@@ -54,6 +54,8 @@ packer.startup(function(use)
    use({
       "Tastyep/structlog.nvim",
       opt = false,
+      -- tag= "v0.2",
+      commit="7004d418af67dc283033e428b2f21a8d3eed9025",
       event = { "VimEnter" },
       setup = [[require("plugins.core.structlog-nvim").setup()]],
       config = [[require("plugins.core.structlog-nvim"):config()]],
