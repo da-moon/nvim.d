@@ -147,5 +147,46 @@
       "- ${9:The test case runs without any errors or errors are accepted by all team members}"
     ],
     "description": "Test Case Template"
+  },
+  "Backlog Feature Request": {
+    "prefix": "jira-task",
+    "body": [
+      "# Backlog Item",
+      "",
+      "## Details",
+      "",
+      "- title     :  ${1}",
+      "- priority  : ${2:medium}",
+      "- labels  : ${3:none}",
+      "- Story Points  : ${4:1}",
+      "",
+      "## People",
+      "",
+      "- Assignee  : ${5:damon}",
+      "- reporter  : ${6:damon}",
+      "",
+      "## Description",
+      "",
+      "### Overview",
+      "",
+      "${7}",
+      "",
+      "### Reason or Need for Feature/Task",
+      "",
+      "- ${8}",
+      "",
+      "### Design / Proposal",
+      "",
+      "- ${9}",
+      "",
+      "### Acceptance Criteria",
+      "",
+      "- ${10}",
+      "",
+      "## Additional context",
+      "",
+      "$0"
+    ],
+    "description": "Jira Task"
   }
 }
