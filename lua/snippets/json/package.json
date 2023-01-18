@@ -48,6 +48,13 @@
         "path": "./react.json"
       },
       {
+        "language": [
+          "json",
+          "jsonc"
+        ],
+        "path": "./json.json"
+      },
+      {
         "language": "toml",
         "path": "./toml.json"
       }

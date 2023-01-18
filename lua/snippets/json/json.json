@@ -1,0 +1,12 @@
+{
+  "Reveal MD config": {
+    "prefix": "reveal-md-config",
+    "body": [
+      "{",
+      "  \"controls\": true,",
+      "  \"progress\": true",
+      "}"
+    ],
+    "description": "Reveal MD Default Config (reveal.json)"
+  }
+}

@@ -148,7 +148,7 @@
     ],
     "description": "Test Case Template"
   },
-  "Backlog Feature Request": {
+  "Jira Task": {
     "prefix": "jira-task",
     "body": [
       "# Backlog Item",
@@ -188,5 +188,29 @@
       "$0"
     ],
     "description": "Jira Task"
+  },
+  "Reveal MD template": {
+    "prefix": "reveal-md-template",
+    "body": [
+      "---",
+      "title     :  $1",
+      "separator: <!--s-->",
+      "verticalSeparator : <!--v-->",
+      "theme  : ${2:solarized}",
+      "revealOptions:",
+      "    transition: 'fade'",
+      "---",
+      "# ${3:title}",
+      "",
+      "#### ${4:subtitle}",
+      "",
+      "---",
+      "",
+      "## ${5:section 1}",
+      "",
+      "$6",
+      ""
+    ],
+    "description": "Reveal MD template"
   }
 }
