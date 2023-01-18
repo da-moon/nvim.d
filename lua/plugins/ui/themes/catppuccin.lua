@@ -31,7 +31,6 @@ function M.config()
    end
    local plug = to_require_map["catppuccin"]["catppuccin"]
 
-
    local _time = os.date("*t")
    if _time.hour >= 1 and _time.hour < 9 then
       -- FIXME: plugin integration
