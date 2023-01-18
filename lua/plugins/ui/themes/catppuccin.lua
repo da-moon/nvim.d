@@ -8,36 +8,29 @@ local msg = ""
 
 local M = {}
 function M.setup()
+   vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
+end
+function M.config()
    local to_require_map = {
-      ["lightspeed.nvim"] = { ["lightspeed"] = {} },
+      ["catppuccin"] = { ["catppuccin"] = {} },
    }
    for plugin_name, modules in pairs(to_require_map) do
       for module_name, _ in pairs(modules) do
          local plug = pluginman:load_plugin(plugin_name, module_name)
-         if not plug then
-            msg = string.format("module < %s > from plugin <%s> could not get loaded", module_name, plugin_name)
-            -- stylua: ignore start
-            if logger then logger:warn(msg)  end
-            -- stylua: ignore end
-         end
+         assert(
+            plug ~= nil,
+            string.format(
+               "module < %s > from plugin <%s> could not get loaded  [ %s ]",
+               module_name,
+               plugin_name,
+               debug.getinfo(1, "S").source:sub(2)
+            )
+         )
          to_require_map[plugin_name][module_name] = plug
       end
    end
-   vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
-end
-function M.config()
-   local module_name = "catppuccin"
-   local plugin_name = "catppuccin"
-   local plug = pluginman:load_plugin(plugin_name, module_name)
-   assert(
-      plug ~= nil,
-      string.format(
-         "module < %s > from plugin <%s> could not get loaded  [ %s ]",
-         module_name,
-         plugin_name,
-         debug.getinfo(1, "S").source:sub(2)
-      )
-   )
+   local plug = to_require_map["catppuccin"]["catppuccin"]
+
 
    local _time = os.date("*t")
    if _time.hour >= 1 and _time.hour < 9 then
@@ -82,9 +75,7 @@ function M.config()
             barbar = false,
             bufferline = true,
             markdown = false,
-            -- FIXME: this guy broke on 2022-02-24
-            -- lightspeed = true,
-            lightspeed = false,
+            lightspeed = true,
             ts_rainbow = true,
             hop = true,
             native_lsp = {
@@ -161,6 +152,5 @@ function M.config()
       -- stylua: ignore end
    end
    -- TODO:update lib.plugins.lualine-nvim and set it automatically based on time
-   -- Maybe do it in setup function ?
 end
 return M
