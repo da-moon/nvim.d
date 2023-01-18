@@ -7,6 +7,7 @@
 -- https://github.com/tigorlazuardi/nvim-lazy
 -- ──────────────────────────────────────────────────────────────────────
 -- luacheck: max line length 120
+-- FIXME: https://github.com/williamboman/nvim-lsp-installer/discussions/509#discussioncomment-4009039
 local modules = {
    "core",
    "plugins",

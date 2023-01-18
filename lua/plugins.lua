@@ -55,7 +55,7 @@ packer.startup(function(use)
       "Tastyep/structlog.nvim",
       opt = false,
       -- tag= "v0.2",
-      commit="7004d418af67dc283033e428b2f21a8d3eed9025",
+      commit = "7004d418af67dc283033e428b2f21a8d3eed9025",
       event = { "VimEnter" },
       setup = [[require("plugins.core.structlog-nvim").setup()]],
       config = [[require("plugins.core.structlog-nvim"):config()]],
@@ -234,7 +234,10 @@ packer.startup(function(use)
    use({
       "nvim-treesitter/nvim-treesitter",
       opt = false,
-      run = ":TSUpdate",
+      run = function()
+         local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+         ts_update()
+      end,
       config = [[require("plugins.core.treesitter.nvim-treesitter").config()]],
    })
    use({
