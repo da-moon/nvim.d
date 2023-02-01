@@ -1,0 +1,31 @@
+---
+image:
+  file: .gp/Dockerfile
+tasks:
+  - name: Update OS packages
+    openMode: tab-before
+    init: |
+      sudo pacman -Syyu --noconfirm ;
+      sudo aura -Ayyuxac --noconfirm --skipinteg --skippgpcheck ;
+  - name: Setup pre-commit
+    before: |
+      pre-commit install
+    init: |
+      pre-commit install --install-hooks ;
+    command: |
+      pre-commit autoupdate ;
+      git add .pre-commit-config.yaml ;
+
+github:
+  prebuilds:
+    master: true
+    branches: true
+    pullRequests: true
+    pullRequestsFromForks: true
+    addCheck: false
+    addComment: false
+    addBadge: true
+vscode:
+  extensions:
+    -
+    https://github.com/pouyakary/comment/releases/download/v11.2.0/comment-v-11.0.2.vsix
