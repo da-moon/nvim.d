@@ -19,7 +19,7 @@ FROM golang:alpine AS go-builder
 USER root
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN apk add --no-cache "ca-certificates"
-RUN apk add --no-cache "bash~=5.1"
+RUN apk add --no-cache "bash~=5"
 # ────────────────────────────────────────────────────────────────────────────────
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # ────────────────────────────────────────────────────────────────────────────────
@@ -53,7 +53,7 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 # ────────────────────────────────────────────────────────────────────────────────
 USER root
 RUN apk add --no-cache "ca-certificates"
-RUN apk add --no-cache "bash~=5.1"
+RUN apk add --no-cache "bash~=5"
 # ────────────────────────────────────────────────────────────────────────────────
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # ────────────────────────────────────────────────────────────────────────────────
@@ -62,13 +62,13 @@ ARG BASE_PACKAGES="\
   cmake~=3 \
   coreutils~=9 \
   curl~=7 \
-  gcc~=10 \
+  gcc~=12 \
   git~=2 \
   make~=4 \
   musl-dev~=1 \
   ncurses-static~=6 \
-  openssl-dev~=1 \
-  openssl-libs-static~=1 \
+  openssl-dev~=3 \
+  openssl-libs-static~=3 \
   "
 RUN \
   IFS=' ' read -a packages <<< $BASE_PACKAGES ; \
@@ -76,10 +76,8 @@ RUN \
   echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" ; \
   echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" ; \
   echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" ; \
-  echo "http://dl-cdn.alpinelinux.org/alpine/v3.14/main" ; \
-  echo "http://dl-cdn.alpinelinux.org/alpine/v3.14/community" ; \
-  echo "http://dl-cdn.alpinelinux.org/alpine/v3.13/main" ; \
-  echo "http://dl-cdn.alpinelinux.org/alpine/v3.13/community" ; \
+  echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/main" ; \
+  echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/community" ; \
   ) | tee /etc/apk/repositories > /dev/null  \
   && apk add --no-cache "${packages[@]}" \
   || ( \
@@ -87,7 +85,7 @@ RUN \
   && apk add --no-cache "${packages[@]}" \
   )
 # ────────────────────────────────────────────────────────────────────────────────
-ARG RUST_VERSION="1.54.0"
+ARG RUST_VERSION="stable"
 ARG RUSTUP_URL="https://sh.rustup.rs"
 ENV RUSTUP_HOME="/usr/local/rustup"
 ENV CARGO_HOME="/usr/local/cargo"
@@ -137,7 +135,7 @@ FROM alpine:edge as upx
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 # ────────────────────────────────────────────────────────────────────────────────
 USER root
-RUN apk add --no-cache "bash~=5.1"
+RUN apk add --no-cache "bash~=5"
 # ────────────────────────────────────────────────────────────────────────────────
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # ────────────────────────────────────────────────────────────────────────────────
@@ -153,10 +151,8 @@ RUN \
   echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" ; \
   echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" ; \
   echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" ; \
-  echo "http://dl-cdn.alpinelinux.org/alpine/v3.14/main" ; \
-  echo "http://dl-cdn.alpinelinux.org/alpine/v3.14/community" ; \
-  echo "http://dl-cdn.alpinelinux.org/alpine/v3.13/main" ; \
-  echo "http://dl-cdn.alpinelinux.org/alpine/v3.13/community" ; \
+  echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/main" ; \
+  echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/community" ; \
   ) | tee /etc/apk/repositories > /dev/null  \
   && apk add --no-cache "${packages[@]}" \
   || ( \
@@ -164,9 +160,9 @@ RUN \
   && apk add --no-cache "${packages[@]}" \
   )
 ARG UPX_DEPS="\
-  curl~=7.79 \
-  jq~=1.6 \
-  xz~=5.2 \
+  curl~=7 \
+  jq~=1 \
+  xz~=5 \
   "
 RUN \
   IFS=' ' read -a packages <<< $UPX_DEPS ; \
@@ -354,159 +350,160 @@ RUN \
       fi \
   fi \
   && mv "$exe" "/workspace/$(basename $exe)"
-FROM rust-builder AS stylua-builder
-WORKDIR "/workspace"
-RUN \
-  --mount=type=cache,target=/root/.cargo \
-  --mount=type=cache,target=/usr/local/cargo/registry \
-  export apkArch="$(apk --print-arch)" ; \
-  case "${apkArch}" in \
-  x86_64 | aarch64) \
-  true \
-  ;; \
-  *) \
-  exit 1 \
-  ;; \
-  esac; \
-  [ "${apkArch}" == "aarch64" ] && export CFLAGS="-mno-outline-atomics" || true ; \
-  rustup run --install stable cargo install \
-    --all-features \
-    --root "/workspace" \
-    --target "${apkArch}-unknown-linux-musl" \
-    "stylua" ; \
-  exe="/workspace/bin/stylua" ; \
-  if [[ ! -z $(readelf -d "${exe}" | grep NEED) ]]; then \
-      if ldd ${exe} > /dev/null 2>&1; then \
-        echo >&2 "*** '${exe}' was not linked statically"; \
-        exit 1; \
-      fi \
-  fi \
-  && mv "$exe" "/workspace/$(basename $exe)"
-FROM rust-builder AS selene-builder
-WORKDIR "/workspace"
-RUN \
-  --mount=type=cache,target=/root/.cargo \
-  --mount=type=cache,target=/usr/local/cargo/registry \
-  export apkArch="$(apk --print-arch)" ; \
-  case "${apkArch}" in \
-  x86_64 | aarch64) \
-  true \
-  ;; \
-  *) \
-  exit 1 \
-  ;; \
-  esac; \
-  [ "${apkArch}" == "aarch64" ] && export CFLAGS="-mno-outline-atomics" || true ; \
-  rustup run --install stable cargo install \
-    --all-features \
-    --root "/workspace" \
-    --target "${apkArch}-unknown-linux-musl" \
-    --branch "main" \
-    --git "https://github.com/Kampfkarren/selene" \
-    "selene" ; \
-  exe="/workspace/bin/selene" ; \
-  if [[ ! -z $(readelf -d "${exe}" | grep NEED) ]]; then \
-      if ldd ${exe} > /dev/null 2>&1; then \
-        echo >&2 "*** '${exe}' was not linked statically"; \
-        exit 1; \
-      fi \
-  fi \
-  && mv "$exe" "/workspace/$(basename $exe)"
-FROM rust-builder AS sd-builder
-WORKDIR "/workspace"
-RUN \
-  --mount=type=cache,target=/root/.cargo \
-  --mount=type=cache,target=/usr/local/cargo/registry \
-  export apkArch="$(apk --print-arch)" ; \
-  case "${apkArch}" in \
-  x86_64 | aarch64) \
-  true \
-  ;; \
-  *) \
-  exit 1 \
-  ;; \
-  esac; \
-  rustup run --install stable cargo install \
-    --all-features \
-    --root "/workspace" \
-    --target "${apkArch}-unknown-linux-musl" \
-    "sd" ; \
-  exe="/workspace/bin/sd" ; \
-  if [[ ! -z $(readelf -d "${exe}" | grep NEED) ]]; then \
-      if ldd ${exe} > /dev/null 2>&1; then \
-        echo >&2 "*** '${exe}' was not linked statically"; \
-        exit 1; \
-      fi \
-  fi \
-  && mv "$exe" "/workspace/$(basename $exe)"
-FROM rust-builder AS sad-builder
-WORKDIR "/workspace"
-RUN \
-  --mount=type=cache,target=/root/.cargo \
-  --mount=type=cache,target=/usr/local/cargo/registry \
-  export apkArch="$(apk --print-arch)" ; \
-  case "${apkArch}" in \
-  x86_64 | aarch64) \
-  true \
-  ;; \
-  *) \
-  exit 1 \
-  ;; \
-  esac; \
-  rustup run --install stable cargo install \
-    --all-features \
-    --root "/workspace" \
-    --target "${apkArch}-unknown-linux-musl" \
-    --git "https://github.com/ms-jpq/sad" ; \
-  exe="/workspace/bin/sad" ; \
-  if [[ ! -z $(readelf -d "${exe}" | grep NEED) ]]; then \
-      if ldd ${exe} > /dev/null 2>&1; then \
-        echo >&2 "*** '${exe}' was not linked statically"; \
-        exit 1; \
-      fi \
-  fi \
-  && mv "$exe" "/workspace/$(basename $exe)"
-FROM rust-builder AS helix-builder
-WORKDIR "/workspace"
-RUN \
-  git clone \
-    --recurse-submodules \
-    --shallow-submodules \
-    -j"$(nproc)" \
-    "https://github.com/helix-editor/helix" "/tmp/helix"
-WORKDIR "/tmp/helix"
-RUN \
-  --mount=type=cache,target=/root/.cargo \
-  --mount=type=cache,target=/usr/local/cargo/registry \
-  rustup run --install stable cargo install \
-    --all-features \
-    --locked \
-    --jobs "$(nproc)" \
-    --root "/workspace"  \
-    --target "$(apk --print-arch)-unknown-linux-musl" \
-    --path "helix-term"
-WORKDIR "/workspace"
-RUN \
-  exe="/workspace/bin/hx" ; \
-  if [[ ! -z $(readelf -d "${exe}" | grep NEED) ]]; then \
-      if ldd ${exe} > /dev/null 2>&1; then \
-        echo >&2 "*** '${exe}' was not linked statically"; \
-        exit 1; \
-      fi \
-  fi \
-  && mv "$exe" "/workspace/$(basename $exe)"
+# FROM rust-builder AS stylua-builder
+# WORKDIR "/workspace"
+# RUN \
+#   --mount=type=cache,target=/root/.cargo \
+#   --mount=type=cache,target=/usr/local/cargo/registry \
+#   export apkArch="$(apk --print-arch)" ; \
+#   case "${apkArch}" in \
+#   x86_64 | aarch64) \
+#   true \
+#   ;; \
+#   *) \
+#   exit 1 \
+#   ;; \
+#   esac; \
+#   [ "${apkArch}" == "aarch64" ] && export CFLAGS="-mno-outline-atomics" || true ; \
+#   rustup run --install stable cargo install \
+#     --all-features \
+#     --root "/workspace" \
+#     --target "${apkArch}-unknown-linux-musl" \
+#     "stylua" ; \
+#   exe="/workspace/bin/stylua" ; \
+#   if [[ ! -z $(readelf -d "${exe}" | grep NEED) ]]; then \
+#       if ldd ${exe} > /dev/null 2>&1; then \
+#         echo >&2 "*** '${exe}' was not linked statically"; \
+#         exit 1; \
+#       fi \
+#   fi \
+#   && mv "$exe" "/workspace/$(basename $exe)"
+# FROM rust-builder AS selene-builder
+# WORKDIR "/workspace"
+# RUN \
+#   --mount=type=cache,target=/root/.cargo \
+#   --mount=type=cache,target=/usr/local/cargo/registry \
+#   apk add --no-cache g++ ; \
+#   export apkArch="$(apk --print-arch)" ; \
+#   case "${apkArch}" in \
+#   x86_64 | aarch64) \
+#   true \
+#   ;; \
+#   *) \
+#   exit 1 \
+#   ;; \
+#   esac; \
+#   [ "${apkArch}" == "aarch64" ] && export CFLAGS="-mno-outline-atomics" || true ; \
+#   rustup run --install stable cargo install \
+#     --all-features \
+#     --root "/workspace" \
+#     --target "${apkArch}-unknown-linux-musl" \
+#     --branch "main" \
+#     --git "https://github.com/Kampfkarren/selene" \
+#     "selene" ; \
+#   exe="/workspace/bin/selene" ; \
+#   if [[ ! -z $(readelf -d "${exe}" | grep NEED) ]]; then \
+#       if ldd ${exe} > /dev/null 2>&1; then \
+#         echo >&2 "*** '${exe}' was not linked statically"; \
+#         exit 1; \
+#       fi \
+#   fi \
+#   && mv "$exe" "/workspace/$(basename $exe)"
+# FROM rust-builder AS sd-builder
+# WORKDIR "/workspace"
+# RUN \
+#   --mount=type=cache,target=/root/.cargo \
+#   --mount=type=cache,target=/usr/local/cargo/registry \
+#   export apkArch="$(apk --print-arch)" ; \
+#   case "${apkArch}" in \
+#   x86_64 | aarch64) \
+#   true \
+#   ;; \
+#   *) \
+#   exit 1 \
+#   ;; \
+#   esac; \
+#   rustup run --install stable cargo install \
+#     --all-features \
+#     --root "/workspace" \
+#     --target "${apkArch}-unknown-linux-musl" \
+#     "sd" ; \
+#   exe="/workspace/bin/sd" ; \
+#   if [[ ! -z $(readelf -d "${exe}" | grep NEED) ]]; then \
+#       if ldd ${exe} > /dev/null 2>&1; then \
+#         echo >&2 "*** '${exe}' was not linked statically"; \
+#         exit 1; \
+#       fi \
+#   fi \
+#   && mv "$exe" "/workspace/$(basename $exe)"
+# FROM rust-builder AS sad-builder
+# WORKDIR "/workspace"
+# RUN \
+#   --mount=type=cache,target=/root/.cargo \
+#   --mount=type=cache,target=/usr/local/cargo/registry \
+#   export apkArch="$(apk --print-arch)" ; \
+#   case "${apkArch}" in \
+#   x86_64 | aarch64) \
+#   true \
+#   ;; \
+#   *) \
+#   exit 1 \
+#   ;; \
+#   esac; \
+#   rustup run --install stable cargo install \
+#     --all-features \
+#     --root "/workspace" \
+#     --target "${apkArch}-unknown-linux-musl" \
+#     --git "https://github.com/ms-jpq/sad" ; \
+#   exe="/workspace/bin/sad" ; \
+#   if [[ ! -z $(readelf -d "${exe}" | grep NEED) ]]; then \
+#       if ldd ${exe} > /dev/null 2>&1; then \
+#         echo >&2 "*** '${exe}' was not linked statically"; \
+#         exit 1; \
+#       fi \
+#   fi \
+#   && mv "$exe" "/workspace/$(basename $exe)"
+# FROM rust-builder AS helix-builder
+# WORKDIR "/workspace"
+# RUN \
+#   git clone \
+#     --recurse-submodules \
+#     --shallow-submodules \
+#     -j"$(nproc)" \
+#     "https://github.com/helix-editor/helix" "/tmp/helix"
+# WORKDIR "/tmp/helix"
+# RUN \
+#   --mount=type=cache,target=/root/.cargo \
+#   --mount=type=cache,target=/usr/local/cargo/registry \
+#   rustup run --install stable cargo install \
+#     --all-features \
+#     --locked \
+#     --jobs "$(nproc)" \
+#     --root "/workspace"  \
+#     --target "$(apk --print-arch)-unknown-linux-musl" \
+#     --path "helix-term"
+# WORKDIR "/workspace"
+# RUN \
+#   exe="/workspace/bin/hx" ; \
+#   if [[ ! -z $(readelf -d "${exe}" | grep NEED) ]]; then \
+#       if ldd ${exe} > /dev/null 2>&1; then \
+#         echo >&2 "*** '${exe}' was not linked statically"; \
+#         exit 1; \
+#       fi \
+#   fi \
+#   && mv "$exe" "/workspace/$(basename $exe)"
 #
 #  ──── COMPRESS ─────────────────────────────────────────────────────
 #
 FROM upx AS compression-layer
 COPY --chmod=0755 --from="yq-builder" "/go/bin/yq" "/workspace/bin/yq"
-# COPY --chmod=0755 --from="convco-builder" "/workspace" "/workspace"
-COPY --chmod=0755 --from="sd-builder" "/workspace" "/workspace"
 COPY --chmod=0755 --from="ttdl-builder" "/workspace" "/workspace"
-COPY --chmod=0755 --from="sad-builder" "/workspace" "/workspace"
-COPY --chmod=0755 --from="stylua-builder" "/workspace" "/workspace"
-COPY --chmod=0755 --from="selene-builder" "/workspace" "/workspace"
-COPY --chmod=0755 --from="helix-builder" "/workspace" "/workspace"
+# COPY --chmod=0755 --from="convco-builder" "/workspace" "/workspace"
+# COPY --chmod=0755 --from="sd-builder" "/workspace" "/workspace"
+# COPY --chmod=0755 --from="sad-builder" "/workspace" "/workspace"
+# COPY --chmod=0755 --from="stylua-builder" "/workspace" "/workspace"
+# COPY --chmod=0755 --from="selene-builder" "/workspace" "/workspace"
+# COPY --chmod=0755 --from="helix-builder" "/workspace" "/workspace"
 RUN \
   compress ;
 
@@ -530,16 +527,18 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 USER root
 ENV TERM xterm
 RUN apk add --no-cache "ca-certificates"
-RUN apk add --no-cache "bash~=5.1"
+RUN apk add --no-cache "bash~=5"
 # ────────────────────────────────────────────────────────────────────────────────
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ARG BASE_PACKAGES="\
+  less \
+  tzdata \
   bat~=0 \
   shfmt~=3 \
   exa~=0 \
   tokei~=12 \
   delta~=0 \
-  just~=0 \
+  just~=1 \
   acl~=2 \
   alpine-sdk~=1 \
   bash-completion~=2 \
@@ -556,21 +555,19 @@ ARG BASE_PACKAGES="\
   git~=2 \
   grep~=3 \
   jq~=1 \
-  less=590-r0 \
   make~=4 \
   mkfontscale~=1 \
   ncurses~=6 \
   ncurses-dev~=6 \
   ncurses-static~=6 \
-  openssl~=1 \
-  openssl-dev~=1 \
+  openssl~=3 \
+  openssl-dev~=3 \
   perl~=5 \
   shadow~=4 \
   starship~=1 \
   sudo~=1 \
   tmux~=3 \
-  tree~=1 \
-  tzdata~=2021e \
+  tree~=2 \
   util-linux~=2 \
   wget~=1 \
   unzip~=6 \
@@ -581,7 +578,7 @@ ARG BASE_PACKAGES="\
   bzip2~=1 \
   docker~=20 \
   docker-compose~=1 \
-  git-secret~=0.4 \
+  git-secret~=0 \
   glow~=1 \
   gnupg~=2 \
   gtest-dev~=1 \
@@ -593,6 +590,9 @@ ARG BASE_PACKAGES="\
   nerd-fonts~=2 \
   rcm~=1 \
   yj~=1 \
+  helix \
+  sd \
+  stylua \
   "
 RUN \
   IFS=' ' read -a packages <<< $BASE_PACKAGES ; \
@@ -600,10 +600,8 @@ RUN \
   echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" ; \
   echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" ; \
   echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" ; \
-  echo "http://dl-cdn.alpinelinux.org/alpine/v3.14/main" ; \
-  echo "http://dl-cdn.alpinelinux.org/alpine/v3.14/community" ; \
-  echo "http://dl-cdn.alpinelinux.org/alpine/v3.13/main" ; \
-  echo "http://dl-cdn.alpinelinux.org/alpine/v3.13/community" ; \
+  echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/main" ; \
+  echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/community" ; \
   ) | tee /etc/apk/repositories > /dev/null ;  \
   apk add --no-cache "${packages[@]}" \
   || ( \
@@ -677,17 +675,18 @@ RUN \
     ripgrep~=13 \
     ripgrep-bash-completion~=13 \
     fzf~=0 \
-    fzf-bash-completion~=0 \
+    fzf-bash-plugin~=0 \
     xclip~=0 \
     xsel~=1 \
-    npm~=14 \
+    npm~=9 \
     yarn~=1 \
     python3-dev~=3 \
-    py3-pip~=21 \
+    py3-pip~=23 \
     py3-virtualenv~=20 \
-    py3-setuptools~=52 \
-    py3-wheel~=0.36 \
+    py3-setuptools~=67 \
+    py3-wheel~=0 \
     py3-pynvim~=0 \
+    neovim~=0.8 \
   && npm install -g neovim \
   && yarn cache clean --all \
   && npm -g cache clean --force > /dev/null 2>&1
@@ -699,10 +698,10 @@ ENV COLORTERM="truecolor"
 ENV PATH="${PATH}:/usr/local/bin"
 ENV PATH="${PATH}:${HOME}/.local/bin"
 ENV PATH="${PATH}:${HOME}/.git-fuzzy/bin/"
+# && python3 -m pip install --user pre-commit \
 RUN \
   mkdir -p "${HOME}/.ssh" \
   && touch "${HOME}/.ssh/config" \
-  && python3 -m pip install --user pre-commit \
   && git clone "https://github.com/wfxr/forgit" "${HOME}/.forgit" \
   && git clone https://github.com/bigH/git-fuzzy "${HOME}/.git-fuzzy" \
   && chmod a+x ${HOME}/.git-fuzzy/bin/* \
@@ -732,35 +731,36 @@ RUN \
   done < <(find "${HOME}/.alias.d/" -name '*.sh') ;
 # ────────────────────────────────────────────────────────────────────────────────
 USER root
-RUN \
-  apk add \
-    --no-cache \
-    --virtual .neovim-build-deps \
-     build-base \
-     cmake \
-     automake \
-     autoconf \
-     libtool \
-     pkgconf \
-     coreutils \
-     curl \
-     unzip \
-     gettext-tiny-dev \
-  && git clone "https://github.com/neovim/neovim.git" "/usr/local/src/neovim" \
-  && export CMAKE_BUILD_TYPE="Release" \
-  && export CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=/usr/local" \
-  && make -C "/usr/local/src/neovim" -j"$(nproc)"  \
-  && unset CMAKE_BUILD_TYPE \
-  && unset CMAKE_EXTRA_FLAGS \
-  && make -C "/usr/local/src/neovim" -j"$(nproc)" install \
-  && nvim --version \
-  && apk del --no-cache --purge .neovim-build-deps
+# RUN \
+#   apk add \
+#     --no-cache \
+#     --virtual .neovim-build-deps \
+#      build-base \
+#      cmake \
+#      automake \
+#      autoconf \
+#      libtool \
+#      pkgconf \
+#      coreutils \
+#      curl \
+#      unzip \
+#      gettext-tiny-dev \
+#   && git clone "https://github.com/neovim/neovim.git" "/usr/local/src/neovim" \
+#   && export CMAKE_BUILD_TYPE="Release" \
+#   && export CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=/usr/local" \
+#   && make -C "/usr/local/src/neovim" -j"$(nproc)"  \
+#   && unset CMAKE_BUILD_TYPE \
+#   && unset CMAKE_EXTRA_FLAGS \
+#   && make -C "/usr/local/src/neovim" -j"$(nproc)" install \
+#   && nvim --version \
+#   && apk del --no-cache --purge .neovim-build-deps
 # ─── CLEAN UP ───────────────────────────────────────────────────────────────────
 ADD "https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.bash" "/usr/share/fzf/completion.bash"
 ADD "https://raw.githubusercontent.com/lincheney/fzf-tab-completion/master/bash/fzf-bash-completion.sh" "/usr/share/fzf/fzf-tab-completion.bash"
 RUN \
   [ ! -r "/bin/cut" ] && ln -sf "$(command -v cut)" "/bin/cut" ; \
-  chown -R "$(id -u "${USER}"):$(id -g "${USER}")" "${HOME}/.cache" \
+  mkdir -p "${HOME}/.cache" \
+  && chown -R "$(id -u "${USER}"):$(id -g "${USER}")" "${HOME}/.cache" \
   && chown -R "$(id -u "${USER}"):$(id -g "${USER}")" "${HOME}" \
   && chmod 0755 "/usr/share/fzf/completion.bash" \
   && chmod 0755 "/usr/share/fzf/fzf-tab-completion.bash" \
